@@ -1,0 +1,11 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="navbar navbar-default" id="home-nvbar">
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="home.userAdmin({username: vm.userName, role: vm.roles})">User Admin <span class="sr-only">(current)</span></a></li>
+        <li><a ui-sref="home.userManager">User Manager</a></li>
+        <li><a ui-sref="home.roleManager">Role Manager</a></li>
+        <li><a ui-sref="home.userRoleManager">User Role Manager</a></li>
+    </ul>
+</div>
+<p ui-view></p>
+<!-- /.navbar-collapse -->

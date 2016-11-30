@@ -1,0 +1,169 @@
+public class UserRole
+    {
+
+
+        //foreign keys
+        [Key]
+        [Column(Order = 0)]
+        public int RoleId { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        public int UserId { get; set; }
+        public DateTime LastUpdated { get; set; }
+
+        public virtual User User { get; set; }
+        public virtual Role Role { get;  set; }
+.....
+..
+
+
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+
+
+......
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using UserAdminAPI.Models;
+
+namespace UserAdminAPI.Data
+
+
+
+  public class UserAdminDataContext : DbContext
+    {
+        public UserAdminDataContext() :base("USERADMIN")
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
+        }
+        public IDbSet<User> Users { get; set; }
+        public IDbSet<Role> Roles { get; set; }
+        public IDbSet<UserRole> UserRoles { get; set; }
+...
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+          // base.OnModelCreating(modelBuilder);
+		//compound key
+
+          	modelBuilder.Entity<UserRole>()
+            .HasKey(ur => new { ur.UserId, ur.RoleId });
+
+            // a role has many userroles
+            modelBuilder.Entity<Role>()
+                .HasMany(r => r.UserRoles) 
+                .WithRequired(ur => ur.Role)
+                .HasForeignKey(ur => ur.UserId);
+
+            // a suser has many userroles
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.UserRoles)
+                .WithRequired(ur => ur.User)
+                .HasForeignKey(ur => ur.UserId);
+        }
+    }
+
+one-to-many for OrderLineItem example
+
+            modelBuilder.Entity<OrderLineItem>()
+            .HasKey(orl => orl.OrderLineItemId)
+            .HasMany(orl => orl.OrderId)
+
+
+
+
+
+------------------------
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        //one-to-many 
+        modelBuilder.Entity<Student>()
+                    .HasRequired<Standard>(s => s.Standard)
+                    .WithMany(s => s.Students)
+                    .HasForeignKey(s => s.StdId);
+
+}
+    ----------------------------
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+        //one-to-many 
+        modelBuilder.Entity<OrderLineItem>()
+                    .HasRequired<Order>(or => or.Order) // Student entity requires Standard 
+                    .WithMany(or => or.OrderLineItems) // Standard entity includes many Students entities
+		    .HasForeignKey(or => (or.OrderId, or.VendorId, or.ProductId));
+
+}
+
+//composite foreign key
+modelBuilder.Entity(OrderLineItem)
+.HasRequired(ol=> ol.Order)
+.withMany(ol=> ol.OrderLineItems)
+.HasForeignKey(ol => new{ol.OrderId, ol.VendorId, ol.ProductId});
+
+---------------------------------
+TeamPhunDataContext original code v1  ()()()()()()(()))))))))))()()()()
+
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using TeamPhun_API.Models;
+
+namespace TeamPhun_API.data
+{
+     public class TeamPhunDataContext : DbContext
+     {
+     public TeamPhunDataContext() :base("TeamPhun")
+            {
+             this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
+            }
+
+        public IDbSet<Customer> Customers { get; set; }
+        public IDbSet<Order> Orders { get; set; }
+        public IDbSet<OrderLineItem> OrderLineItems { get; set; }
+        public IDbSet<Product> Products { get; set; }
+        public IDbSet<Vendor> Vendors { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            //primary key for Order 
+            modelBuilder.Entity<Order>()
+                .HasKey(o => o.OrderId)
+                .HasRequired(o => o.Customer)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o=> o.CustomerId);
+
+            // Vendor has primary key
+            // It has no required for the other tables
+            modelBuilder.Entity<Vendor>()
+                 .HasKey(v => v.VendorId);
+
+
+            //Product has a primary key
+            // It has no required for other tables
+            modelBuilder.Entity<Product>()
+                .HasKey(p => p.ProductId);
+
+
+            //primary key for Order 
+            modelBuilder.Entity<Customer>()
+                .HasKey(c => c.CustomerId);
+      
+            //one-to-many 
+            //composite foreign key
+            // an Order can have many OrderLineItems 
+            modelBuilder.Entity<OrderLineItem>()
+            .HasRequired(ol => ol.Order)
+            .WithMany(ol => ol.OrderLineItems)
+            .HasForeignKey(ol => new { ol.OrderId, ol.VendorId, ol.ProductId });
+
+        }
+
+    }
+}
+ 
