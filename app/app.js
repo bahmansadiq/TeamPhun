@@ -11,19 +11,22 @@
                 url: "/home",
                 templateUrl: "app/partials/Home.html"
             })
-             .state('home.Customer', {
-                url: "/movieDetails/:movieDetailId",
+             .state('home.customer', {
+                url: "/customer",
                 templateUrl: "app/partials/Customer.html",
                 parent: "home",
                 controller: 'TeamPhunController',
                 controllerAs: 'vm'
             })
-            .state('home.Vendor', {
-                url: "/movieDetails/:movieDetailId",
-                templateUrl: "app/partials/Vendor.html",
+               .state('home.quoteGenerator', {
+                url: "/quoteGenerator",
+                templateUrl: "app/partials/OrderLineItem.html",
                 parent: "home",
-                controller: 'VendorController',
+                controller: 'TeamPhunController',
                 controllerAs: 'vm'
+
+         
+            
 
             });
     });
