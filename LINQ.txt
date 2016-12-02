@@ -166,4 +166,9 @@ namespace TeamPhun_API.data
 
     }
 }
+'Authorization':
+{
+UserName: akdsfs,
+Password: dfaks
+}
  

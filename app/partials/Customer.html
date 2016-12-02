@@ -1,0 +1,53 @@
+<pre>{{vm.allCustomers}}</pre>
+<div>
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <h1>Customers Manage Engine</h1>
+        </div>
+        <div class="panel-body">
+
+            <!-- Search Customer Input -->
+            <div class="col-md-3 col-md-offset-9">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search by name or id...">
+                    <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search!</button>
+      </span>
+                </div>
+            </div>
+            <!-- Customer Table -->
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Organization</th>
+                    <th>Role</th>
+                    <th>Business Phone</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="customer in vm.allCustomers">
+                    <td >{{customer.customerId}}</td>
+                    <td>{{customer.firstName}} {{customer.lastName}}</td>
+                    <td>{{customer.organization}}</td>
+                    <td>{{customer.role}}</td>
+                    <td>{{customer.businessPhone}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.city}}</td>
+                    <td>{{customer.state}}</td>
+                    <td>
+                    <button class="btn btn-primary" ui-sref="home.customerDetails({customerId: customer.customerId})" 
+                    ng-click="vm.findCustomerById(customer.customerId)">Details
+                    </button>
+                    </td>
+
+
+                </tr>
+            </table>
+              <div ui-view></div>
+            <button ui-sref="home.customerResgisteration">Add new customer</button>
+        </div>
+    </div>
+</div>
