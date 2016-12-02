@@ -33,13 +33,7 @@
                     console.log(array2);
                 }
 
-                vm.data=array2;
-
-
-
-
-                
-                
+                vm.data=array2;  
             })
         }
 
