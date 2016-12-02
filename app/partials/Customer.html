@@ -1,0 +1,16 @@
+<pre>{{vm.specs}}</pre>
+<table>
+	<th>Brand Name</th>
+	<tr ng-repeat='data in vm.specs'>
+		<td>{{data.brandName}}  {{data.value}}</td>
+
+	</tr>
+</table>
+<table>
+	<th> </th>
+	<tr>
+		<td>{{}}</td>
+	</tr>
+</table>
+ <button ng-click="vm.getSpecs">Press me</button>
+<div ui-view></div>
