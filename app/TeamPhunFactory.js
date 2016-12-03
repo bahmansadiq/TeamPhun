@@ -26,7 +26,7 @@
             var defer = $q.defer();
             $http({
                     method: 'GET',
-                    url: 'http://localhost:57450/api/customers'
+                    url: 'http://localhost:57450/api/customers/'
                 })
                 .then(function(response) {
                         if (typeof response.data === 'object') {
@@ -98,7 +98,7 @@
             var defer = $q.defer();
             $http({
                     method: 'DELETE',
-                    url: 'http://localhost:57450/api/customers/' + CustomerId
+                    url: 'http://localhost:57450/api/customers/' + customerId
                 })
                 .then(function(response) {
                         if (typeof response.data === 'object') {
