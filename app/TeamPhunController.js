@@ -17,8 +17,11 @@
         vm.specificCustomer = [];
         var customerInfo = {};
 
-
-
+        // Slider for profit margin on orderLineItem.html
+        $("#ex6").slider();
+        $("#ex6").on("slide", function(slideEvt) {
+            $("#ex6SliderVal").text(slideEvt.value);
+        });
 
         activate();
 
@@ -28,7 +31,7 @@
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
                         vm.allCustomers = response;
-                        // console.log(vm.allCustomers +"successfull loaded the customers from customer factor to the customer controller")
+                        console.log(vm.allCustomers + "successfull loaded the customers from customer factor to the customer controller")
                         return response;
                     },
                     function(error) {
@@ -41,7 +44,7 @@
                 .then(function(response) {
                         console.log(response);
                         vm.specificCustomer = response;
-                        console.log(vm.specificCustomer);
+                        //console.log(vm.specificCustomer);
                         console.log(vm.specificCustomer + "successfull loaded the specific customer from customer factor to the TeamPhun controller")
                         return response;
                     },
@@ -49,6 +52,15 @@
                         console.log(error + " Unable to load the specific Customer from the factory to the controller!");
                     });
         }
+
+
+        //maybe try throwing function intro the activate if this doesnt work
+        // function findCustomerbyID(id) {
+        //     TeamPhunController.getCustomerById
+
+        // }
+
+
 
 
         function addCustomer() {
@@ -85,7 +97,7 @@
                     });
 
         }
-        //   console.log(vm.specificCustomer);
+        console.log(vm.specificCustomer);
 
     }
 })();
