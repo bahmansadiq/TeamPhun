@@ -39,6 +39,14 @@
             controller: 'TeamPhunController',
             controllerAs: 'vm'
         })
+        .state('home.test', {
+            url: "/test",
+            templateUrl: "app/partials/test.html",
+            parent: "home",
+            controller: 'TeamPhunSASController',
+            controllerAs: 'vm'
+        })
+
          .state('home.order', {
             url: "/order",
             templateUrl: "app/partials/Order.html",

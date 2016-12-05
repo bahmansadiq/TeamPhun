@@ -90,7 +90,7 @@
          var defer = $q.defer();
          $http({
             method:'GET',
-            url:' https://api.ssactivewear.com/v2/products/81480',
+            url:' https://api.ssactivewear.com/v2/products/?style=00760',
             headers:{
              authorization:'Basic ODM0ODQ6ZTEzMjMwNjMtMjk4OC00NGY0LTk3NWYtMGZlNDZhZjRhZTY3', 
              UserName: 83484,
