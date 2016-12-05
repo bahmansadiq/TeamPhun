@@ -1,67 +1,360 @@
-<div>
-    <!-- Begin Panel -->
+<!-- <div class="container col-md-12">
     <div class="panel panel-primary">
-        <!-- Begin Panel Heading -->
         <div class="panel-heading text-center">
             <h1>Quote Generator</h1>
         </div>
+        <div class="panel-body"> -->
+<!-- Quote Input Panel Start -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">Quote Calculator</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group row">
+                            <div class="col-xs-8">
+                                <label><strong>Print Pieces</strong></label>
+                                <input type="text" class="form-control" placeholder="No. of Pieces...">
+                            </div>
+                        </div>
+                        <!-- Dropdown select: 10 colors total  -->
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Colors
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li value="1"><a>One</a></li>
+                                    <li value="2"><a>Two</a></li>
+                                    <li value="3"><a>Three</a></li>
+                                    <li value="4"><a>Four</a></li>
+                                    <li value="5"><a>Five</a></li>
+                                    <li value="6"><a>Six</a></li>
+                                    <li value="7"><a>Seven</a></li>
+                                    <li value="8"><a>Eight</a></li>
+                                    <li value="9"><a>Nine</a></li>
+                                    <li value="10"><a>Ten</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
+                        <div class="form-group row">
+                            <div class="col-xs-8">
+                                <label><strong>Locations</strong></label>
+                                <input type="text" class="form-control" placeholder="Locations...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Checkboxes -->
+                            <div>
+                                <label><strong>Add-On's:</strong></label>
+                            </div>
+                            <!-- per unit cost -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Metalic Links</label>
+                            </div>
+                            <!-- per unit cost -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Discharge</label>
+                            </div>
+                            <!-- per unit cost -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Foil</label>
+                            </div>
+                            <!-- per unit cost -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">Flash</label>
+                            </div>
+                            <!-- PMS Color Matching is $15 per color per job -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">PMS Color Matching</label>
+                            </div>
+                            <!-- Button should be disabled or hidden if order is less than 72 items -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">Folding and Bagging</label>
+                            </div>
+                            <!-- 8% CA Sales tax is charged for customers who will not resale product -->
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">Sales Tax</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-4">
+                                    <label><strong>Profit Margin</strong></label>
+                                    <br>
+                                    <input id="ex6" type="text" class="form-control" data-slider-min="-5" data-slider-max="100" data-slider-step="1" data-slider-value="50" ng-model="vm.LineItemProfitMargin" />
+                                    <br>
+                                    <span id="ex6CurrentSliderValLabel">Current Value: <span id="ex6SliderVal">50</span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">Line Item Totals</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Line Item Expense</td>
+                            <td>$1500</td>
+                        </tr>
+                        <tr>
+                            <td>Client Quote</td>
+                            <td>$3000</td>
+                        </tr>
+                        <tr>
+                            <td>Line Item Profit Margin</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td>Line Item Profit</td>
+                            <td>$1500</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">Order Grand Totals</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Total Order Expense</td>
+                            <td>$4000</td>
+                        </tr>
+                        <tr>
+                            <td>Total Order Quote</td>
+                            <td>$8000</td>
+                        </tr>
+                        <tr>
+                            <td>Total Profit Margin</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td>Total Order Profit</td>
+                            <td>$4000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Order Line Items</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product Code</th>
+                                <th>Name</th>
+                                <th>Cost per Item</th>
+                                <th>Description</th>
+                                <th>Pieces</th>
+                                <th>Colors</th>
+                                <th>Print Locations</th>
+                                <th>Metalic Links</th>
+                                <th>Discharge</th>
+                                <th>Foil</th>
+                                <th>Flash</th>
+                                <th>PMS Color Matching</th>
+                                <th>Folding and Bagging</th>
+                                <th>Sales Tax</th>
+                                <th>Profit Margin</th>
+                                <th>Total Line Cost</th>
+                                <th>Client Quote</th>
+                                <th>Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                            </tr>
+                            <tr>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                            </tr>
+                            <tr>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                            </tr>
+                            <tr>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                            </tr>
+                            <tr>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                                <td>Test Data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+ -->
+        <!-- Begin Panel -->
+        <!-- div class="panel panel-primary"> -->
+        <!-- Begin Panel Heading -->
+        <!--   <div class="panel-heading text-center">
+            <h1>Quote Generator</h1>
+        </div> -->
         <!-- Begin panel body -->
-        <div class="panel-body">
-            <!-- Input number of pieces in order -->
-            <div>
+        <!-- <div class="panel-body"> -->
+        <!-- Input number of pieces in order -->
+        <!--  <div>
                 <label><strong>Number of Print Pieces</strong></label>
                 <input type="text" placeholder="No. of Pieces...">
-            </div>
-            <!-- Dropdown select: 10 colors total  -->
-            <div>
+            </div> -->
+        <!-- Dropdown select: 10 colors total  -->
+        <!--  <div>
                 <label><strong>Number of Colors</strong></label>
                 <select>
                     <option value="1">1 Color (Example: ng-repeat goes here)</option>
                     <option value="2">2 Colors (Example)</option>
                 </select>
-            </div>
-            <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
-            <div>
+            </div> -->
+        <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
+        <!--  <div>
                 <label><strong>Number of Print Locations</strong></label>
                 <input type="text" placeholder="No. of Locations...">
             </div>
-            <div>
-                <!-- Checkboxes -->
-                <div class="">
+            <div> -->
+        <!-- Checkboxes -->
+        <!-- <div class="">
                     <label><strong>Check if Yes:</strong></label>
-                </div>
-                <!-- per unit cost -->
-                <div class="checkbox">
+                </div> -->
+        <!-- per unit cost -->
+        <!--    <div class="checkbox">
                     <label>
                         <input type="checkbox">Metalic Links</label>
-                </div>
-                <!-- per unit cost -->
-                <div class="checkbox">
+                </div> -->
+        <!-- per unit cost -->
+        <!--  <div class="checkbox">
                     <label>
                         <input type="checkbox">Discharge</label>
-                </div>
-                <!-- per unit cost -->
-                <div class="checkbox">
+                </div> -->
+        <!-- per unit cost -->
+        <!--     <div class="checkbox">
                     <label>
                         <input type="checkbox">Foil</label>
-                </div>
-                <!-- per unit cost -->
-                <div class="checkbox">
+                </div> -->
+        <!-- per unit cost -->
+        <!--  <div class="checkbox">
                     <label>
                         <input type="checkbox">Flash</label>
-                </div>
-                <!-- PMS Color Matching is $15 per color per job -->
-                <div class="checkbox">
+                </div> -->
+        <!-- PMS Color Matching is $15 per color per job -->
+        <!-- <div class="checkbox">
                     <label>
                         <input type="checkbox">PMS Color Matching</label>
-                </div>
-                <!-- Button should be disabled or hidden if order is less than 72 items -->
-                <div class="checkbox">
+                </div> -->
+        <!-- Button should be disabled or hidden if order is less than 72 items -->
+        <!--  <div class="checkbox">
                     <label>
                         <input type="checkbox" value="">Folding and Bagging</label>
-                </div>
-                <!-- 8% CA Sales tax is charged for customers who will not resale product -->
-                <div class="checkbox">
+                </div> -->
+        <!-- 8% CA Sales tax is charged for customers who will not resale product -->
+        <!--     <div class="checkbox">
                     <label>
                         <input type="checkbox" value="">Sales Tax</label>
                 </div>
@@ -116,6 +409,6 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
