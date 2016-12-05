@@ -1,11 +1,10 @@
-<pre>{{vm.allCustomers}}</pre>
+<pre>{{vm.specificCustomer}}</pre>
 <div>
     <div class="panel panel-primary">
         <div class="panel-heading text-center">
             <h1>Customers Manage Engine</h1>
         </div>
         <div class="panel-body">
-
             <!-- Search Customer Input -->
             <div class="col-md-3 col-md-offset-9">
                 <div class="input-group">
@@ -29,7 +28,7 @@
                     <th></th>
                 </tr>
                 <tr ng-repeat="customer in vm.allCustomers">
-                    <td >{{customer.customerId}}</td>
+                    <td>{{customer.customerId}}</td>
                     <td>{{customer.firstName}} {{customer.lastName}}</td>
                     <td>{{customer.organization}}</td>
                     <td>{{customer.role}}</td>
@@ -38,17 +37,13 @@
                     <td>{{customer.city}}</td>
                     <td>{{customer.state}}</td>
                     <td>
-                    <button class="btn btn-primary" ui-sref="home.customerDetails({customerId: customer.customerId})" 
-                    ng-click="vm.findCustomerById(customer.customerId)">Details
-                    </button>
+                        <button class="btn btn-primary" ui-sref="home.customerDetails({customerId: customer.customerId})" ng-click="vm.findCustomerById(customer.customerId)">Details
+                        </button>
                     </td>
-
-
                 </tr>
             </table>
-              <div ui-view></div>
+            <div ui-view></div>
             <button ui-sref="home.customerResgisteration">Add new customer</button>
         </div>
     </div>
 </div>
-

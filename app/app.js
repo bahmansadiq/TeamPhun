@@ -4,6 +4,7 @@
     angular.module('app', ['ui.router', 'toastr'])
         .config(function($stateProvider, $urlRouterProvider) {
 
+
             $urlRouterProvider.otherwise("/home");
             $stateProvider
                 .state('home', {
@@ -17,6 +18,7 @@
                     controller: 'TeamPhunController',
                     controllerAs: 'vm'
                 })
+
 
             .state('home.customerDetails', {
                     url: "/customerDetails/:customerId",
