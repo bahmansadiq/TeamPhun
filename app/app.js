@@ -14,7 +14,7 @@
             url: "/customer",
             templateUrl: "app/partials/Customer.html",
             parent: "home",
-            controller: 'TeamPhunSASController',
+            controller: 'TeamPhunController',
             controllerAs: 'vm'
         })
 
