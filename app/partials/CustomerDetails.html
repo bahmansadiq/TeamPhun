@@ -1,0 +1,95 @@
+<pre>{{vm.allCustomers}}</pre>
+<pre>{{vm.specificCustomer}}</pre>
+<div>
+    <div class="panel panel-primary col-md-6 col-md-offset-3">
+        <div class="panel-heading text-center row">
+            <h1>Customer Details</h1>
+        </div>
+        <div class="panel-body">
+            <div>
+                <table class="table table-striped" ng-repeat="customer in  vm.specificCustomer">
+                    <tr>
+                        <th>ID</th>
+                        <td>{{customer.customerId}}</td>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{customer.firstName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{customer.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Organization</th>
+                        <td>{{customer.organization}}</td>
+                    </tr>
+                    <tr>
+                        <th>Website</th>
+                        <td>{{customer.webSite}}</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>{{customer.role}}</td>
+                    </tr>
+                    <tr>
+                        <th>Business Phone</th>
+                        <td>{{customer.businessPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Phone</th>
+                        <td>{{customer.mobilePhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Other Phone</th>
+                        <td>{{customer.otherPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Fax</th>
+                        <td>{{customer.fax}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{customer.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Street Address</th>
+                        <td>{{customer.streetAddress}}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{customer.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{customer.state}}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip Code</th>
+                        <td>{{customer.zipCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td>{{customer.country}}</td>
+                    </tr>
+                    <tr>
+                        <th>Note</th>
+                        <td>{{customer.note}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Created</th>
+                        <td>{{customer.customerRecordCreated}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Updated</th>
+                        <td>{{customer.updateCustomerRecord}}</td>
+                    </tr>
+                    <button class="btn btn-success" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Update</button>
+                    <button class="btn btn-warning glyphicon glyphicon-pencil" ng-show="vm.editCustomer" ng-click="vm.populateEditForm(customer)">Edit</button>
+                    <button class="btn btn-danger glyphicon glyphicon-remove" ng-show="vm.editCustomer" ng-click="vm.removeCustomer(customer.customerId)">Delete</button>
+                    <button class="btn btn-success" ng-show="vm.editCustomer" ng-click="vm.addCustomer()">Done</button>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
