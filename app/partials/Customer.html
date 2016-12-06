@@ -11,131 +11,129 @@
         </div>
     </div>
 </div>
-</div>
-<div class="panel panel-primary">
-    <div class="panel-heading text-center">
-        <h1>Customers Manager</h1>
-    </div>
-    <div class="panel-body">
-        <!-- Customer Table -->
-        <table class="table table-hover table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Organization</th>
-                <th>Role</th>
-                <th>Business Phone</th>
-                <th>Email</th>
-                <th>City</th>
-                <th>State</th>
-                <th></th>
-            </tr>
-            <tr ng-repeat="customer in vm.allCustomers">
-                <td>{{customer.customerId}}</td>
-                <td>{{customer.firstName}} {{customer.lastName}}</td>
-                <td>{{customer.organization}}</td>
-                <td>{{customer.role}}</td>
-                <td>{{customer.businessPhone}}</td>
-                <td>{{customer.email}}</td>
-                <td>{{customer.city}}</td>
-                <td>{{customer.state}}</td>
-                <td>
-                    <button class="btn btn-primary" ng-click="vm.findCustomerById(customer.customerId)" 
-                     >Details </button>
-                </td>
-            </tr>
-        </table>
-        <!-- Customer details view -->
-        <div>
-            <div class="panel panel-primary col-md-6 col-md-offset-3">
-                <div class="panel-heading text-center row">
-                    <h1>Customer Details View</h1>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <table class="table table-striped">
-                            <tr class="thead-inverse">
-                                <th>ID</th>
-                                <td>{{vm.specificCustomer.customerId}}</td>
-                            </tr>
-                            <tr>
-                                <th>First Name</th>
-                                <td>{{vm.specificCustomer.firstName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Last Name</th>
-                                <td>{{vm.specificCustomer.lastName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Organization</th>
-                                <td>{{vm.specificCustomer.organization}}</td>
-                            </tr>
-                            <tr>
-                                <th>Website</th>
-                                <td>{{vm.specificCustomer.webSite}}</td>
-                            </tr>
-                            <tr>
-                                <th>Role</th>
-                                <td>{{vm.specificCustomer.role}}</td>
-                            </tr>
-                            <tr>
-                                <th>Business Phone</th>
-                                <td>{{vm.specificCustomer.businessPhone}}</td>
-                            </tr>
-                            <tr>
-                                <th>Mobile Phone</th>
-                                <td>{{vm.specificCustomer.mobilePhone}}</td>
-                            </tr>
-                            <tr>
-                                <th>Other Phone</th>
-                                <td>{{vm.specificCustomer.otherPhone}}</td>
-                            </tr>
-                            <tr>
-                                <th>Fax</th>
-                                <td>{{vm.specificCustomer.fax}}</td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td>{{vm.specificCustomer.email}}</td>
-                            </tr>
-                            <tr>
-                                <th>Street Address</th>
-                                <td>{{vm.specificCustomer.streetAddress}}</td>
-                            </tr>
-                            <tr>
-                                <th>City</th>
-                                <td>{{vm.specificCustomer.city}}</td>
-                            </tr>
-                            <tr>
-                                <th>State</th>
-                                <td>{{vm.specificCustomer.state}}</td>
-                            </tr>
-                            <tr>
-                                <th>Zip Code</th>
-                                <td>{{vm.specificCustomer.zipCode}}</td>
-                            </tr>
-                            <tr>
-                                <th>Country</th>
-                                <td>{{vm.specificCustomer.country}}</td>
-                            </tr>
-                            <tr>
-                                <th>Note</th>
-                                <td>{{vm.specificCustomer.note}}</td>
-                            </tr>
-                            <tr>
-                                <th>Date Created</th>
-                                <td>{{vm.specificCustomer.customerRecordCreated}}</td>
-                            </tr>
-                          
-                        </table>
-                          <button class="btn btn-warning glyphicon glyphicon-pencil" ng-show="vm.editCustomer" ng-click="vm.populateEditForm(vm.specificCustomer)">Edit</button>
-                            <button class="btn btn-danger glyphicon glyphicon-remove" ng-show="vm.editCustomer" ng-click="vm.removeCustomer(vm.specificCustomer.customerId)">Delete</button>
-                            <button class="btn btn-success" ng-show="vm.editCustomer" ng-click="vm.addCustomer()">Done</button>
-                        <button class="btn btn-success" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Update</button>
-                    </div>
-                </div>
-            </div>
+<div ng-hide="vm.showCustomerTable">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <h1>Customers Manager</h1>
+        </div>
+        <div class="panel-body">
+            <!-- Customer Table -->
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Organization</th>
+                    <th>Role</th>
+                    <th>Business Phone</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="customer in vm.allCustomers">
+                    <td>{{customer.customerId}}</td>
+                    <td>{{customer.firstName}} {{customer.lastName}}</td>
+                    <td>{{customer.organization}}</td>
+                    <td>{{customer.role}}</td>
+                    <td>{{customer.businessPhone}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.city}}</td>
+                    <td>{{customer.state}}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="vm.findCustomerById(customer.customerId); vm.showCustomerTable = !vm.showCustomerTable">Details </button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
+<!-- Customer details view -->
+<div>
+    <div class="panel panel-primary col-md-6 col-md-offset-3">
+        <div class="panel-heading text-center row">
+            <h1>Customer Details View</h1>
+        </div>
+        <div class="panel-body">
+            <div>
+                <table class="table table-striped">
+                    <tr class="thead-inverse">
+                        <th>ID</th>
+                        <td>{{vm.specificCustomer.customerId}}</td>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{vm.specificCustomer.firstName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{vm.specificCustomer.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Organization</th>
+                        <td>{{vm.specificCustomer.organization}}</td>
+                    </tr>
+                    <tr>
+                        <th>Website</th>
+                        <td>{{vm.specificCustomer.webSite}}</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>{{vm.specificCustomer.role}}</td>
+                    </tr>
+                    <tr>
+                        <th>Business Phone</th>
+                        <td>{{vm.specificCustomer.businessPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Phone</th>
+                        <td>{{vm.specificCustomer.mobilePhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Other Phone</th>
+                        <td>{{vm.specificCustomer.otherPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Fax</th>
+                        <td>{{vm.specificCustomer.fax}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{vm.specificCustomer.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Street Address</th>
+                        <td>{{vm.specificCustomer.streetAddress}}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{vm.specificCustomer.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{vm.specificCustomer.state}}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip Code</th>
+                        <td>{{vm.specificCustomer.zipCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td>{{vm.specificCustomer.country}}</td>
+                    </tr>
+                    <tr>
+                        <th>Note</th>
+                        <td>{{vm.specificCustomer.note}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Created</th>
+                        <td>{{vm.specificCustomer.customerRecordCreated}}</td>
+                    </tr>
+                </table>
+                <button class="btn btn-warning glyphicon glyphicon-pencil" ng-show="vm.editCustomer" ng-click="vm.populateEditForm(vm.specificCustomer)"> Edit</button>
+                <button class="btn btn-danger glyphicon glyphicon-remove" ng-show="vm.editCustomer" ng-click="vm.removeCustomer(vm.specificCustomer.customerId)"> Delete</button>
+                <button class="btn btn-success" ng-show="vm.editCustomer" ng-click="vm.addCustomer()">Done</button>
+                <button class="btn btn-success" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Update</button>
+            </div>
+        </div>
+    </div>
 </div>
