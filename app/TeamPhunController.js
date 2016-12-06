@@ -122,7 +122,7 @@
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
 
-                vm.firstName = customer.firstName
+                vm.firstName = customer.firstName;
                 vm.lastName = customer.lastName;
                 vm.organization = customer.organization;
                 vm.webSite = customer.webSite;
@@ -154,6 +154,7 @@
                 .then(function(response) {
                         //console.log(response);
                         console.log("successfully sent the deleted request for the specific customer from customer controller to the TeamPhun factory")
+                        activate();
                         return response;
                     },
                     function(error) {

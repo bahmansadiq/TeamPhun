@@ -12,6 +12,7 @@
                     templateUrl: "app/partials/Home.html"
                 })
                 .state('home.customer', {
+
                     url: "/customer",
                     templateUrl: "app/partials/Customer.html",
                     parent: "home",
@@ -19,14 +20,6 @@
                     controllerAs: 'vm'
                 })
 
-
-            .state('home.customerDetails', {
-                    url: "/customerDetails/:customerId",
-                    templateUrl: "app/partials/CustomerDetails.html",
-                    parent: "home",
-                    controller: 'TeamPhunController',
-                    controllerAs: 'vm'
-                })
                 .state('home.customerResgisteration', {
                     url: "/customerResgisteration",
                     templateUrl: "app/partials/CustomerRegisterationForm.html",
