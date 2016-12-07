@@ -14,7 +14,8 @@
             postCustomer: postCustomer,
             deleteCustomer: deleteCustomer,
             putCustomer: putCustomer,
-            getCustomerById: getCustomerById
+            getCustomerById: getCustomerById,
+            getOrder: getOrder
         };
         return service;
 
@@ -40,17 +41,17 @@
                     });
             return defer.promise;
         }
-/*Get a specific customer by ID*/
+        /*Get a specific customer by ID*/
 
         function getCustomerById(id) {
             var defer = $q.defer();
             $http({
                     method: 'GET',
-                    url: 'http://localhost:57450/api/customers'+'/'+id,
-                  headers: {
-                    'Content-Type' : 'application/json'
-                          }
-                   
+                    url: 'http://localhost:57450/api/customers' + '/' + id,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+
                 })
                 .then(function(response) {
                         if (typeof response.data === 'object') {
@@ -74,22 +75,22 @@
                     method: 'POST',
                     url: 'http://localhost:57450/api/customers',
                     data: newCustomer,
-                headers: {
-                    'Content-Type' : 'application/json'
-                }   
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
                 .then(function(response) {
                         if (typeof response.data === 'object') {
                             defer.resolve(response);
                         } else {
-                             defer.reject('Not able to post the new customer from  TeamPhunFactory to the Database!')
-                         }
+                            defer.reject('Not able to post the new customer from  TeamPhunFactory to the Database!')
+                        }
                     },
                     function(error) {
-                       defer.reject(error + "Not able to post the new customer from TeamPhunFactory to the Database!");
-                   
+                        defer.reject(error + "Not able to post the new customer from TeamPhunFactory to the Database!");
+
                         console.log("bye");
-                 
+
                     });
             return defer.promise;
         }
@@ -113,12 +114,12 @@
             return defer.promise;
         }
 
-        function putCustomer(data, Id) {
+        function putCustomer(Id, customerInfo) {
             var defer = $q.defer();
             $http({
                     method: 'PUT',
                     url: 'http://localhost:57450/api/customers/' + Id,
-                    data: data
+                    data: customerInfo
                 })
                 .then(function(response) {
                         if (typeof response.data === 'object') {
@@ -138,6 +139,24 @@
 
         //************START OF ORDER CRUD METHODS*************************************//
 
+        function getOrder() {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: 'http://localhost:57450/api/orders'
+                })
+                .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            defer.resolve(response.data);
+                        } else {
+                            defer.reject('No data found in file!')
+                        }
+                    },
+                    function(error) {
+                        defer.reject(error + "unable to get the order from the database in factory");
+                    });
+            return defer.promise;
+        }
 
 
 
