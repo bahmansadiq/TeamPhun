@@ -1,7 +1,7 @@
 (function() {
     'use strict'
 
-    angular.module('app', ['ui.router','toastr'])
+    angular.module('app', ['ui.router', 'toastr'])
     .config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise("/home");
@@ -11,6 +11,7 @@
             templateUrl: "app/partials/Home.html"
         })
         .state('home.customer', {
+
             url: "/customer",
             templateUrl: "app/partials/Customer.html",
             parent: "home",
@@ -18,20 +19,6 @@
             controllerAs: 'vm'
         })
 
-        .state('home.customerDetails', {
-            url: "/customerDetails/:customerId",
-            templateUrl: "app/partials/CustomerDetails.html",
-            parent: "home",
-            controller: 'TeamPhunController',
-            controllerAs: 'vm'
-        })
-        .state('home.customerResgisteration', {
-            url: "/customerResgisteration",
-            templateUrl: "app/partials/CustomerRegisterationForm.html",
-            parent: "home",
-            controller: 'TeamPhunController',
-            controllerAs: 'vm'
-        })
         .state('home.quoteGenerator', {
             url: "/quoteGenerator",
             templateUrl: "app/partials/OrderLineItem.html",
@@ -39,13 +26,22 @@
             controller: 'TeamPhunController',
             controllerAs: 'vm'
         })
-         .state('home.order', {
+        .state('home.test', {
+            url: "/test",
+            templateUrl: "app/partials/test.html",
+            parent: "home",
+            controller: 'TeamPhunSASController',
+            controllerAs: 'vm'
+        })
+        .state('home.order', {
             url: "/order",
             templateUrl: "app/partials/Order.html",
             parent: "home",
             controller: 'TeamPhunController',
             controllerAs: 'vm'
         });
+        
+
     });
 
 
