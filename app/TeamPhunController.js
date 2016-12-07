@@ -19,6 +19,7 @@
         vm.specificCustomer = [];
         var customerInfo = {};
         vm.allOrders = [];
+        vm.editMode=true;
 
 
         // Slider for profit margin on orderLineItem.html
@@ -54,6 +55,8 @@
         function findCustomerById(id) {
             TeamPhunFactory.getCustomerById(id)
                 .then(function(response) {
+                    vm.showCustomerTable=true;
+             
                         //console.log(response);
                         vm.specificCustomer = response;
                         console.log(vm.specificCustomer);
@@ -91,7 +94,7 @@
 
             if (vm.customerId) {
 
-                customerInfo.customerId = vm.customerId;
+                customerInfo.CustomerId = vm.customerId;
                 updateCustomer(vm.customerId, customerInfo);
 
                 toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
@@ -138,6 +141,7 @@
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
 
+                vm.customerId=customer.customerId;
                 vm.firstName = customer.firstName;
                 vm.lastName = customer.lastName;
                 vm.organization = customer.organization;
@@ -159,7 +163,7 @@
         function updateCustomer(id, customerdata) {
             TeamPhunFactory.putCustomer(id, customerdata)
                 .then(function(response) {
-
+vm.editCustomer =!vm.editCustomer;
                     toastr.success("successfully updated " + id + " from the controller to the factory!");
                     return response;
 

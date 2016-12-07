@@ -1,4 +1,3 @@
-<pre>{{vm.allCustomers}}</pre>
 <pre>{{vm.specificCustomer}}</pre>
 <div>
     <div class="panel panel-primary col-md-6 col-md-offset-3">
@@ -84,7 +83,7 @@
                         <th>Date Updated</th>
                         <td>{{customer.updateCustomerRecord}}</td>
                     </tr>
-                    <button class="btn btn-success" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Update</button>
+<!--                     <button class="btn btn-success" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Update</button> -->
                     <button class="btn btn-warning glyphicon glyphicon-pencil" ng-show="vm.editCustomer" ng-click="vm.populateEditForm(customer)">Edit</button>
                     <button class="btn btn-danger glyphicon glyphicon-remove" ng-show="vm.editCustomer" ng-click="vm.removeCustomer(customer.customerId)">Delete</button>
                     <button class="btn btn-success" ng-show="vm.editCustomer" ng-click="vm.addCustomer()">Done</button>
