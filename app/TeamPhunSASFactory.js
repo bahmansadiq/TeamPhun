@@ -75,6 +75,7 @@
 
         }
 
+
         function getProducts() {
             var defer = $q.defer();
             $http({
