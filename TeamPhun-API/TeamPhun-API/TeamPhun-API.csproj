@@ -139,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Migrations\201611301953036_InitialTeamPhunCreation.cs" />
     <Compile Include="Migrations\201611301953036_InitialTeamPhunCreation.Designer.cs">
       <DependentUpon>201611301953036_InitialTeamPhunCreation.cs</DependentUpon>
