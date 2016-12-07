@@ -19,13 +19,6 @@
             controllerAs: 'vm'
         })
 
-        .state('home.customerResgisteration', {
-            url: "/customerResgisteration",
-            templateUrl: "app/partials/CustomerRegisterationForm.html",
-            parent: "home",
-            controller: 'TeamPhunController',
-            controllerAs: 'vm'
-        })
         .state('home.quoteGenerator', {
             url: "/quoteGenerator",
             templateUrl: "app/partials/OrderLineItem.html",
