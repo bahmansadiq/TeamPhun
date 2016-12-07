@@ -18,12 +18,27 @@
         vm.allCustomers = [];
         vm.specificCustomer = [];
         var customerInfo = {};
+        vm.allOrders = [];
+
+
+        // Slider for profit margin on orderLineItem.html
+        $("#ex6").slider();
+        $("#ex6").on("slide", function(slideEvt) {
+            $("#ex6SliderVal").text(slideEvt.value);
+        });
+
+
 
         activate();
 
         ////////////////
 
         function activate() {
+            findCustomers();
+            findOrders();
+        }
+
+        function findCustomers() {
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
                         vm.allCustomers = response;
@@ -73,34 +88,42 @@
                 CustomerRecordCreated: new Date().toISOString(),
                 UpdateCustomerRecord: new Date().toISOString()
             };
+
             if (vm.customerId) {
+
                 customerInfo.customerId = vm.customerId;
                 updateCustomer(vm.customerId, customerInfo);
+
                 toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
+
 
             } else {
                 TeamPhunFactory.postCustomer(customerInfo)
                     .then(function(response) {
+
                             toastr.success("Successfully added " + customerInfo.FirstName + "  " + customerInfo.LastName + " to the customers list!");
-                            //   console.log("Successfully passed the new customer infromation from Cotnroller to TeamPhunFactory")
-                            vm.firstName = "";
-                            vm.lastName = "";
-                            vm.organization = "";
-                            vm.webSite = "";
-                            vm.role = "";
-                            vm.businessPhone = "";
-                            vm.mobilePhone = "";
-                            vm.otherPhone = "";
-                            vm.fax = "";
-                            vm.email = "";
-                            vm.streetAddress = "";
-                            vm.state = "";
-                            vm.zipCode = "";
-                            vm.city = "";
-                            vm.country = "";
-                            vm.note = "";
 
                             return response;
+
+                            //   console.log("Successfully passed the new customer infromation from Cotnroller to TeamPhunFactory")
+
+                            //Commented this out because when you add a new customer and you click the submit button you are automatically redirected to the customer state using ui-sref="home.customer"
+
+                            // vm.firstName = "";
+                            // vm.organization = "";
+                            // vm.webSite = "";
+                            // vm.role = "";
+                            // vm.businessPhone = "";
+                            // vm.mobilePhone = "";
+                            // vm.otherPhone = "";
+                            // vm.fax = "";
+                            // vm.email = "";
+                            // vm.streetAddress = "";
+                            // vm.state = "";
+                            // vm.zipCode = "";
+                            // vm.city = "";
+                            // vm.country = "";
+                            // vm.note = "";
                         },
                         function(error) {
                             console.log(error + "Unable to passed the new customer infromation from Cotnroller to TeamPhunFactory!");
@@ -111,11 +134,11 @@
 
         }
 
-        // is responsible to make all the fields edite able in the customerDetail page right away.
+        // is responsible to make all the fields edit able in the customerDetail page right away.
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
 
-                vm.firstName = customer.firstName
+                vm.firstName = customer.firstName;
                 vm.lastName = customer.lastName;
                 vm.organization = customer.organization;
                 vm.webSite = customer.webSite;
@@ -134,10 +157,14 @@
             }
             // this function has been called by ----- button in after updating
         function updateCustomer(id, customerdata) {
-            TeamPhunFactory.pullCustomer(id, customerdata)
+            TeamPhunFactory.putCustomer(id, customerdata)
                 .then(function(response) {
+
                     toastr.success("successfully updated " + id + " from the controller to the factory!");
+                    return response;
+
                 }, function(error) {
+
                     toastr.error("Unable to successfully updated " + id + " from the controller to the factory!");
                 })
         }
@@ -147,12 +174,30 @@
                 .then(function(response) {
                         //console.log(response);
                         console.log("successfully sent the deleted request for the specific customer from customer controller to the TeamPhun factory")
+                        activate();
                         return response;
                     },
                     function(error) {
                         console.log(error + "Unable to successfully send the deleted request for the specific customer from customer controller to the TeamPhun factory");
                     });
         }
+        ////*********************ORDER CRUD METHODS START HERE***************************
 
+        function findOrders() {
+            TeamPhunFactory.getOrder()
+                .then(function(response) {
+                        vm.allOrders = response;
+                        console.log(vm.allOrders + "successfull loaded the orders from orders factory to the orders controller")
+
+                        return response;
+                    },
+                    function(error) {
+                        console.log(error + "Unable to load the orders from the factory to the controller!");
+                    });
+        }
+
+
+
+        ////*********************ORDER CRUD METHODS END HERE***************************
     }
 })();

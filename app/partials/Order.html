@@ -1,18 +1,20 @@
+<pre>{{vm.allOrders}}</pre>
+<div class="row">
+    <div class="col-md-12">
+        <div class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search by Order ID...">
+            </div>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+    </div>
+</div>
 <div>
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading text-center">
-            <h1>Orders Form</h1>
+            Orders Form
         </div>
         <div class="panel-body">
-            <!-- Search orders Input -->
-            <div class="col-md-3 col-md-offset-9">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search by order ID....">
-                    <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search!</button>
-      </span>
-                </div>
-            </div>
             <!-- Order table -->
             <table class="table table-hover table-striped">
                 <tr>
@@ -24,17 +26,16 @@
                     <th>Order Status</th>
                     <th>Order Date</th>
                 </tr>
-                <tr>
-                    <td>x</td>
-                    <td>x</td>
-                    <td>x</td>
-                    <td>x</td>
-                    <td>x</td>
-                    <td>x</td>
-                    <td>x</td>
+                <tr ng-repeat="order in vm.allOrders">
+                    <td>{{order.orderId}}</td>
+                    <td>{{order.customerId}}</td>
+                    <td>{{order.orderTotal}}</td>
+                    <td>{{order.totalCost}}</td>
+                    <td>{{order.totalProfit}}</td>
+                    <td>{{order.orderStatus}}</td>
+                    <td>{{order.orderCreatedDate}}</td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
-
