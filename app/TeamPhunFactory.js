@@ -114,12 +114,12 @@
             return defer.promise;
         }
 
-        function putCustomer(data, Id) {
+        function putCustomer(Id, customerInfo) {
             var defer = $q.defer();
             $http({
                     method: 'PUT',
                     url: 'http://localhost:57450/api/customers/' + Id,
-                    data: data
+                    data: customerInfo
                 })
                 .then(function(response) {
                         if (typeof response.data === 'object') {
