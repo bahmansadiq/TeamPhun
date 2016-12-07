@@ -1,1 +1,30 @@
-<p>{{vm.Products}}</p>
+<div class="form-group">
+	<label class="col-md-4 control-label" for="selectbasic">Choose Category</label>
+	<div class="col-md-4">
+		<select ng-model="vm.categoryId" id="selectbasic" name="selectbasic" class="form-control" ng-options="data.categoryID as data.name for data in vm.data">
+		</select>
+	</div>
+</div>
+
+<button ng-click="vm.findStyleByCatId(vm.categoryId)">Search Style</button></div>
+
+
+
+<div>
+	<p>
+
+		{{vm.test}}
+	</p>
+	<p>
+		{{vm.styleDetails}}
+
+	</p>
+</div>
+
+
+
+
+
+<!--<p ng-repeat="image in vm.image track by $index">
+<img ng-src="https://www.ssactivewear.com/{{image}}"></img>
+</p>
