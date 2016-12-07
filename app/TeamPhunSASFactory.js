@@ -1,37 +1,5 @@
 (function() {
-<<<<<<< HEAD
-        'use strict';
 
-        angular
-            .module('app')
-            .factory('TeamPhunSASFactory', TeamPhunSASFactory);
-
-        TeamPhunSASFactory.$inject = ['$http', '$q'];
-
-        /* @ngInject */
-        function TeamPhunSASFactory($http, $q) {
-            var service = {
-                getCategory: getCategory,
-                getSpecs: getSpecs,
-                getProducts: getProducts
-            };
-            return service;
-
-            ////////////////
-
-            function getCategory() {
-                var defer = $q.defer();
-                $http({
-                        method: 'GET',
-                        url: 'https://api.ssactivewear.com/v2/categories/',
-                        headers: {
-                            authorization: 'Basic ODM0ODQ6ZTEzMjMwNjMtMjk4OC00NGY0LTk3NWYtMGZlNDZhZjRhZTY3',
-                            UserName: 83484,
-                            Password: 'e1323063-2988-44f4-975f-0fe46af4ae67'
-                        }
-                    
-                })
-=======
     'use strict';
 
     angular
@@ -65,7 +33,7 @@
                 }
 
             })
->>>>>>> tristanapi-branch
+
             .then(
                 function(response) {
                     if (typeof response === 'object') {
