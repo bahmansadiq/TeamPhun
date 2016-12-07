@@ -12,9 +12,9 @@
     </div>
 </div>
 <div ng-hide="vm.showCustomerTable">
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading text-center">
-            <h1>Customers Manager</h1>
+            Customers Manager
         </div>
         <div class="panel-body">
             <!-- Customer Table -->
@@ -48,10 +48,10 @@
     </div>
 </div>
 <!-- Customer details view -->
-<div>
-    <div class="panel panel-primary col-md-6 col-md-offset-3">
+<div ng-show="vm.showCustomerTable">
+    <div class="panel panel-default col-md-6 col-md-offset-3">
         <div class="panel-heading text-center row">
-            <h1>Customer Details View</h1>
+            Customer Details View
         </div>
         <div class="panel-body">
             <div>
@@ -129,10 +129,13 @@
                         <td>{{vm.specificCustomer.customerRecordCreated}}</td>
                     </tr>
                 </table>
-                <button class="btn btn-warning glyphicon glyphicon-pencil" ng-show="vm.editCustomer" ng-click="vm.populateEditForm(vm.specificCustomer)"> Edit</button>
-                <button class="btn btn-danger glyphicon glyphicon-remove" ng-show="vm.editCustomer" ng-click="vm.removeCustomer(vm.specificCustomer.customerId)"> Delete</button>
-                <button class="btn btn-success" ng-show="vm.editCustomer" ng-click="vm.addCustomer()">Done</button>
-                <button class="btn btn-success" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Update</button>
+                <button class="btn btn-warning glyphicon glyphicon-pencil" ng-hide="vm.editCustomer" ng-click="vm.editCustomer =!vm.editCustomer">Edit</button>
+                <button class="btn btn-danger glyphicon glyphicon-remove" ng-hide="vm.editCustomer" ng-click="vm.removeCustomer(vm.specificCustomer.customerId); vm.showCustomerTable = !vm.showCustomerTable; vm.editCustomer =!vm.editCustomer">Delete</button>
+                <!-- <button class="btn btn-warning glyphicon glyphicon-pencil" ng-show="vm.editCustomer" ng-click="vm.populateEditForm(vm.specificCustomer); vm.showCustomerTable = !vm.showCustomerTable; vm.editCustomer =!vm.editCustomer"> Edit</button>
+ -->
+                <!-- <button class="btn btn-danger glyphicon glyphicon-remove" ng-show="vm.editCustomer" ng-click="vm.removeCustomer(vm.specificCustomer.customerId); vm.showCustomerTable = !vm.showCustomerTable; vm.editCustomer =!vm.editCustomer"> Delete</button>
+ -->
+                <button class="btn btn-success" ng-show="vm.editCustomer" ng-click="vm.addCustomer(); vm.showCustomerTable = !vm.showCustomerTable; vm.editCustomer =!vm.editCustomer">Done</button>
             </div>
         </div>
     </div>

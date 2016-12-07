@@ -1,4 +1,4 @@
-/*Custom CSS for Header and Logo*/
+/*Header*/
 
 .color {
     background: #FFFF01;
@@ -6,15 +6,25 @@
     height: 80px;
 }
 
+
+/*Logo*/
+
 .image {
     width: 100px;
     height: 100px;
     padding-bottom: 20px;
 }
 
-/*.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    background-color: #687c86;
-    color: #fff;
+
+/*Navbar*/
+
+.navbar-nav > li > a,
+.navbar-nav {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    height: 30px;
 }
-*/
+
+.navbar {
+    min-height: 30px !important;
+}
