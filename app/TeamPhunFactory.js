@@ -164,8 +164,28 @@
 
         //************END OF ORDER CRUD METHODS*************************************//
 
+        //************BEGIN ORDER LINE ITEM CRUD METHODS*************************************//
 
+        function getOrderLineItem() {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: 'http://localhost:57450/api/orderlineitems'
+                })
+                .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            defer.resolve(response.data);
+                        } else {
+                            defer.reject('No data found in file!')
+                        }
+                    },
+                    function(error) {
+                        defer.reject(error + "unable to get the orderLineItem from the database in factory");
+                    });
+            return defer.promise;
 
+        }
 
+        //************END OF ORDER LINE ITEM CRUD METHODS*************************************//
     }
 })();

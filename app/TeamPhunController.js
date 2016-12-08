@@ -19,7 +19,8 @@
         vm.specificCustomer = [];
         var customerInfo = {};
         vm.allOrders = [];
-        vm.editMode=true;
+        vm.editMode = true;
+        vm.allOrderLineItems = [];
 
 
         // Slider for profit margin on orderLineItem.html
@@ -37,6 +38,7 @@
         function activate() {
             findCustomers();
             findOrders();
+            findOrdersLineItems();
         }
 
         function findCustomers() {
@@ -55,8 +57,8 @@
         function findCustomerById(id) {
             TeamPhunFactory.getCustomerById(id)
                 .then(function(response) {
-                    vm.showCustomerTable=true;
-             
+                        vm.showCustomerTable = true;
+
                         //console.log(response);
                         vm.specificCustomer = response;
                         console.log(vm.specificCustomer);
@@ -141,7 +143,7 @@
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
 
-                vm.customerId=customer.customerId;
+                vm.customerId = customer.customerId;
                 vm.firstName = customer.firstName;
                 vm.lastName = customer.lastName;
                 vm.organization = customer.organization;
@@ -163,7 +165,7 @@
         function updateCustomer(id, customerdata) {
             TeamPhunFactory.putCustomer(id, customerdata)
                 .then(function(response) {
-vm.editCustomer =!vm.editCustomer;
+                    vm.editCustomer = !vm.editCustomer;
                     toastr.success("successfully updated " + id + " from the controller to the factory!");
                     return response;
 
@@ -186,22 +188,24 @@ vm.editCustomer =!vm.editCustomer;
                     });
         }
         ////*********************ORDER CRUD METHODS START HERE***************************
+        ////*********************ORDER CRUD METHODS END HERE***************************
+        ////*********************ORDER LINE ITEM CRUD METHODS START HERE***************************
 
-        function findOrders() {
-            TeamPhunFactory.getOrder()
+        function findOrdersLineItems() {
+            TeamPhunFactory.getOrderLineItem()
                 .then(function(response) {
-                        vm.allOrders = response;
-                        console.log(vm.allOrders + "successfull loaded the orders from orders factory to the orders controller")
+                        vm.allOrderLineItems = response;
+                        console.log(vm.allOrders + "successfull loaded the order line items from orders factory to the orders controller")
 
                         return response;
                     },
                     function(error) {
-                        console.log(error + "Unable to load the orders from the factory to the controller!");
+                        console.log(error + "Unable to load the order line item from the factory to the controller!");
                     });
         }
 
 
 
-        ////*********************ORDER CRUD METHODS END HERE***************************
+        ////*********************ORDER LINE ITEMCRUD METHODS END HERE***************************
     }
 })();
