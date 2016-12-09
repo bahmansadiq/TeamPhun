@@ -15,7 +15,9 @@
             deleteCustomer: deleteCustomer,
             putCustomer: putCustomer,
             getCustomerById: getCustomerById,
-            getOrder: getOrder
+            getOrder: getOrder,
+            getOrderLineItem: getOrderLineItem,
+            postOrderLineItem: postOrderLineItem
         };
         return service;
 
@@ -129,7 +131,7 @@
                         }
                     },
                     function(error) {
-                        defer.reject(error + "77777 unable to get the customer from the database in factory");
+                        defer.reject(error + "unable to get the customer from the database in factory");
                     });
             return defer.promise;
         }
@@ -162,9 +164,9 @@
 
 
 
-        //************END OF ORDER CRUD METHODS*************************************//
+        //************END OF ORDER CRUD METHODS**********************************//
 
-        //************BEGIN ORDER LINE ITEM CRUD METHODS*************************************//
+        //************BEGIN ORDER LINE ITEM CRUD METHODS************************//
 
         function getOrderLineItem() {
             var defer = $q.defer();
@@ -182,10 +184,38 @@
                     function(error) {
                         defer.reject(error + "unable to get the orderLineItem from the database in factory");
                     });
+
             return defer.promise;
 
         }
 
-        //************END OF ORDER LINE ITEM CRUD METHODS*************************************//
+        function postOrderLineItem(newOrderLineItem) {
+
+            var defer = $q.defer();
+
+            $http({
+                    method: 'POST',
+                    url: 'http://localhost:57450/api/orderlineitems',
+                    data: newOrderLineItem,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            defer.resolve(response);
+                        } else {
+                            defer.reject('Not able to post the new order line item from  TeamPhunFactory to the Database!')
+                        }
+                    },
+                    function(error) {
+                        defer.reject(error + "Not able to post the new order line item from TeamPhunFactory to the Database!");
+
+                    });
+
+            return defer.promise;
+        }
+
+        //************END OF ORDER LINE ITEM CRUD METHODS**************************//
     }
 })();
