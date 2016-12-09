@@ -150,110 +150,74 @@
         </div>
         <div class="panel-body">
             <!-- Add new or update customer form  -->
-            <form class="form-horizontal">
+            <div class="form">
                 <div class="form-group">
-                    <label class="col-md-2 control-label">First Name</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.firstName">
-                    </div>
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" class="form-control" ng-model="vm.firstName">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Last Name</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.lastName">
-                    </div>
+                    <label id="lastName">Last Name</label>
+                    <input type="text" class="form-control" ng-model="vm.lastName">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Organization</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.organization">
-                    </div>
+                    <label>Organization</label>
+                    <input type="text" class="form-control" ng-model="vm.organization">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Website</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.webSite">
-                    </div>
+                    <label>Website</label>
+                    <input type="text" class="form-control" ng-model="vm.webSite">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Role</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.role">
-                    </div>
+                    <label>Role</label>
+                    <input type="text" class="form-control" ng-model="vm.role">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Business Phone</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.businessPhone">
-                    </div>
+                    <label>Business Phone</label>
+                    <input type="text" class="form-control" ng-model="vm.businessPhone">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Mobile Phone</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.mobilePhone">
-                    </div>
+                    <label>Mobile Phone</label>
+                    <input type="text" class="form-control" ng-model="vm.mobilePhone">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Other Phone</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.otherPhone">
-                    </div>
+                    <label>Other Phone</label>
+                    <input type="text" class="form-control" ng-model="vm.otherPhone">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Fax</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.fax">
-                    </div>
+                    <label>Fax</label>
+                    <input type="text" class="form-control" ng-model="vm.fax">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Email</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.email">
-                    </div>
+                    <label>Email</label>
+                    <input type="text" class="form-control" ng-model="vm.email">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Street Address</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.streetAddress">
-                    </div>
+                    <label>Street Address</label>
+                    <input type="text" class="form-control" ng-model="vm.streetAddress">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">City</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.city">
-                    </div>
+                    <label>City</label>
+                    <input type="text" class="form-control" ng-model="vm.city">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">State</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.state">
-                    </div>
+                    <label>State</label>
+                    <input type="text" class="form-control" ng-model="vm.state">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Zip Code</label>
-                    <div class="col-md-4">
-                        <input type="number" class="form-control" ng-model="vm.zipCode">
-                    </div>
+                    <label>Zip Code</label>
+                    <input type="number" class="form-control" ng-model="vm.zipCode">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Country</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.country">
-                    </div>
+                    <label>Country</label>
+                    <input type="text" class="form-control" ng-model="vm.country">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Note</label>
-                    <div class="col-md-4">
-                        <textarea class="form-control" rows="3" ng-model="vm.note"></textarea>
-                    </div>
+                    <label>Note</label>
+                    <textarea class="form-control" rows="3" ng-model="vm.note"></textarea>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-4">
-                        <!-- Submit button add or updates customer and then hides this current "customer registration form" view and takes you back to the "customer manager table" view-->
-                        <button ui-sref="home.customer" type="submit" class="btn btn-primary" ng-click="vm.addCustomer(); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Submit</button>
-                    </div>
-                </div>
-            </form>
+                <!-- Submit button add or updates customer and then hides this current "customer registration form" view and takes you back to the "customer manager table" view-->
+                <button ui-sref="home.customer" type="submit" class="btn btn-primary" ng-click="vm.addCustomer(); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Submit</button>
+            </div>
         </div>
     </div>
 </div>
