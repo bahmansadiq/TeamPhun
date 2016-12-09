@@ -15,18 +15,21 @@
         vm.removeCustomer = removeCustomer;
         vm.findCustomerById = findCustomerById;
         vm.updateCustomer = updateCustomer;
+        vm.addOrderLineItem = addOrderLineItem;
         vm.allCustomers = [];
         vm.specificCustomer = [];
-        var customerInfo = {};
+        // var customerInfo = {};
         vm.allOrders = [];
-        vm.editMode=true;
+        vm.allOrderLineItems = [];
+
 
 
         // Slider for profit margin on orderLineItem.html
-        $("#ex6").slider();
-        $("#ex6").on("slide", function(slideEvt) {
-            $("#ex6SliderVal").text(slideEvt.value);
-        });
+        // var slider = new Slider("#ex6");
+        // slider.on("slide", function(slideEvt) {
+        //     $("#ex6SliderVal").text(slideEvt.value);
+        // });
+
 
 
 
@@ -37,13 +40,13 @@
         function activate() {
             findCustomers();
             findOrders();
+            findOrdersLineItems();
         }
 
         function findCustomers() {
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
                         vm.allCustomers = response;
-                        console.log(vm.allCustomers + "successfull loaded the customers from customer factor to the customer controller")
 
                         return response;
                     },
@@ -55,8 +58,7 @@
         function findCustomerById(id) {
             TeamPhunFactory.getCustomerById(id)
                 .then(function(response) {
-                    vm.showCustomerTable=true;
-             
+
                         //console.log(response);
                         vm.specificCustomer = response;
                         console.log(vm.specificCustomer);
@@ -71,7 +73,7 @@
 
         function addCustomer() {
 
-            customerInfo = {
+            var customerInfo = {
                 FirstName: vm.firstName,
                 LastName: vm.lastName,
                 Organization: vm.organization,
@@ -108,25 +110,7 @@
 
                             return response;
 
-                            //   console.log("Successfully passed the new customer infromation from Cotnroller to TeamPhunFactory")
-
-                            //Commented this out because when you add a new customer and you click the submit button you are automatically redirected to the customer state using ui-sref="home.customer"
-
-                            // vm.firstName = "";
-                            // vm.organization = "";
-                            // vm.webSite = "";
-                            // vm.role = "";
-                            // vm.businessPhone = "";
-                            // vm.mobilePhone = "";
-                            // vm.otherPhone = "";
-                            // vm.fax = "";
-                            // vm.email = "";
-                            // vm.streetAddress = "";
-                            // vm.state = "";
-                            // vm.zipCode = "";
-                            // vm.city = "";
-                            // vm.country = "";
-                            // vm.note = "";
+                            ;
                         },
                         function(error) {
                             console.log(error + "Unable to passed the new customer infromation from Cotnroller to TeamPhunFactory!");
@@ -141,7 +125,7 @@
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
 
-                vm.customerId=customer.customerId;
+                vm.customerId = customer.customerId;
                 vm.firstName = customer.firstName;
                 vm.lastName = customer.lastName;
                 vm.organization = customer.organization;
@@ -163,13 +147,14 @@
         function updateCustomer(id, customerdata) {
             TeamPhunFactory.putCustomer(id, customerdata)
                 .then(function(response) {
-vm.editCustomer =!vm.editCustomer;
+                    // vm.editCustomer = !vm.editCustomer;
+
                     toastr.success("successfully updated " + id + " from the controller to the factory!");
                     return response;
 
                 }, function(error) {
 
-                    toastr.error("Unable to successfully updated " + id + " from the controller to the factory!");
+                    toastr.error("Unable to successfully update " + id + " from the controller to the factory!");
                 })
         }
 
@@ -191,7 +176,6 @@ vm.editCustomer =!vm.editCustomer;
             TeamPhunFactory.getOrder()
                 .then(function(response) {
                         vm.allOrders = response;
-                        console.log(vm.allOrders + "successfull loaded the orders from orders factory to the orders controller")
 
                         return response;
                     },
@@ -200,8 +184,80 @@ vm.editCustomer =!vm.editCustomer;
                     });
         }
 
-
-
         ////*********************ORDER CRUD METHODS END HERE***************************
+
+        ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
+
+        function findOrdersLineItems() {
+            TeamPhunFactory.getOrderLineItem()
+                .then(function(response) {
+
+                        vm.allOrderLineItems = response;
+
+
+                        return response;
+                    },
+                    function(error) {
+                        console.log(error + "Unable to load the order line item from the factory to the controller!");
+                    });
+        }
+
+        function addOrderLineItem() {
+
+            // need to add cost in here somewhere! defined in ng-model as vm.cost
+            var orderLineItemInfo = {
+
+                orderId: 14,
+                vendorId: 1,
+                productId: vm.productCode,
+                description: vm.description,
+                totalPieces: vm.printPieces,
+                totalNumberColors: vm.colors,
+                numberPrintLocations: vm.locations,
+                metallicLinks: vm.metallicInks,
+                discharge: vm.discharge,
+                foil: vm.foil,
+                flash: vm.flash,
+                pmsColorMatching: vm.PMSColor,
+                foldingAndBagging: vm.folding,
+                salesTax: vm.tax,
+                profitMargin: vm.profitMargin,
+                orderLineItemEstimate: 100,
+                OrderLineItemProfit: 200,
+                orderLineItemCreatedDate: new Date().toISOString()
+
+            };
+
+            // if (vm.customerId) {
+
+            //     customerInfo.CustomerId = vm.customerId;
+            //     updateCustomer(vm.customerId, customerInfo);
+
+            //     toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
+
+
+            // } else {
+
+            TeamPhunFactory.postOrderLineItem(orderLineItemInfo)
+                .then(function(response) {
+
+                        toastr.success("Successfully added " + orderLineItemInfo.totalPieces + "  " + orderLineItemInfo.description + " to the order line item table!");
+
+                        return response;
+
+                        ;
+                    },
+                    function(error) {
+                        console.log(error + "Unable to passed the new order line item information from the controller to TeamPhunFactory!");
+                        return error;
+                    });
+
+            // }
+
+        }
+
+
+
+        ////*********************ORDER LINE ITEMCRUD METHODS END HERE******************
     }
 })();
