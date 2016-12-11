@@ -25,7 +25,6 @@
         vm.allOrderLineItems = [];
 
 
-
         // Slider for profit margin on orderLineItem.html
         // var slider = new Slider("#ex6");
         // slider.on("slide", function(slideEvt) {
@@ -186,6 +185,7 @@
                     });
         }
 
+
 		//fucntion to add a new order to the talbe
 
 function addOrder(){
@@ -227,6 +227,9 @@ function addOrder(){
 
         ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
 
+
+        ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
+
         function findOrdersLineItems() {
             TeamPhunFactory.getOrderLineItem()
                 .then(function(response) {
@@ -245,8 +248,10 @@ function addOrder(){
 
             // need to add cost in here somewhere! defined in ng-model as vm.cost
             var orderLineItemInfo = {
+
+                orderId: 1,
                 vendorId: 1,
-                productId: 1,
+                productId: vm.productCode,
                 description: vm.description,
                 totalPieces: vm.printPieces,
                 totalNumberColors: vm.colors,
@@ -265,32 +270,23 @@ function addOrder(){
 
             };
 
-            // if (vm.customerId) {
-
-            //     customerInfo.CustomerId = vm.customerId;
-            //     updateCustomer(vm.customerId, customerInfo);
-
-            //     toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
-
-
-            // } else {}
-
             TeamPhunFactory.postOrderLineItem(orderLineItemInfo)
                 .then(function(response) {
 
-                        toastr.success("Successfully added " + " to the order line item table!");
+                        toastr.success("Successfully added " + orderLineItemInfo.totalPieces + "  " + orderLineItemInfo.description + " to the order line item table!");
 
                         return response;
 
-                        
+                        ;
+
                     },
                     function(error) {
                         console.log(error + "Unable to passed the new order line item information from the controller to TeamPhunFactory!");
                         return error;
-                    }
-                    );
-        }
+                    
+                       });
 
+             }
 
 
         ////*********************ORDER LINE ITEMCRUD METHODS END HERE******************

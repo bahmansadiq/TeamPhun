@@ -1,11 +1,15 @@
-<pre>{{vm.allOrders}}</pre>
+<!-- <pre>{{vm.allOrders | json}}</pre>
+ -->
 <div class="row">
     <div class="col-md-12">
         <div class="navbar-form navbar-right" role="search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search by Order ID...">
+                <input type="text" class="form-control" ng-model="vm.orderSearch" placeholder="Search...">
             </div>
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+        <div class="navbar-form navbar-right">
+            <!-- Not working as of now, will eventually show the form to add a new customer -->
+            <button type="button" class="btn btn-primary customerFormModal">Add New Order</button>
         </div>
     </div>
 </div>
@@ -26,7 +30,7 @@
                     <th>Order Status</th>
                     <th>Order Date</th>
                 </tr>
-                <tr ng-repeat="order in vm.allOrders">
+                <tr ng-repeat="order in vm.allOrders | filter: vm.orderSearch">
                     <td>{{order.orderId}}</td>
                     <td>{{order.customerId}}</td>
                     <td>{{order.orderTotal}}</td>
@@ -39,6 +43,7 @@
         </div>
     </div>
 </div>
+
 
 <div>
     <div class="panel panel-default">

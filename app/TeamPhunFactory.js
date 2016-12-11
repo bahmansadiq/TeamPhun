@@ -19,8 +19,7 @@
             postOrder: postOrder,
             deleteOrder: deleteOrder,
             getOrderLineItem: getOrderLineItem,
-            postOrderLineItem: postOrderLineItem,
-
+            postOrderLineItem: postOrderLineItem
         };
         return service;
 
@@ -211,7 +210,6 @@
         }
 
 
-
         //************END OF ORDER CRUD METHODS**********************************//
 
         //************BEGIN ORDER LINE ITEM CRUD METHODS************************//
@@ -240,7 +238,6 @@
         function postOrderLineItem(newOrderLineItem) {
 
             var defer = $q.defer();
-
             $http({
                     method: 'POST',
                     url: 'http://localhost:57450/api/orderlineitems',
