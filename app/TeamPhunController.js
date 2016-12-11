@@ -18,9 +18,9 @@
         vm.updateCustomer = updateCustomer;
         vm.addOrderLineItem = addOrderLineItem;
         vm.removeOrder=removeOrder;
-        vm.allCustomers = [];
+        vm.allCustomers=[];
+       // allCustomers=[];
         vm.specificCustomer = [];
-        // var customerInfo = {};
         vm.allOrders = [];
         vm.allOrderLineItems = [];
 
@@ -30,9 +30,6 @@
         // slider.on("slide", function(slideEvt) {
         //     $("#ex6SliderVal").text(slideEvt.value);
         // });
-
-
-
 
         activate();
 
@@ -47,9 +44,8 @@
         function findCustomers() {
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
-                        vm.allCustomers = response;
-
-                        return response;
+                       vm.allCustomers=response;
+                        return allCustomers;
                     },
                     function(error) {
                         console.log(error + "111  Unable to load the Custoers from the factory to the controller!");
@@ -59,8 +55,6 @@
         function findCustomerById(id) {
             TeamPhunFactory.getCustomerById(id)
                 .then(function(response) {
-
-                        //console.log(response);
                         vm.specificCustomer = response;
                         console.log(vm.specificCustomer);
                         console.log(vm.specificCustomer + "successfull loaded the specific customer from customer factor to the TeamPhun controller")
@@ -70,8 +64,6 @@
                         console.log(error + " Unable to load the specific Customer from the factory to the controller!");
                     });
         }
-
-
         function addCustomer() {
 
             var customerInfo = {
@@ -103,7 +95,12 @@
                 toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
 
 
-            } else {
+            }else
+             {
+		
+            	//return toastr.error("Plese fill the form to create a new customer !");
+
+            
                 TeamPhunFactory.postCustomer(customerInfo)
                     .then(function(response) {
 
@@ -118,6 +115,7 @@
                             return error;
                         });
             }
+        
         }
 
         // is responsible to make all the fields edit able in the customerDetail page right away.
@@ -189,7 +187,7 @@
 function addOrder(){
 	       //Order details
 	  var orderInfo = {
-	        CustomerId: vm.customerId,
+	        CustomerId: vm.selectedCustomer,
 	        OrderTotal: vm.orderTotal, 
 	        TotalCost: vm.totalCost,
 	        TotalProfit: vm.totalProfit,
@@ -209,7 +207,7 @@ function addOrder(){
                });
 }
 
-//
+// fucntion to delete an order
         function removeOrder(id) {
             TeamPhunFactory.deleteOrder(id)
                 .then(function(response) {
@@ -283,7 +281,6 @@ function addOrder(){
                        });
 
              }
-
 
         ////*********************ORDER LINE ITEMCRUD METHODS END HERE******************
     }

@@ -1,3 +1,4 @@
+<pre>{{vm.allOrders}}</pre>
 <div class="row">
     <div class="col-md-12">
         <div class="navbar-form navbar-right" role="search">
@@ -26,23 +27,26 @@
                     <th>Customer Name</th>
                     <th>Total Cost</th>
                     <th>Total Profit</th>
-                    <th>Order Status</th>
+                    <th>Order Total</th>
+                    <th>Order Completed</th>
                     <th>Order Date</th>
                     <th></th>
                 </tr>
                 <tr ng-repeat="order in vm.allOrders | filter: vm.orderSearch">
                     <td>{{order.orderId}}</td>
                     <td>{{order.customerId}}</td>
-                    <td>{{order.orderTotal}}</td>
+                    <td>{{order.customer}}</td>
+                 
                     <td>{{order.totalCost}}</td>
                     <td>{{order.totalProfit}}</td>
+                    <td>{{order.orderTotal}}</td>
                     <td>{{order.orderStatus}}</td>
                     <td>{{order.orderCreatedDate}}</td>
                     <td><div class="form-group">
                     	<div class="col-md-offset-2 col-md-4">
                         <button type="submit" class="btn btn-primary" ng-click="vm.removeOrder(order.orderId)">Delete</button>
-                    </div>
-                	</div></td>
+                    </div></td>
+            
                 </tr>
             </table>
         </div>
@@ -59,10 +63,12 @@
             <!-- Add new or update customer form  -->
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Customer ID</label>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" ng-model="vm.customerId">
-                    </div>
+                    <label class="col-md-2 control-label">Customer Name</label>
+					<div class="col-md-4">
+						<select ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId as allCustomers.firstName+' '
+						 + allCustomers.lastName for allCustomers in vm.allCustomers">
+						</select>
+					</div>
                 </div>
                  <div class="form-group">
                     <label class="col-md-2 control-label">Order Total</label>
