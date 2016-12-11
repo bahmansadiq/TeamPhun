@@ -21,6 +21,7 @@
         // var customerInfo = {};
         vm.allOrders = [];
         vm.allOrderLineItems = [];
+        vm.profitMargin = 50;
 
 
 
