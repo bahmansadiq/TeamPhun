@@ -117,9 +117,7 @@
                             console.log(error + "Unable to passed the new customer infromation from Cotnroller to TeamPhunFactory!");
                             return error;
                         });
-
             }
-
         }
 
         // is responsible to make all the fields edit able in the customerDetail page right away.
@@ -202,6 +200,7 @@ function addOrder(){
 	TeamPhunFactory.postOrder(orderInfo)
 	     .then(function(response) {
               toastr.success("Successfully added the order to the order line item table!");
+              activate();
                return response;       
                 },
                function(error) {
@@ -224,9 +223,6 @@ function addOrder(){
                     });
         }
         ////*********************ORDER CRUD METHODS END HERE***************************
-
-        ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
-
 
         ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
 
