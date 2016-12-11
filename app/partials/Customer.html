@@ -1,22 +1,19 @@
+<pre>{{vm.allCustomers}}</pre>
 <div class="row">
     <div class="col-md-12">
         <div class="navbar-form navbar-right" role="search" ng-hide="vm.newCustomerDetails">
-            <!-- Disabled to see if I can search data in table instead of only by id -->
-            <!-- <div class="form-group">
-                <input type="text" class="form-control" ng-model="searchId" placeholder="Search by ID.....">
-            </div> -->
             <div class="form-group">
                 <input type="text" class="form-control" ng-model="vm.customerSearch" placeholder="Search...">
             </div>
-            <!-- dont need button with filter I created -->
-            <!--  <button type="submit" class="btn btn-primary" ng-click="vm.findCustomerById(searchId); vm.customerDetailView = !vm.customerDetailView; vm.customerDetails = !vm.customerDetails"><span class="glyphicon glyphicon-search"></span></button> -->
         </div>
         <div class="navbar-form navbar-right">
-            <button type="button" class="btn btn-primary customerFormModal" ng-hide="vm.newCustomerDetails" ng-click="vm.newCustomerDetails =!vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Add New Customer</button>
+            <button type="button" class="btn btn-primary customerFormModal" 
+            ng-hide="vm.newCustomerDetails" ng-click="vm.newCustomerDetails =!vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Add New Customer</button>
         </div>
     </div>
 </div>
 <!-- Customer Detail Table from database -->
+<div>
 <div ng-hide="vm.customerDetails">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
@@ -220,4 +217,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
