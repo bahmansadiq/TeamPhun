@@ -18,20 +18,10 @@
         vm.addOrderLineItem = addOrderLineItem;
         vm.allCustomers = [];
         vm.specificCustomer = [];
-        // var customerInfo = {};
+
         vm.allOrders = [];
         vm.allOrderLineItems = [];
         vm.profitMargin = 50;
-
-
-
-        // Slider for profit margin on orderLineItem.html
-        // var slider = new Slider("#ex6");
-        // slider.on("slide", function(slideEvt) {
-        //     $("#ex6SliderVal").text(slideEvt.value);
-        // });
-
-
 
 
         activate();
