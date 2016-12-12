@@ -9,7 +9,7 @@
     .header {
         color: red;
         font: bold;
-        font-size: 25px;
+        font-size: 17px;
     }
     /*Logo*/
     
@@ -17,18 +17,6 @@
         width: 100px;
         height: 100px;
         padding-bottom: 20px;
-    }
-    /*Navbar*/
-    
-    .navbar-nav > li > a,
-    .navbar-nav {
-        padding-top: 2px !important;
-        padding-bottom: 2px !important;
-        height: 30px;
-    }
-    
-    .navbar {
-        min-height: 30px !important;
     }
     /*Custon black button*/
     

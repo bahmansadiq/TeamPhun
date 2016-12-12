@@ -212,7 +212,7 @@
                     <textarea class="form-control" rows="3" ng-model="vm.note"></textarea>
                 </div>
                 <!-- Submit button add or updates customer and then hides this current "customer registration form" view and takes you back to the "customer manager table" view-->
-                <button ui-sref="home.customer" type="submit" class="btn btn-custom btn-xs" ng-click="vm.addCustomer(); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Submit</button>
+                <button type="button" class="btn btn-custom btn-xs" ng-click="vm.addCustomer(); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Submit</button>
             </div>
         </div>
     </div>

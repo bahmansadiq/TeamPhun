@@ -10,10 +10,10 @@
                     url: "/home",
                     templateUrl: "app/partials/Home.html"
                 })
-                .state('home.start', {
+                .state('home.teamPhun', {
 
-                    url: "/start",
-                    templateUrl: "app/partials/start.html",
+                    url: "/teamPhun",
+                    templateUrl: "app/partials/TeamPhun.html",
                     parent: "home",
                     controller: 'TeamPhunController',
                     controllerAs: 'vm'
