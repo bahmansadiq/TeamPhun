@@ -12,24 +12,19 @@
         var vm = this;
         vm.title = 'TeamPhunController';
         vm.addCustomer = addCustomer;
-        vm.addOrder=addOrder;
+        vm.addOrder = addOrder;
         vm.removeCustomer = removeCustomer;
         vm.findCustomerById = findCustomerById;
         vm.updateCustomer = updateCustomer;
         vm.addOrderLineItem = addOrderLineItem;
-        vm.removeOrder=removeOrder;
-        vm.allCustomers=[];
-       // allCustomers=[];
+        vm.removeOrder = removeOrder;
+        vm.allCustomers = [];
         vm.specificCustomer = [];
+
         vm.allOrders = [];
         vm.allOrderLineItems = [];
 
 
-        // Slider for profit margin on orderLineItem.html
-        // var slider = new Slider("#ex6");
-        // slider.on("slide", function(slideEvt) {
-        //     $("#ex6SliderVal").text(slideEvt.value);
-        // });
 
         activate();
 
@@ -44,7 +39,7 @@
         function findCustomers() {
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
-                       vm.allCustomers=response;
+                        vm.allCustomers = response;
                         return allCustomers;
                     },
                     function(error) {
@@ -64,6 +59,7 @@
                         console.log(error + " Unable to load the specific Customer from the factory to the controller!");
                     });
         }
+
         function addCustomer() {
 
             var customerInfo = {
@@ -95,12 +91,11 @@
                 toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
 
 
-            }else
-             {
-		
-            	//return toastr.error("Plese fill the form to create a new customer !");
+            } else {
 
-            
+                //return toastr.error("Plese fill the form to create a new customer !");
+
+
                 TeamPhunFactory.postCustomer(customerInfo)
                     .then(function(response) {
 
@@ -115,7 +110,7 @@
                             return error;
                         });
             }
-        
+
         }
 
         // is responsible to make all the fields edit able in the customerDetail page right away.
@@ -182,32 +177,32 @@
         }
 
 
-		//fucntion to add a new order to the talbe
+        //fucntion to add a new order to the talbe
 
-function addOrder(){
-	       //Order details
-	  var orderInfo = {
-	        CustomerId: vm.selectedCustomer,
-	        OrderTotal: vm.orderTotal, 
-	        TotalCost: vm.totalCost,
-	        TotalProfit: vm.totalProfit,
-	     	OrderStatus: vm.orderStatus,
-	        OrderCreatedDate: new Date().toISOString()
+        function addOrder() {
+            //Order details
+            var orderInfo = {
+                CustomerId: vm.selectedCustomer,
+                OrderTotal: vm.orderTotal,
+                TotalCost: vm.totalCost,
+                TotalProfit: vm.totalProfit,
+                OrderStatus: vm.orderStatus,
+                OrderCreatedDate: new Date().toISOString()
 
             };
-	TeamPhunFactory.postOrder(orderInfo)
-	     .then(function(response) {
-              toastr.success("Successfully added the order to the order line item table!");
-              activate();
-               return response;       
-                },
-               function(error) {
-                  console.log(error + "Unable to passed the new order information from the controller to TeamPhunFactory!");
-                  return error;
-               });
-}
+            TeamPhunFactory.postOrder(orderInfo)
+                .then(function(response) {
+                        toastr.success("Successfully added the order to the order line item table!");
+                        activate();
+                        return response;
+                    },
+                    function(error) {
+                        console.log(error + "Unable to passed the new order information from the controller to TeamPhunFactory!");
+                        return error;
+                    });
+        }
 
-// fucntion to delete an order
+        // fucntion to delete an order
         function removeOrder(id) {
             TeamPhunFactory.deleteOrder(id)
                 .then(function(response) {
@@ -277,10 +272,10 @@ function addOrder(){
                     function(error) {
                         console.log(error + "Unable to passed the new order line item information from the controller to TeamPhunFactory!");
                         return error;
-                    
-                       });
 
-             }
+                    });
+
+        }
 
         ////*********************ORDER LINE ITEMCRUD METHODS END HERE******************
     }
