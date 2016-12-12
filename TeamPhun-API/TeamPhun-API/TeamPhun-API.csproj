@@ -143,10 +143,16 @@
     <Compile Include="Migrations\201611301953036_InitialTeamPhunCreation.Designer.cs">
       <DependentUpon>201611301953036_InitialTeamPhunCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121841174_AddOnCreation.cs" />
+    <Compile Include="Migrations\201612121841174_AddOnCreation.Designer.cs">
+      <DependentUpon>201612121841174_AddOnCreation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddOn.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderLineItem.cs" />
+    <Compile Include="Models\Prices.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +175,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611301953036_InitialTeamPhunCreation.resx">
       <DependentUpon>201611301953036_InitialTeamPhunCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121841174_AddOnCreation.resx">
+      <DependentUpon>201612121841174_AddOnCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

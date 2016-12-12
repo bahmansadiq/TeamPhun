@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Customer Name</label>
 					<div class="col-md-4">
-						<select ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId as allCustomers.firstName+' '
+						<select ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId + allCustomers.firstName + allCustomers.lastName  as allCustomers.firstName+' '
 						 + allCustomers.lastName for allCustomers in vm.allCustomers">
 						</select>
 					</div>

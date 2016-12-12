@@ -48,3 +48,4 @@ C:\dev\TeamPhun\TeamPhun-API\TeamPhun-API\bin\System.Web.Http.Cors.dll
 C:\dev\TeamPhun\TeamPhun-API\TeamPhun-API\bin\System.Web.Http.Cors.xml
 C:\dev\TeamPhun\TeamPhun-API\TeamPhun-API\obj\Debug\TeamPhun_API.Migrations.InitialTeamPhunCreation.resources
 C:\dev\TeamPhun\TeamPhun-API\TeamPhun-API\obj\Debug\TeamPhun-API.csproj.GenerateResource.Cache
+C:\dev\TeamPhun\TeamPhun-API\TeamPhun-API\obj\Debug\TeamPhun_API.Migrations.AddOnCreation.resources

@@ -27,8 +27,10 @@ namespace TeamPhun_API.Models
         public bool Flash { get; set; }
         public bool FoldingAndBagging { get; set; }
         public bool SalesTax { get; set; }
+        public bool SetUp { get; set; }
+        public float OrderLineItemCost { get; set; }
         public float ProfitMargin { get; set; }
-        public double OrderLineItemEstimate { get; set; }
+        public double OrderLineItemClientEstimate { get; set; }
         public double OrderLineItemProfit { get; set; }
         public DateTime OrderLineItemCreatedDate { get; set; }
 

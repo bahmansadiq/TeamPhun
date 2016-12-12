@@ -20,6 +20,8 @@ namespace TeamPhun_API.data
         public IDbSet<OrderLineItem> OrderLineItems { get; set; }
         public IDbSet<Product> Products { get; set; }
         public IDbSet<Vendor> Vendors { get; set; }
+        public IDbSet<Price> Prices { get; set; }
+        public IDbSet<AddOn> AddOns { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

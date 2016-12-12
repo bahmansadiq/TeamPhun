@@ -45,7 +45,7 @@
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
                        vm.allCustomers=response;
-                        return allCustomers;
+                        return vm.allCustomers;
                     },
                     function(error) {
                         console.log(error + "111  Unable to load the Custoers from the factory to the controller!");

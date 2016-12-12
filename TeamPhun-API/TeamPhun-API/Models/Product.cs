@@ -14,7 +14,7 @@ namespace TeamPhun_API.Models
         public int ProductCode { get; set; }
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
-        public double TotalProductCost { get; set; }
+        public double ProductCost { get; set; }
         public DateTime ProductCreatedDate { get; set; }
 
 
