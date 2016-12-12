@@ -14,11 +14,11 @@
                         </div>
                         <div class="form-group form-group-sm">
                             <label for="description">Description</label>
-                            <input id="description" ng-model="vm.description" type="text" class="form-control input-sm" placeholder="Description...">
+                            <input id="description" ng-model="vm.description" type="text" class="form-control input-sm" placeholder="Description...THIS IS FOR THE CUSTOMER">
                         </div>
                         <div class="form-group form-group-sm">
                             <label for="cost">Cost</label>
-                            <input id="cost" ng-model="vm.cost" type="number" step="any" class="form-control input-sm" placeholder="Cost...">
+                            <input id="cost" ng-model="vm.cost" type="number" step="any" class="form-control input-sm" placeholder="Cost...THIS IS IN THE PRODUCTS TABLE">
                         </div>
                         <div class="form-group form-group-sm">
                             <label for="printPieces">Print Pieces</label>
@@ -28,6 +28,7 @@
                         <div class="form-group form-group-sm">
                             <label for="colors">Colors</label>
                             <select id="colors" class="form-control input-sm" ng-model="vm.colors">
+                                <option selected disabled hidden>Colors</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
