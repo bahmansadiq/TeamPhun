@@ -48,7 +48,7 @@
                         return allCustomers;
                     },
                     function(error) {
-                        console.log(error + "111  Unable to load the Custoers from the factory to the controller!");
+                        console.log(error + "Unable to load the Custoers from the factory to the controller!");
                     });
         }
 
