@@ -13,7 +13,7 @@
 </div>
 <!-- Customer Detail Table from database -->
 <div>
-    <div ng-hide="vm.customerDetails">
+    <div ng-show="vm.customerDetails">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 Customers Manager
@@ -138,7 +138,6 @@
                 <button class="btn btn-warning glyphicon glyphicon-pencil" ng-click="vm.populateEditForm(vm.specificCustomer); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetailView = !vm.customerDetailView"> Edit</button>
                 <!-- Delete Button will delete a customer record and hide this "customers detail" view and take you back to the "customer manager table" view -->
                 <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="vm.removeCustomer(vm.specificCustomer.customerId); vm.customerDetails = !vm.customerDetails; vm.customerDetailView = customerDetailView"> Delete</button>
-
             </div>
         </div>
     </div>
