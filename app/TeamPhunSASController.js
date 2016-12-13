@@ -15,7 +15,6 @@
         vm.getProducts = getProducts;
         vm.findStyleByCatId= findStyleByCatId;
        
-
       //  vm.styleDetails=[];
         var styles=[];
 
