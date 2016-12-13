@@ -13,23 +13,17 @@
         vm.title = 'TeamPhunController';
         vm.addCustomer = addCustomer;
         vm.addOrder=addOrder;
+        vm.updateOrder=updateOrder;
         vm.removeCustomer = removeCustomer;
         vm.findCustomerById = findCustomerById;
         vm.updateCustomer = updateCustomer;
         vm.addOrderLineItem = addOrderLineItem;
+        vm.populateOrderForm= populateOrderForm;
         vm.removeOrder=removeOrder;
         vm.allCustomers=[];
-       // allCustomers=[];
         vm.specificCustomer = [];
         vm.allOrders = [];
         vm.allOrderLineItems = [];
-
-
-        // Slider for profit margin on orderLineItem.html
-        // var slider = new Slider("#ex6");
-        // slider.on("slide", function(slideEvt) {
-        //     $("#ex6SliderVal").text(slideEvt.value);
-        // });
 
         activate();
 
@@ -91,16 +85,12 @@
 
                 customerInfo.CustomerId = vm.customerId;
                 updateCustomer(vm.customerId, customerInfo);
-
                 toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
-
-
-            }else
-             {
+            }
+            else{
 		
             	//return toastr.error("Plese fill the form to create a new customer !");
-
-            
+        
                 TeamPhunFactory.postCustomer(customerInfo)
                     .then(function(response) {
 
@@ -117,7 +107,6 @@
             }
         
         }
-
         // is responsible to make all the fields edit able in the customerDetail page right away.
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
@@ -151,8 +140,8 @@
 
                 }, function(error) {
 
-                    toastr.error("Unable to successfully update " + id + " from the controller to the factory!");
-                })
+                    toastr.error(error);
+                });
         }
 
         function removeCustomer(id) {
@@ -168,6 +157,8 @@
                     });
         }
         ////*********************ORDER CRUD METHODS START HERE***************************
+        ////*********************ORDER CRUD METHODS START HERE***************************
+        ////*********************ORDER CRUD METHODS START HERE***************************
 
         function findOrders() {
             TeamPhunFactory.getOrder()
@@ -181,7 +172,7 @@
                     });
         }
 
-
+   ////*********************add Order METHODS **************************************
 		//fucntion to add a new order to the talbe
 
 function addOrder(){
@@ -195,6 +186,12 @@ function addOrder(){
 	        OrderCreatedDate: new Date().toISOString()
 
             };
+            if(vm.orderId) {
+                orderInfo.OrderId = vm.orderId;
+                updateOrder(vm.orderId, orderInfo);
+                toastr.success("The order records with ID: " + vm.orderId + " has been successfully updated");
+            }
+            else{
 	TeamPhunFactory.postOrder(orderInfo)
 	     .then(function(response) {
               toastr.success("Successfully added the order to the order line item table!");
@@ -205,8 +202,9 @@ function addOrder(){
                   console.log(error + "Unable to passed the new order information from the controller to TeamPhunFactory!");
                   return error;
                });
+	}
 }
-
+   ////*********************remove order METHODS **************************************
 // fucntion to delete an order
         function removeOrder(id) {
             TeamPhunFactory.deleteOrder(id)
@@ -220,17 +218,51 @@ function addOrder(){
                         console.log(error + "Unable to successfully send the deleted request for the specific customer from customer controller to the TeamPhun factory");
                     });
         }
-        ////*********************ORDER CRUD METHODS END HERE***************************
+
+   ////*********************populate Order METHODS **************************************
+ ///Populate the order form to be editable 
+ 
+
+     function populateOrderForm(order){
+
+				vm.addNewOrder=!vm.addNewOrder;
+                vm.orderId = order.orderId;
+                vm.selectedCustomer=order.selectCustomer;
+                vm.customerId=order.customerId;
+                vm.orderTotal= order.orderTotal;
+                vm.totalCost=order.totalCost;
+                vm.totalProfit=order.totalProfit;
+                vm.orderStatus= order.orderStatus;
+
+            }      
+   ////*********************Update Order METHODS **************************************
+        function updateOrder(id, orderdetails) {
+            TeamPhunFactory.putOrder(id, orderdetails)
+                .then(function(response) {
+                    activate();
+                    toastr.success("successfully updated order " + id + " from the controller to the factory!");
+
+                    return response;
+
+                }, function(error){
+
+                    toastr.error("Unable to successfully update order " + id + " from the controller to the factory!");
+                });
+        }
+
+
+   ////*********************ORDER CRUD METHODS END HERE***************************
+   ////*********************ORDER CRUD METHODS END HERE***************************
+   ////*********************ORDER CRUD METHODS END HERE**************************
+
+   
 
         ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
 
         function findOrdersLineItems() {
             TeamPhunFactory.getOrderLineItem()
                 .then(function(response) {
-
                         vm.allOrderLineItems = response;
-
-
                         return response;
                     },
                     function(error) {
@@ -266,23 +298,17 @@ function addOrder(){
 
             TeamPhunFactory.postOrderLineItem(orderLineItemInfo)
                 .then(function(response) {
-
                         toastr.success("Successfully added " + orderLineItemInfo.totalPieces + "  " + orderLineItemInfo.description + " to the order line item table!");
-
                         return response;
-
-                        ;
-
                     },
                     function(error) {
                         console.log(error + "Unable to passed the new order line item information from the controller to TeamPhunFactory!");
                         return error;
-                    
                        });
-
              }
 
-        ////*********************ORDER LINE ITEMCRUD METHODS END HERE******************
+        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
+        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
+        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
     }
-
 })();

@@ -9,7 +9,7 @@
         </div>
         <div class="navbar-form navbar-right">
             <!-- Not working as of now, will eventually show the form to add a new customer -->
-            <button type="button" class="btn btn-primary" ng-hide="vm.addNewOrder" ng-click="vm.addNewOrder =!vm.addNewOrder">Add New Order</button>
+            <button type="button" class="btn btn-primary" ui-sref="home.order" ng-hide="vm.addNewOrder" ng-click="vm.addNewOrder =!vm.addNewOrder">Add New Order</button>
         </div>
     </div>
 </div>
@@ -31,21 +31,28 @@
                     <th>Order Completed</th>
                     <th>Order Date</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 <tr ng-repeat="order in vm.allOrders | filter: vm.orderSearch">
                     <td>{{order.orderId}}</td>
                     <td>{{order.customerId}}</td>
                     <td>{{order.customer}}</td>
-                 
                     <td>{{order.totalCost}}</td>
                     <td>{{order.totalProfit}}</td>
                     <td>{{order.orderTotal}}</td>
                     <td>{{order.orderStatus}}</td>
-                    <td>{{order.orderCreatedDate}}</td>
+                    <td>{{order.orderCreatedDate | date}}</td>
                     <td><div class="form-group">
                     	<div class="col-md-offset-2 col-md-4">
-                        <button type="submit" class="btn btn-primary" ng-click="vm.removeOrder(order.orderId)">Delete</button>
-                    </div></td>
+                        <button type="submit"  class="btn btn-danger glyphicon glyphicon-remove" ng-click="vm.removeOrder(order.orderId)">Delete</button>
+                        </div>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    	<div class="col-md-offset-2 col-md-4">
+                        <button type="submit" class="btn btn-warning glyphicon glyphicon-pencil" ng-click="vm.populateOrderForm(order)"> Edit </button>
+                    </div></div></td>
             
                 </tr>
             </table>
@@ -65,7 +72,8 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Customer Name</label>
 					<div class="col-md-4">
-						<select ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId + allCustomers.firstName + allCustomers.lastName  as allCustomers.firstName+' '
+						<select ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" 
+						ng-options="allCustomers.customerId   as allCustomers.firstName +' '
 						 + allCustomers.lastName for allCustomers in vm.allCustomers">
 						</select>
 					</div>
