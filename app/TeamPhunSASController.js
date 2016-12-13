@@ -13,11 +13,19 @@
         vm.title = 'TeamPhunSASController';
         vm.getCategory = getCategory;
         vm.getSpecs = getSpecs;
+
         // vm.getProducts = getProducts;
         vm.findStyleByCatId = findStyleByCatId;
         vm.getPriceByStyleId = getPriceByStyleId
         vm.styleIdQtyCasePrice = [];
         vm.priceList = [];
+
+
+        vm.getProducts = getProducts;
+        vm.findStyleByCatId= findStyleByCatId;
+       
+      //  vm.styleDetails=[];
+        var styles=[];
 
 
 
