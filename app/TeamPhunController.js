@@ -12,34 +12,20 @@
         var vm = this;
         vm.title = 'TeamPhunController';
         vm.addCustomer = addCustomer;
-<<<<<<< HEAD
         vm.addOrder=addOrder;
         vm.updateOrder=updateOrder;
-=======
-        vm.addOrder = addOrder;
->>>>>>> dev-branch
         vm.removeCustomer = removeCustomer;
         vm.findCustomerById = findCustomerById;
         vm.updateCustomer = updateCustomer;
         vm.addOrderLineItem = addOrderLineItem;
-<<<<<<< HEAD
         vm.populateOrderForm= populateOrderForm;
         vm.removeOrder=removeOrder;
         vm.allCustomers=[];
-=======
         vm.removeOrder = removeOrder;
         vm.allCustomers = [];
->>>>>>> dev-branch
         vm.specificCustomer = [];
-
         vm.allOrders = [];
         vm.allOrderLineItems = [];
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> dev-branch
         activate();
 
         ////////////////
@@ -53,13 +39,9 @@
         function findCustomers() {
             TeamPhunFactory.getCustomer()
                 .then(function(response) {
-<<<<<<< HEAD
+
                        vm.allCustomers=response;
                         return vm.allCustomers;
-=======
-                        vm.allCustomers = response;
-                        return allCustomers;
->>>>>>> dev-branch
                     },
                     function(error) {
                         console.log(error + "Unable to load the Custoers from the factory to the controller!");
@@ -107,21 +89,9 @@
                 customerInfo.CustomerId = vm.customerId;
                 updateCustomer(vm.customerId, customerInfo);
                 toastr.success("The Customer records with ID: " + vm.customerId + " has been successfully updated");
-<<<<<<< HEAD
             }
             else{
 		
-            	//return toastr.error("Plese fill the form to create a new customer !");
-        
-=======
-
-
-            } else {
-
-                //return toastr.error("Plese fill the form to create a new customer !");
-
-
->>>>>>> dev-branch
                 TeamPhunFactory.postCustomer(customerInfo)
                     .then(function(response) {
 
@@ -203,13 +173,10 @@
                     });
         }
 
-<<<<<<< HEAD
+
    ////*********************add Order METHODS **************************************
 		//fucntion to add a new order to the talbe
-=======
 
-        //fucntion to add a new order to the talbe
->>>>>>> dev-branch
 
         function addOrder() {
             //Order details
@@ -222,7 +189,6 @@
                 OrderCreatedDate: new Date().toISOString()
 
             };
-<<<<<<< HEAD
             if(vm.orderId) {
                 orderInfo.OrderId = vm.orderId;
                 updateOrder(vm.orderId, orderInfo);
@@ -241,23 +207,11 @@
                });
 	}
 }
-   ////*********************remove order METHODS **************************************
-// fucntion to delete an order
-=======
-            TeamPhunFactory.postOrder(orderInfo)
-                .then(function(response) {
-                        toastr.success("Successfully added the order to the order line item table!");
-                        activate();
-                        return response;
-                    },
-                    function(error) {
-                        console.log(error + "Unable to passed the new order information from the controller to TeamPhunFactory!");
-                        return error;
-                    });
-        }
+
+
 
         // fucntion to delete an order
->>>>>>> dev-branch
+
         function removeOrder(id) {
             TeamPhunFactory.deleteOrder(id)
                 .then(function(response) {
@@ -356,15 +310,15 @@
                     function(error) {
                         console.log(error + "Unable to passed the new order line item information from the controller to TeamPhunFactory!");
                         return error;
-<<<<<<< HEAD
+
                        });
-             }
-=======
+             
 
-                    });
 
-        }
->>>>>>> dev-branch
+                    }
+
+       
+
 
         ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
         ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
