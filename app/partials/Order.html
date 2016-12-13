@@ -3,8 +3,7 @@
     <div class="col-md-12">
         <div class="navbar-form navbar-right" role="search">
             <div class="form-group">
-                <input type="text" class="form-control" ng-model="vm.orderSearch"
-                ng-hide="vm.addNewOrder" placeholder="Search...">
+                <input type="text" class="form-control" ng-model="vm.orderSearch" ng-hide="vm.addNewOrder" placeholder="Search...">
             </div>
         </div>
         <div class="navbar-form navbar-right">
@@ -20,7 +19,7 @@
         </div>
         <div class="panel-body">
             <!-- Order table -->
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped table-condensed">
                 <tr>
                     <th>Order Id</th>
                     <th>Customer Id</th>
@@ -53,9 +52,15 @@
                     	<div class="col-md-offset-2 col-md-4">
                         <button type="submit" class="btn btn-warning glyphicon glyphicon-pencil" ng-click="vm.populateOrderForm(order)"> Edit </button>
                     </div></div></td>
-            
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-4">
+                                <button type="submit" class="btn btn-primary" ng-click="vm.removeOrder(order.orderId)">Delete</button>
+                            </div>
+                    </td>
                 </tr>
             </table>
+            </div>
         </div>
     </div>
 
@@ -77,40 +82,53 @@
 						 + allCustomers.lastName for allCustomers in vm.allCustomers">
 						</select>
 					</div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-2 control-label">Order Total</label>
-                    <div class="col-md-4">
-                        <input type="number" class="form-control" ng-model="vm.orderTotal">
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-2 control-label">Total cost</label>
-                    <div class="col-md-4">
-                        <input type="number" class="form-control" ng-model="vm.totalCost">
-                  </div>
-                </div>
-                 <div class="form-group">
-                    <label class="col-md-2 control-label">Total Profit</label>
-                    <div class="col-md-4">
-                        <input type="number" class="form-control" ng-model="vm.totalProfit">
-                  </div>
-                </div>
 
-                 <div class="form-group">
-                    <label class="col-md-2 control-label">Order Status</label>
-                    <div class="col-md-4 checkbox">
-                        <input type="checkbox" ng-model="vm.orderStatus">
-                    </div>
+        <div>
+            <div class="panel panel-default" ng-show="vm.addNewOrder">
+                <div class="panel-heading text-center">
+                    Order Registration Form
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-4">
-                        <button  type="submit" class="btn btn-primary" ng-click="vm.addOrder(); vm.addNewOrder=!vm.addNewOrder">Submit</button>
-                    </div>
+                <div class="panel-body">
+                    <!-- Add new or update customer form  -->
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Customer Name</label>
+                            <div class="col-md-4">
+                                <select ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId as allCustomers.firstName+' '
+                         + allCustomers.lastName for allCustomers in vm.allCustomers">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Order Total</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="vm.orderTotal">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Total cost</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="vm.totalCost">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Total Profit</label>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" ng-model="vm.totalProfit">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Order Status</label>
+                            <div class="col-md-4 checkbox">
+                                <input type="checkbox" ng-model="vm.orderStatus">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-4">
+                                <button type="submit" class="btn btn-primary" ng-click="vm.addOrder(); vm.addNewOrder=!vm.addNewOrder">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-              </form>
+            </div>
         </div>
-      </div> 
- </div>
- </div>
