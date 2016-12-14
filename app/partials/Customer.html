@@ -51,93 +51,94 @@
             </div>
         </div>
     </div>
-    <!-- Customer details view ///////////// added vm.newCustomerDetails to see if after we go into customer details view, once we click on the edit button, we want to be able to hide this screen-->
-    <div ng-show="vm.customerDetailView">
-        <div class="panel panel-default col-md-6 col-md-offset-3">
-            <div class="panel-heading text-center row">
-                Customer Details View
-            </div>
-            <div class="panel-body">
-                <div>
-                    <table class="table table-striped table-condensed">
-                        <tr class="thead-inverse">
-                            <th>ID</th>
-                            <td>{{vm.specificCustomer.customerId}} </td>
-                        </tr>
-                        <tr>
-                            <th>First Name</th>
-                            <td>{{vm.specificCustomer.firstName}}</td>
-                        </tr>
-                        <tr>
-                            <th>Last Name</th>
-                            <td>{{vm.specificCustomer.lastName}}</td>
-                        </tr>
-                        <tr>
-                            <th>Organization</th>
-                            <td>{{vm.specificCustomer.organization}}</td>
-                        </tr>
-                        <tr>
-                            <th>Website</th>
-                            <td>{{vm.specificCustomer.webSite}}</td>
-                        </tr>
-                        <tr>
-                            <th>Role</th>
-                            <td>{{vm.specificCustomer.role}}</td>
-                        </tr>
-                        <tr>
-                            <th>Business Phone</th>
-                            <td>{{vm.specificCustomer.businessPhone}}</td>
-                        </tr>
-                        <tr>
-                            <th>Mobile Phone</th>
-                            <td>{{vm.specificCustomer.mobilePhone}}</td>
-                        </tr>
-                        <tr>
-                            <th>Other Phone</th>
-                            <td>{{vm.specificCustomer.otherPhone}}</td>
-                        </tr>
-                        <tr>
-                            <th>Fax</th>
-                            <td>{{vm.specificCustomer.fax}}</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>{{vm.specificCustomer.email}}</td>
-                        </tr>
-                        <tr>
-                            <th>Street Address</th>
-                            <td>{{vm.specificCustomer.streetAddress}}</td>
-                        </tr>
-                        <tr>
-                            <th>City</th>
-                            <td>{{vm.specificCustomer.city}}</td>
-                        </tr>
-                        <tr>
-                            <th>State</th>
-                            <td>{{vm.specificCustomer.state}}</td>
-                        </tr>
-                        <tr>
-                            <th>Zip Code</th>
-                            <td>{{vm.specificCustomer.zipCode}}</td>
-                        </tr>
-                        <tr>
-                            <th>Country</th>
-                            <td>{{vm.specificCustomer.country}}</td>
-                        </tr>
-                        <tr>
-                            <th>Note</th>
-                            <td>{{vm.specificCustomer.note}}</td>
-                        </tr>
-                        <tr>
-                            <th>Date Created</th>
-                            <td>{{vm.specificCustomer.customerRecordCreated}}</td>
-                        </tr>
-                    </table>
-                    <!-- Edit Button will hide this "customers detail" view and show the "customer registration form" view and pushes the specific customers details (with the customer ID) into the entry fields for editability-->
-                    <button class="btn btn-warning glyphicon glyphicon-pencil btn-xs" ng-click="vm.populateEditForm(vm.specificCustomer); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetailView = !vm.customerDetailView"> Edit</button>
-                    <!-- Delete Button will delete a customer record and hide this "customers detail" view and take you back to the "customer manager table" view -->
-                    <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="vm.removeCustomer(vm.specificCustomer.customerId); vm.customerDetails = !vm.customerDetails; vm.customerDetailView = customerDetailView"> Delete</button>
-                </div>
+</div>
+<!-- Customer details view ///////////// added vm.newCustomerDetails to see if after we go into customer details view, once we click on the edit button, we want to be able to hide this screen-->
+<div ng-show="vm.customerDetailView">
+    <div class="panel panel-default col-md-6 col-md-offset-3">
+        <div class="panel-heading text-center row">
+            Customer Details View
+        </div>
+        <div class="panel-body">
+            <div>
+                <table class="table table-striped">
+                    <tr class="thead-inverse">
+                        <th>ID</th>
+                        <td>{{vm.specificCustomer.customerId}} </td>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{vm.specificCustomer.firstName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{vm.specificCustomer.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Organization</th>
+                        <td>{{vm.specificCustomer.organization}}</td>
+                    </tr>
+                    <tr>
+                        <th>Website</th>
+                        <td>{{vm.specificCustomer.webSite}}</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>{{vm.specificCustomer.role}}</td>
+                    </tr>
+                    <tr>
+                        <th>Business Phone</th>
+                        <td>{{vm.specificCustomer.businessPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Phone</th>
+                        <td>{{vm.specificCustomer.mobilePhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Other Phone</th>
+                        <td>{{vm.specificCustomer.otherPhone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Fax</th>
+                        <td>{{vm.specificCustomer.fax}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{vm.specificCustomer.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Street Address</th>
+                        <td>{{vm.specificCustomer.streetAddress}}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{vm.specificCustomer.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{vm.specificCustomer.state}}</td>
+                    </tr>
+                    <tr>
+                        <th>Zip Code</th>
+                        <td>{{vm.specificCustomer.zipCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td>{{vm.specificCustomer.country}}</td>
+                    </tr>
+                    <tr>
+                        <th>Note</th>
+                        <td>{{vm.specificCustomer.note}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date Created</th>
+                        <td>{{vm.specificCustomer.customerRecordCreated | date}}</td>
+                    </tr>
+                </table>
+                <!-- Edit Button will hide this "customers detail" view and show the "customer registration form" view and pushes the specific customers details (with the customer ID) into the entry fields for editability-->
+                <button class="btn btn-warning glyphicon glyphicon-pencil" ng-click="vm.populateEditForm(vm.specificCustomer); vm.newCustomerDetails = !vm.newCustomerDetails; vm.customerDetailView = !vm.customerDetailView"> Edit</button>
+                <!-- Delete Button will delete a customer record and hide this "customers detail" view and take you back to the "customer manager table" view -->
+                <button class="btn btn-danger glyphicon glyphicon-remove" ng-click="vm.removeCustomer(vm.specificCustomer.customerId); vm.customerDetails = !vm.customerDetails; vm.customerDetailView = customerDetailView"> Delete</button>
+
             </div>
         </div>
     </div>

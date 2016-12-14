@@ -2,35 +2,58 @@
     'use strict';
 
     angular
-    .module('app')
-    .controller('TeamPhunSASController', TeamPhunSASController);
+        .module('app')
+        .controller('TeamPhunSASController', TeamPhunSASController);
 
-    TeamPhunSASController.$inject = ['TeamPhunSASFactory', '$q'];
+    TeamPhunSASController.$inject = ['TeamPhunSASFactory', '$q', 'filterFilter'];
 
     /* @ngInject */
-    function TeamPhunSASController(TeamPhunSASFactory, $q) {
+    function TeamPhunSASController(TeamPhunSASFactory, $q, filterFilter) {
         var vm = this;
         vm.title = 'TeamPhunSASController';
+        vm.getCategory = getCategory;
         vm.getSpecs = getSpecs;
+
+        // vm.getProducts = getProducts;
+        vm.findStyleByCatId = findStyleByCatId;
+        vm.getPriceByStyleId = getPriceByStyleId
+        vm.styleIdQtyCasePrice = [];
+        vm.priceList = [];
+
+
         vm.getProducts = getProducts;
         vm.findStyleByCatId= findStyleByCatId;
        
       //  vm.styleDetails=[];
         var styles=[];
 
-        var stylesImg=[];
 
-        
+
+
+
+        //  vm.styleDetails=[];
+        // var styles = [];
+
+        // var stylesImg = [];
+
+
         //vm.categoryId=categoryId;
 
         activate();
-        getSpecs();
-        getProducts();
+
+
 
 
         ////////////////
         /**/
         function activate() {
+            // getProducts();
+            getSpecs();
+            getCategory();
+
+        }
+
+        function getCategory() {
             TeamPhunSASFactory.getCategory().then(function(response) {
 
                 var array = response.data;
@@ -52,56 +75,81 @@
             })
         }
 
-        function getProducts() {
-            TeamPhunSASFactory.getProducts().then(function(response) {
-                var priceArray = response.data;
-                var priceArray2 = [];
+        // function getProducts() {
+        //     TeamPhunSASFactory.getProducts().then(function(response) {
+        //         var findPrice = response.data;
+        //         var styleId = response.data.styleID;
+        //         var casePrice = response.data.casePrice;
+        //         var quantity = response.data.qty;
 
-                for (var i = 0, pr = priceArray.length; i < pr; i++) {
-                    //  console.log(priceArray[i]);
-                    priceArray2.push(priceArray[i].styleImage);
-                      //console.log(priceArray2);
-                  }
+        //         for (var i = 0; i < findPrice.length; i++) {
+        //             var price = findPrice[i].styleId;
+        //             //  console.log(priceArray[i]);
+        //             vm.priceList.push(findPrice[i]);
+        //             vm.styleIdQtyCasePrice.push(price);
+        //             //console.log(priceArray2);
+        //         }
 
-                  vm.Products = priceArray2;
 
 
-                  for(var j = 0, img=priceArray2.length; j<img; j++){
-                    vm.image = priceArray2;
+
+
+        //         // console.log("its passing")
+
+        //     })
+        // }
+
+        function findStyleByCatId(categoryId) {
+            TeamPhunSASFactory.getStyleByCatId(categoryId).then(function(response) {
+                vm.styleByCatId = response.data;
+
+                var filteredResult = filterFilter(vm.styleByCatId, { categories: categoryId });
+                vm.itemStyleByCatId = [];
+
+                for (var i = 0; i < filteredResult.length; i++) {
+                    var somethingObject= {brandName: filteredResult[i].brandName, title: filteredResult[i].title, styleImage: filteredResult[i].styleImage};
+                    vm.itemStyleByCatId.push(somethingObject);
+                    console.log(vm.itemStyleByCatId)
                 }
 
-                // console.log("its passing")
+                console.log(vm.itemStyleByCatId)
+                    // var len = response.data;
 
-            })
-        }
+                // //vm.test= response.data;
+                // for (var j = 0; j < len.length; j++) {
+                //     var item = len[j].categories.split(',');
+                //     var style = len[j];
+                //     var itemStyleId = len[j].styleID;
 
-        function findStyleByCatId(categoryId){
-            TeamPhunSASFactory.getStyleByCatId(categoryId).then(function(response){
-                var len= response.data.length;
-                vm.test= response;
-                for(var j=0; j< len; j++){
-                    styles.push(response.data[j].brandName);
+                //     for (var t = 0; t < item.length; t++) {
 
-                }
+                //         if (item[t] == categoryId) {
+                //             vm.itemStyleByCatId.push(style);
 
-                vm.styleDetails = styles;
+                //         };
+                //         if (itemStyleId == style.styleID) {
+                //             TeamPhunSASFactory.getProducts(style.styleID)
+                //                 .then(function(result) {
+                //                     vm.getStyleIdPrice = result.data;
+                //                      vm.itemStyleByCatId[j].push(vm.getStyleIdPrice[j]);
+                //                 });
+                //         }
 
-                //  for(var j=0; j< len; j++){
-                //     stylesImg.push(response.data[j].brandName);
+
+                //     }
+
+
 
                 // }
-
-                // vm.styleImg=stylesImg;
-
-                styles=[];
-
-                // $filter('filter')(vm.test, categories, vm.categoryId)
-
             })
+
         }
 
-        
+        function getPriceByStyleId() {
 
-    
-}
+
+        }
+
+    }
+
 })();

@@ -1,6 +1,5 @@
 <!-- Add customer select dropdown -->
 <!-- Quote Input Panel Start -->
-
 <div class="container">
     <!-- Quote Calculator -->
     <div class="row">
@@ -9,6 +8,22 @@
                 <div class="panel-heading text-center">Quote Calculator</div>
                 <div class="panel-body">
                     <div class="form">
+                        <div class="form-group form-group-sm">
+                            <label for="colors">Customer Order</label>
+                            <select id="colors" class="form-control input-sm" ng-model="vm.colors">
+                                <option selected disabled hidden>Colors</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                                <option value="6">Six</option>
+                                <option value="7">Seven</option>
+                                <option value="8">Eight</option>
+                                <option value="9">Nine</option>
+                                <option value="10">Ten</option>
+                            </select>
+                        </div>
                         <div class="form-group form-group-sm">
                             <label for="productCode">Product Code</label>
                             <input id="productCode" ng-model="vm.productCode" type="number" class="form-control input-sm" placeholder="MUST CHOOSE 1 - NEEDS TO BE FIXED">

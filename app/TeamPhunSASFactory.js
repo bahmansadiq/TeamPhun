@@ -80,11 +80,11 @@
         }
 
 
-        function getProducts() {
+        function getProducts(styleId) {
             var defer = $q.defer();
             $http({
                 method: 'GET',
-                url: 'https://api.ssactivewear.com/v2/styles/',
+                url: 'https://api.ssactivewear.com/v2/products/?style=' + styleId,
                 headers: {
                     authorization: 'Basic ODM0ODQ6ZTEzMjMwNjMtMjk4OC00NGY0LTk3NWYtMGZlNDZhZjRhZTY3',
                     UserName: 83484,
@@ -113,7 +113,7 @@
             var defer = $q.defer();
             $http({
                 method: 'GET',
-                url: 'https://api.ssactivewear.com/v2/styles/?fields=BrandName,Title,Categories,StyleImage',
+                url: 'https://api.ssactivewear.com/v2/styles/?fields=StyleID,BrandName,Title,Categories,StyleImage',
                 headers: {
                     authorization: 'Basic ODM0ODQ6ZTEzMjMwNjMtMjk4OC00NGY0LTk3NWYtMGZlNDZhZjRhZTY3',
                     UserName: 83484,
