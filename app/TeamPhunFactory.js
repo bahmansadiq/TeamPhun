@@ -158,7 +158,9 @@
                     });
             return defer.promise;
         }
+
         ///Add a new order 
+
 
         function postOrder(nerOrder) {
             var defer = $q.defer();
@@ -186,8 +188,10 @@
                     });
             return defer.promise;
         }
+
         //delete an order
         function deleteOrder(orderId) {
+
             var defer = $q.defer();
             $http({
                     method: 'DELETE',
@@ -205,7 +209,9 @@
                     });
             return defer.promise;
         }
+
         ///update order 
+
         function putOrder(Id, orderdetails) {
             var defer = $q.defer();
             $http({
