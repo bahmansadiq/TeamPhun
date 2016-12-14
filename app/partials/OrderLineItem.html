@@ -104,10 +104,10 @@
                                 <!-- Profit Margin slider need to be a percentage -->
                                 <div class="form-group form-group-sm">
                                     <label for="profitMargin">Profit Margin -
-                                        <a id="profitMargin" style="color: darkred; font:bold;">{{vm.profitMargin + "%"}}</a>
+                                        <a class="profitMargin" id="profitMargin">{{vm.profitMargin + "%"}}</a>
                                     </label>
                                     <br>
-                                    <input type="range" ng-model="vm.profitMargin" type="number" class="input-sm">
+                                    <input type="range" ng-model="vm.profitMargin" class="input-sm">
                                 </div>
                                 <button ng-click="vm.addOrderLineItem()" class="btn btn-custom btn-sm">Submit</button>
                             </div>

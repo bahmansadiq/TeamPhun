@@ -44,3 +44,9 @@
         margin: auto;
         padding-top: 4%;
     }
+    /* Profit Margin Slider*/
+    
+    .profitMargin {
+        color: darkred;
+        font: bold;
+    }
