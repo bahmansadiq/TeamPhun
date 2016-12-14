@@ -4,7 +4,7 @@
     angular.module('app', ['ui.router', 'toastr'])
         .config(function($stateProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise("/home");
+            $urlRouterProvider.otherwise("/home/teamPhun");
             $stateProvider
                 .state('home', {
                     url: "/home",
