@@ -17,12 +17,14 @@
   },
   "homepage": "https://github.com/Exponent500/UserAdmin#readme",
   "dependencies": {
+    "bootstrap-slider": "^9.5.3",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-inject": "^4.1.0",
     "gulp-livereload": "^3.8.1",
     "gulp-open": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "lodash": "^4.17.2",
     "socket.io": "^1.6.0",
     "wiredep": "^4.0.0"
   }

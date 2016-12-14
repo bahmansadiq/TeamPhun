@@ -1,0 +1,227 @@
+<!-- Add customer select dropdown -->
+<!-- Quote Input Panel Start -->
+<div class="container">
+    <!-- Quote Calculator -->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">Quote Calculator</div>
+                <div class="panel-body">
+                    <div class="form">
+                        <div class="form-group form-group-sm">
+                            <label for="colors">Customer Order</label>
+                            <select id="colors" class="form-control input-sm" ng-model="vm.colors">
+                                <option selected disabled hidden>Colors</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                                <option value="6">Six</option>
+                                <option value="7">Seven</option>
+                                <option value="8">Eight</option>
+                                <option value="9">Nine</option>
+                                <option value="10">Ten</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="productCode">Product Code</label>
+                            <input id="productCode" ng-model="vm.productCode" type="number" class="form-control input-sm" placeholder="MUST CHOOSE 1 - NEEDS TO BE FIXED">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="description">Description</label>
+                            <input id="description" ng-model="vm.description" type="text" class="form-control input-sm" placeholder="Description...THIS IS FOR THE CUSTOMER">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="cost">Cost</label>
+                            <input id="cost" ng-model="vm.cost" type="number" step="any" class="form-control input-sm" placeholder="Cost...THIS IS IN THE PRODUCTS TABLE">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="printPieces">Print Pieces</label>
+                            <input id="printPieces" ng-model="vm.printPieces" type="number" class="form-control input-sm" placeholder="Number of pieces...">
+                        </div>
+                        <!-- Dropdown select: 10 colors total  -->
+                        <div class="form-group form-group-sm">
+                            <label for="colors">Colors</label>
+                            <select id="colors" class="form-control input-sm" ng-model="vm.colors">
+                                <option selected disabled hidden>Colors</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                                <option value="6">Six</option>
+                                <option value="7">Seven</option>
+                                <option value="8">Eight</option>
+                                <option value="9">Nine</option>
+                                <option value="10">Ten</option>
+                            </select>
+                        </div>
+                        <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
+                        <div class="form-group form-group-sm">
+                            <label for="locations">Locations</label>
+                            <input id="locations" ng-model="vm.locations" type="number" class="form-control input-sm" placeholder="Locations...">
+                        </div>
+                        <!-- Checkboxes -->
+                        <div class="form-group form-group-sm">
+                            <label for="addOns">Add-On's:</label>
+                            <div id="addOns">
+                                <!-- per unit cost -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.metallicInks" type="checkbox" value="false">Metalic Inks</label>
+                                </div>
+                                <!-- per unit cost -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.discharge" type="checkbox" value="false">Discharge</label>
+                                </div>
+                                <!-- per unit cost -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.foil" type="checkbox" value="false">Foil</label>
+                                </div>
+                                <!-- per unit cost -->
+                                <div class="checkbox" value="false">
+                                    <label>
+                                        <input ng-model="vm.flash" type="checkbox" value="false">Flash</label>
+                                </div>
+                                <!-- PMS Color Matching is $15 per color per job -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.PMSColor" type="checkbox" value="false">PMS Color Matching</label>
+                                </div>
+                                <!-- Button should be disabled or hidden if order is less than 72 items -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.folding" type="checkbox" value="false">Folding and Bagging</label>
+                                </div>
+                                <!-- 8% CA Sales tax is charged for customers who will not resale product -->
+                                <div class="checkbox">
+                                    <label>
+                                        <input ng-model="vm.tax" type="checkbox" value="false">Sales Tax</label>
+                                </div>
+                                <!-- Profit Margin slider need to be a percentage -->
+                                <div class="form-group form-group-sm">
+                                    <label for="profitMargin">Profit Margin -
+                                        <a id="profitMargin" style="color: darkred; font:bold;">{{vm.profitMargin + "%"}}</a>
+                                    </label>
+                                    <br>
+                                    <input type="range" ng-model="vm.profitMargin" type="number" class="input-sm">
+                                </div>
+                                <button ng-click="vm.addOrderLineItem()" class="btn btn-custom btn-sm">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 ">
+            <div class="panel panel-default ">
+                <div class="panel-heading text-center table-condensed">Line Item Totals</div>
+                <div class="panel-body ">
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>Line Item Expense</td>
+                            <td>$1500</td>
+                        </tr>
+                        <tr>
+                            <td>Client Quote</td>
+                            <td>$3000</td>
+                        </tr>
+                        <tr>
+                            <td>Line Item Profit Margin</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td>Line Item Profit</td>
+                            <td>$1500</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading text-center">Order Grand Totals</div>
+                <div class="panel-body ">
+                    <table class="table table-striped table-condensed">
+                        <tr>
+                            <td>Total Order Expense</td>
+                            <td>$4000</td>
+                        </tr>
+                        <tr>
+                            <td>Total Order Quote</td>
+                            <td>$8000</td>
+                        </tr>
+                        <tr>
+                            <td>Total Profit Margin</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td>Total Order Profit</td>
+                            <td>$4000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="panel panel-default ">
+                <div class="panel-heading text-center">Order Line Items Table</div>
+                <div class="panel-body ">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Order Line ID</th>
+                                    <th>Order ID</th>
+                                    <th>Vendor ID</th>
+                                    <th>Product ID</th>
+                                    <th>Description</th>
+                                    <th>Pieces</th>
+                                    <!-- Needs to be added to database <th>Cost per Item</th> -->
+                                    <th>Colors</th>
+                                    <th>Print Locations</th>
+                                    <th>Metalic Inks</th>
+                                    <th>Discharge</th>
+                                    <th>Foil</th>
+                                    <th>PMS Color Matching</th>
+                                    <th>Flash</th>
+                                    <th>Folding and Bagging</th>
+                                    <th>Sales Tax</th>
+                                    <!-- Line Item Expense needs to be added to the database <th>Expense</th> -->
+                                    <th>Profit Margin</th>
+                                    <th>Client Quote</th>
+                                    <th>Profit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lineItem in vm.allOrderLineItems ">
+                                    <td>{{lineItem.orderLineItemId}}</td>
+                                    <td>{{lineItem.orderId}}</td>
+                                    <td>{{lineItem.vendorId}}</td>
+                                    <td>{{lineItem.productId}}</td>
+                                    <td>{{lineItem.description}}</td>
+                                    <td>{{lineItem.totalPieces}}</td>
+                                    <td>{{lineItem.totalNumberColors}}</td>
+                                    <td>{{lineItem.numberPrintLocations}}</td>
+                                    <td>{{lineItem.metallicLinks}}</td>
+                                    <td>{{lineItem.discharge}}</td>
+                                    <td>{{lineItem.foil}}</td>
+                                    <td>{{lineItem.pmsColorMatching}}</td>
+                                    <td>{{lineItem.flash}}</td>
+                                    <td>{{lineItem.foldingAndBagging}}</td>
+                                    <td>{{lineItem.salesTax}}</td>
+                                    <td>{{lineItem.profitMargin}}</td>
+                                    <td>{{lineItem.orderLineItemEstimate}}</td>
+                                    <td>{{lineItem.orderLineItemProfit}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

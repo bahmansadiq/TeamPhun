@@ -1,0 +1,22 @@
+<pre>
+		{{vm.itemStyleByCatId}}
+	</pre>
+<div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Choose Category</label>
+    <div class="col-md-4">
+        <select ng-model="vm.categoryId" id="selectbasic" name="selectbasic" class="form-control" ng-options="data.categoryID as data.name for data in vm.data">
+        </select>
+    </div>
+</div>
+<button ng-click="vm.findStyleByCatId(vm.categoryId)">Search Style</button>
+</div>
+<div>
+    <div ng-repeat="style in vm.itemStyleByCatId track by $index">
+    	{{style.brandName}}
+    	{{style.title}}
+    	<img ng-src="https://www.ssactivewear.com/{{style.styleImage}}">
+    </div>
+</div>
+<!--<p ng-repeat="image in vm.image track by $index">
+<img ng-src="https://www.ssactivewear.com/{{image}}"></img>
+</p>

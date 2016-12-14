@@ -37,5 +37,9 @@
         "dist/css/bootstrap.css"
       ]
     }
+  },
+  "resolutions": {
+    "lodash": "~2.4.1",
+    "angular": "^1.0.8"
   }
 }
