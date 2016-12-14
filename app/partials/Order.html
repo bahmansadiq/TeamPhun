@@ -1,21 +1,23 @@
-<div class="row">
-    <div ng-hide="vm.orderSearchView">
-        <div class="col-md-12">
-            <div class="navbar-form navbar-right" role="search">
-                <div class="form-group form-group-sm">
-                    <input type="text" class="form-control" ng-model="vm.orderSearch" placeholder="Search...">
+<div class="container">
+    <div class="row">
+        <div ng-hide="vm.orderSearchView">
+            <div class="col-md-12">
+                <div class="navbar-form navbar-right" role="search">
+                    <div class="form-group form-group-sm">
+                        <input type="text" class="form-control" ng-model="vm.orderSearch" placeholder="Search...">
+                    </div>
                 </div>
-            </div>
-            <div class="navbar-form navbar-right">
-                <div class="form-group form-group-sm">
-                    <button type="button" class="btn btn-custom btn-sm" ng-click="vm.addNewOrder =!vm.addNewOrder; vm.orderSearchView = !vm.orderSearchView">Add New Order</button>
+                <div class="navbar-form navbar-right">
+                    <div class="form-group form-group-sm">
+                        <button type="button" class="btn btn-custom btn-sm" ng-click="vm.addNewOrder =!vm.addNewOrder; vm.orderSearchView = !vm.orderSearchView; vm.orderTable = !vm.orderTable">Add New Order</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
-    <div ng-hide="vm.addNewOrder">
+    <div ng-hide="vm.orderTable">
         <div class="panel panel-default">
             <div class="panel-heading text-center">Orders Form</div>
             <div class="panel-body">
@@ -45,7 +47,7 @@
                             <td>{{order.orderCreatedDate | date}}</td>
                             <td>
                                 <button ng-hide="vm.updateButton" type="button" class="btn btn-custom btn-xs" ng-click="vm.updateButton = !vm.updateButton; vm.editButtons = !vm.editButtons">Update</button>
-                                <button ng-show="vm.editButtons" type="button" class="btn btn-warning glyphicon glyphicon-pencil btn-xs" ng-click="vm.populateOrderForm(order); vm.updateButton = !vm.updateButton; vm.editButtons = !vm.editButtons"> Edit</button>
+                                <button ng-show="vm.editButtons" type="button" class="btn btn-warning glyphicon glyphicon-pencil btn-xs" ng-click="vm.populateOrderForm(order); vm.updateButton = !vm.updateButton; vm.editButtons = !vm.editButtons; vm.orderTable = !vm.orderTable; vm.orderSearchView = !vm.orderSearchView; vm.addNewOrder = !vm.addNewOrder"> Edit</button>
                             </td>
                             <td>
                                 <button ng-show="vm.editButtons" type="button" class="btn btn-danger btn-xs glyphicon glyphicon-remove" ng-click="vm.removeOrder(order.orderId); vm.updateButton = !vm.updateButton; vm.editButtons = !vm.editButtons"> Delete</button>
@@ -68,7 +70,7 @@
                 <form class="form">
                     <div class="form-group form-group-sm">
                         <label for="customerName">Customer Name</label>
-                        <select id="customerName" ng-model="vm.selectedCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId as allCustomers.firstName+' '
+                        <select id="customerName" ng-model="vm.selectCustomer" name="selectCustomer" class="form-control" ng-options="allCustomers.customerId as allCustomers.firstName+' '
                          + allCustomers.lastName for allCustomers in vm.allCustomers">
                         </select>
                     </div>
@@ -89,7 +91,7 @@
                         <label for="orderStatus">Order Status</label>
                     </div>
                     <div class="form-group form-group-sm">
-                        <button type="submit" class="btn btn-custom btn-xs" ng-click="vm.addOrder();" vm.addNewOrder=!vm.addNewOrder ">Submit</button>
+                        <button type="submit" class="btn btn-custom btn-xs" ng-click="vm.addOrder(); vm.addNewOrder = !vm.addNewOrder; vm.orderSearchView = !vm.orderSearchView; vm.orderTable = !vm.orderTable">Submit</button>
                     </div>
                 </form>
             </div>

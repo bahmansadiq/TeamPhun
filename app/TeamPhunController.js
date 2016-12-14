@@ -92,22 +92,23 @@
                 customerInfo.CustomerId = vm.customerId;
                 updateCustomer(vm.customerId, customerInfo);
                 toastr.success(customerInfo.FirstName + " " + customerInfo.LastName + " has been successfully updated");
-vm.firstName = "";
-vm.lastName = "";
-vm.organization = "";
-vm.webSite = "";
-vm.role = "";
-vm.businessPhone = "";
-vm.mobilePhone = "";
-vm.otherPhone = "";
-vm.fax = "";
-vm.email = "";
-vm.streetAddress = "";
-vm.state = "";
-vm.zipCode = "";
-vm.city = "";
-vm.country = "";
-vm.note = "";
+
+                vm.firstName = "";
+                vm.lastName = "";
+                vm.organization = "";
+                vm.webSite = "";
+                vm.role = "";
+                vm.businessPhone = "";
+                vm.mobilePhone = "";
+                vm.otherPhone = "";
+                vm.fax = "";
+                vm.email = "";
+                vm.streetAddress = "";
+                vm.state = "";
+                vm.zipCode = "";
+                vm.city = "";
+                vm.country = "";
+                vm.note = "";
 
 
             } else {
@@ -209,16 +210,16 @@ vm.note = "";
             if (vm.orderId) {
                 orderInfo.OrderId = vm.orderId;
                 updateOrder(vm.orderId, orderInfo);
-                toastr.success("The order records with ID: " + vm.orderId + " has been successfully updated");
+
             } else {
                 TeamPhunFactory.postOrder(orderInfo)
                     .then(function(response) {
-                            toastr.success("Successfully added the order to the order line item table!");
+                            toastr.success("Successfully added a new order!");
                             activate();
                             return response;
                         },
                         function(error) {
-                            console.log(error + "Unable to passed the new order information from the controller to TeamPhunFactory!");
+                            console.log(error + "Unable to pass the new order information from the controller to TeamPhunFactory!");
                             return error;
                         });
             }
@@ -247,9 +248,10 @@ vm.note = "";
 
         function populateOrderForm(order) {
 
-            vm.addNewOrder = !vm.addNewOrder;
+            // vm.addNewOrder = !vm.addNewOrder;
+
             vm.orderId = order.orderId;
-            vm.selectedCustomer = order.selectCustomer;
+            vm.selectCustomer = order.selectCustomer;
             vm.customerId = order.customerId;
             vm.orderTotal = order.orderTotal;
             vm.totalCost = order.totalCost;
@@ -262,19 +264,19 @@ vm.note = "";
             TeamPhunFactory.putOrder(id, orderdetails)
                 .then(function(response) {
                     activate();
-                    toastr.success("successfully updated order " + id + " from the controller to the factory!");
+                    toastr.success("Successfully updated order " + id + " from the controller to the factory!");
 
                     return response;
 
                 }, function(error) {
 
-                    toastr.error("Unable to successfully update order " + id + " from the controller to the factory!");
+                    toastr.error(error + "Order udpate was unsucessful!");
                 });
         }
 
+        ////*********************ORDER CRUD METHODS END HERE***************************
+        ////*********************ORDER CRUD METHODS END HERE***************************
 
-        ////*********************ORDER CRUD METHODS END HERE***************************
-        ////*********************ORDER CRUD METHODS END HERE***************************
         ////*********************ORDER CRUD METHODS END HERE**************************
 
 
