@@ -1,14 +1,16 @@
-<div class="row">
-    <div ng-hide="vm.newCustomerDetails">
-        <div class="col-md-12">
-            <div class="navbar-form navbar-right" role="search">
-                <div class="form-group form-group-sm">
-                    <input type="text" class="form-control input-sm" ng-model="vm.customerSearch" placeholder="Search...">
+<div class="container">
+    <div class="row">
+        <div ng-hide="vm.newCustomerDetails">
+            <div class="col-md-12">
+                <div class="navbar-form navbar-right" role="search">
+                    <div class="form-group form-group-sm">
+                        <input type="text" class="form-control input-sm" ng-model="vm.customerSearch" placeholder="Search...">
+                    </div>
                 </div>
-            </div>
-            <div class="navbar-form navbar-right">
-                <div class="form-group form-group-sm">
-                    <button type="button" class="btn btn-custom btn-sm" ng-hide="vm.newCustomerDetails" ng-click="vm.newCustomerDetails =!vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Add New Customer</button>
+                <div class="navbar-form navbar-right">
+                    <div class="form-group form-group-sm">
+                        <button type="button" class="btn btn-custom btn-sm" ng-hide="vm.newCustomerDetails" ng-click="vm.newCustomerDetails =!vm.newCustomerDetails; vm.customerDetails = !vm.customerDetails">Add New Customer</button>
+                    </div>
                 </div>
             </div>
         </div>
