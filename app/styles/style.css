@@ -37,7 +37,10 @@
         -webkit-font-smoothing: antialiased;
     }
     
-    .image2 {
-        width: 75%;
-        height: 75%;
+     .image2 {
+        width: 40%;
+        height: 40%;
+        display: block;
+        margin: auto;
+        padding-top: 4%;
     }
