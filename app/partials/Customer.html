@@ -37,6 +37,7 @@
                             <th>City</th>
                             <th>State</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         <tr ng-repeat="customer in vm.allCustomers | filter: vm.customerSearch">
                             <td>{{customer.customerId}}</td>
@@ -48,7 +49,10 @@
                             <td>{{customer.city}}</td>
                             <td>{{customer.state}}</td>
                             <td>
-                                <button type="button" class="btn btn-custom btn-xs" ng-click="vm.findCustomerById(customer.customerId); vm.customerDetails = !vm.customerDetails; vm.customerDetailView = !vm.customerDetailView">Details </button>
+                                <button type="button" class="btn btn-custom btn-xs" ng-click="vm.findCustomerById(customer.customerId); vm.customerDetails = !vm.customerDetails; vm.customerDetailView = !vm.customerDetailView">Details</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-xs" ng-click="vm.addOrder(customer.customerId)">Add Order</button>
                             </td>
                         </tr>
                     </table>

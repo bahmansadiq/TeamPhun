@@ -29,7 +29,6 @@
         activate();
 
 
-
         ////////////////
 
         function activate() {
@@ -175,8 +174,7 @@
                         console.log(error + "Unable to successfully send the deleted request for the specific customer from customer controller to the TeamPhun factory");
                     });
         }
-        ////*********************ORDER CRUD METHODS START HERE***************************
-        ////*********************ORDER CRUD METHODS START HERE***************************
+
         ////*********************ORDER CRUD METHODS START HERE***************************
 
         function findOrders() {
@@ -207,9 +205,18 @@
                 OrderCreatedDate: new Date().toISOString()
 
             };
+
             if (vm.orderId) {
                 orderInfo.OrderId = vm.orderId;
                 updateOrder(vm.orderId, orderInfo);
+
+                vm.orderId = "";
+                vm.selectCustomer = "";
+                vm.customerId = "";
+                vm.orderTotal = "";
+                vm.totalCost = "";
+                vm.totalProfit = "";
+                vm.orderStatus = "";
 
             } else {
                 TeamPhunFactory.postOrder(orderInfo)
@@ -274,12 +281,8 @@
                 });
         }
 
-        ////*********************ORDER CRUD METHODS END HERE***************************
-        ////*********************ORDER CRUD METHODS END HERE***************************
 
         ////*********************ORDER CRUD METHODS END HERE**************************
-
-
 
         ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
 
@@ -294,31 +297,60 @@
                     });
         }
 
+
         function addOrderLineItem() {
 
-            // need to add cost in here somewhere! defined in ng-model as vm.cost
+            //how muc hean pays out of pocket - find out if the number i get is correct
+            //add foil
+            vm.orderLineItemCost =
+                vm.totalPieces(
+                    vm.casePrice +
+                    vm.metallicInks +
+                    vm.discharge +
+                    vm.flash +
+                    vm.folding) +
+                (vm.pmsColor * vm.totalNumberColors) +
+                vm.setUp;
+
+            // client quote
+            //vm.orderLineItemClientEstimate
+
+            // client paid - sean paid
+            //vm.orderLineItemProfit
+
+            // orderLineItem object
             var orderLineItemInfo = {
 
-                orderId: 1,
-                vendorId: 1,
-                productId: vm.productCode,
+                // orderId: vm.customerOrderId,
+                orderId: 2,
                 description: vm.description,
-                totalPieces: vm.printPieces,
-                totalNumberColors: vm.colors,
-                numberPrintLocations: vm.locations,
+                totalPieces: vm.totalPieces,
+                totalNumberColors: vm.totalNumberColors,
+                numberPrintLocations: vm.numberPrintLocation,
                 metallicLinks: vm.metallicInks,
                 discharge: vm.discharge,
                 foil: vm.foil,
+                pmsColorMatching: vm.pmsColor,
                 flash: vm.flash,
-                pmsColorMatching: vm.PMSColor,
                 foldingAndBagging: vm.folding,
                 salesTax: vm.tax,
+                setUp: vm.setUp,
+                orderLineItemCost: vm.orderLineItemCost,
                 profitMargin: vm.profitMargin,
-                orderLineItemEstimate: 100,
-                OrderLineItemProfit: 200,
-                orderLineItemCreatedDate: new Date().toISOString()
+                orderLineItemClientEstimate: vm.orderLineItemClientEstimate,
+                orderLineItemProfit: vm.orderLineItemProfit,
+                orderLineItemCreatedDate: new Date().toISOString(),
+                vendorName: vm.vendorName,
+                categoryId: vm.categoryId,
+                categoryName: vm.categoryName,
+                brandName: vm.brandName,
+                styleId: vm.styleId,
+                casePrice: vm.casePrice,
+                styleTitle: vm.styleTitle
 
             };
+
+
 
             TeamPhunFactory.postOrderLineItem(orderLineItemInfo)
                 .then(function(response) {
@@ -330,16 +362,9 @@
                         return error;
 
                     });
-
-
-
         }
 
-
-
-
         ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
-        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
-        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
+
     }
 })();
