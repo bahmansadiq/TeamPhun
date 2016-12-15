@@ -1,3 +1,8 @@
+<pre>getting colorId using number of colors {{vm.colorId}}</pre>
+<pre>getting quanity tier based on the number of pieces user input {{vm.quantityId}}</pre>
+<pre>{{vm.quantityPrices}}</pre>
+<pre>{{vm.price}}</pre>
+<button ng-click="vm.findColorQuantityPrice()"> do it</button>
 <!-- Add customer select dropdown -->
 <!-- Quote Input Panel Start -->
 <div class="container">
@@ -53,7 +58,17 @@
                         <!-- Dropdown select: 10 colors total  -->
                         <div class="form-group form-group-sm">
                             <label for="colors">TotalNumberColors</label>
-                            <input id="colors" type="number" class="form-control input-sm" ng-model="vm.totalNumberColors" ng-init="colors = 0">
+                            <!-- // <input type="number"  class="form-control input-sm" ng-model="vm.TotalNumberColors"> -->
+                            <select id="colors" class="form-control input-sm" ng-model="vm.TotalNumberColors" ng-click="vm.findColorTier(vm.TotalNumberColors)">
+                                <option selected disabled hidden>Colors</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Four</option>
+                                <option value="5">Five</option>
+                                <option value="6">Six</option>
+                                <option value="7">Seven</option>
+                            </select>
                         </div>
                         <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
                         <div class="form-group form-group-sm">

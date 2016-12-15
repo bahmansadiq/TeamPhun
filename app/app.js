@@ -2,6 +2,7 @@
     'use strict'
 
     angular.module('app', ['ui.router', 'toastr'])
+
         .config(function($stateProvider, $urlRouterProvider) {
 
             $urlRouterProvider.otherwise("/home/teamPhun");
@@ -52,6 +53,12 @@
 
 
         });
+     $(window).onbeforeunload = function() {
+       localStorage.removeItem(price);
+     localStorage.removeItem(colorId);
+     localStorage.removeItem(quantityId);
+  return '';
+};
 
 
 })();

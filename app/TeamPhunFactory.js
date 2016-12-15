@@ -20,7 +20,10 @@
             putOrder: putOrder,
             deleteOrder: deleteOrder,
             getOrderLineItem: getOrderLineItem,
-            postOrderLineItem: postOrderLineItem
+            postOrderLineItem: postOrderLineItem,
+            getColorTier: getColorTier,
+            getQuantityTier: getQuantityTier,
+            getColorQuantityPrice: getColorQuantityPrice
         };
         return service;
 
@@ -284,5 +287,84 @@
         }
 
         //************END OF ORDER LINE ITEM CRUD METHODS**************************//
+        //************END OF ORDER LINE ITEM CRUD METHODS**************************//
+
+
+
+        //************START OF ColorTier CRUD METHODS**************************//
+        //************START OF ColorTier CRUD METHODS**************************//
+   function getColorTier() {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: 'http://localhost:57450/api/colortiers'
+                })
+                .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            defer.resolve(response.data);
+                        } else {
+                            defer.reject('No data found in file!')
+                        }
+                    },
+                    function(error) {
+                        defer.reject(error + "unable to get the ColorQuantityPrice from the database in factory");
+                    });
+            return defer.promise;
+        }
+
+        //************END OF ColorTier CRUD METHODS**************************//
+        //************END OF ColorTier CRUD METHODS**************************//
+
+
+        //************START OF getQuantityTier CRUD METHODS**************************//
+        //************START OF getQuantityTier CRUD METHODS**************************//
+   function getQuantityTier() {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: 'http://localhost:57450/api/quantitytiers'
+                })
+                .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            defer.resolve(response.data);
+                        } else {
+                            defer.reject('No data found in file!')
+                        }
+                    },
+                    function(error) {
+                        defer.reject(error + "unable to get the quantity tiers from the database in factory");
+                    });
+            return defer.promise;
+        }
+
+        //************END OF getQuantityTier CRUD METHODS**************************//
+        //************END OF getQuantityTier CRUD METHODS**************************//
+
+
+ ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+ ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+   function getColorQuantityPrice() {
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: 'http://localhost:57450/api/colorquantityprices'
+                })
+                .then(function(response) {
+                        if (typeof response.data === 'object') {
+                            defer.resolve(response.data);
+                        } else {
+                            defer.reject('No data found in file!')
+                        }
+                    },
+                    function(error) {
+                        defer.reject(error + "unable to get the ColorQuantityPrice from the database in factory");
+                    });
+            return defer.promise;
+        }
+
+
+ ////*********************END OFF QuantityPrices Tier CRUD METHODS HERE******************
+ ////*********************END OFF QuantityPrices Tier CRUD METHODS HERE******************
+
     }
 })();
