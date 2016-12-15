@@ -3,7 +3,6 @@
 <pre>{{vm.quantityPrices}}</pre>
 <pre>{{vm.price}}</pre>
 <button ng-click="vm.findColorQuantityPrice()"> do it</button>
-
 <!-- Add customer select dropdown -->
 <!-- Quote Input Panel Start -->
 <div class="container">
@@ -15,69 +14,53 @@
                 <div class="panel-body">
                     <div class="form">
                         <div class="form-group form-group-sm">
-                            <label for="colors">OrderID and Customer Name</label>
-                            <select id="colors" class="form-control input-sm">
-                                <option selected disabled hidden>Colors</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                                <option value="4">Four</option>
-                                <option value="5">Five</option>
-                                <option value="6">Six</option>
-                                <option value="7">Seven</option>
+                            <label for="customerOrder">OrderID and Customer Name</label>
+                            <select id="customerOrder" class="form-control input-sm" ng-model="vm.customerOrderId" class="form-control" ng-options="allCustomers.customerId as allCustomers.firstName+' '
+                         + allCustomers.lastName for allCustomers in vm.allCustomers">
                             </select>
                         </div>
-                      
                         <div class="form-group form-group-sm">
-                            <label for="productCode">VendorName</label>
-                            <input ng-model="vm.VendorName" class="form-control input-sm" >
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="productCode">CategoryId</label>
-                            <input  ng-model="vm.CategoryId" class="form-control input-sm" >
-                        </div>
-
-                         <div class="form-group form-group-sm">
-                            <label for="productCode">CategoryName</label>
-                            <input ng-model="vm.CategoryName" class="form-control input-sm" >
-                        </div>
-
-                         <div class="form-group form-group-sm">
-                            <label for="productCode">BrandName</label>
-                            <input ng-model="vm.BrandName" class="form-control input-sm" >
-                        </div>
-
-                         <div class="form-group form-group-sm">
-                            <label for="productCode">StyleId</label>
-                            <input ng-model="vm.StyleId" class="form-control input-sm" >
-                        </div>
-
-                        <div class="form-group form-group-sm">
-                            <label>Vendor CasePrice</label>
-                            <input ng-model="vm.CasePrice" class="form-control input-sm" >
-                        </div>
-
-                        <div class="form-group form-group-sm">
-                            <label>StyleTitle</label>
-                            <input ng-model="vm.StyleTitle" class="form-control input-sm" >
-                        </div>
-                                                
-
-                        <div class="form-group form-group-sm">
-                            <label for="productCode">Description</label>
-                            <input id="productCode" ng-model="vm.description" type="number" class="form-control input-sm">
+                            <label for="vendorName">VendorName</label>
+                            <input id="vendorName" ng-model="vm.vendorName" class="form-control input-sm">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label for="cost">TotalPieces</label>
-                            <input ng-model="vm.TotalPieces" type="number" step="any" class="form-control input-sm" >
+                            <label for="categoryId">CategoryId</label>
+                            <input id="categoryId" ng-model="vm.categoryId" class="form-control input-sm">
                         </div>
-
+                        <div class="form-group form-group-sm">
+                            <label for="categoryName">CategoryName</label>
+                            <input id="categoryName" ng-model="vm.categoryName" class="form-control input-sm">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="brandName">BrandName</label>
+                            <input id="brandName" ng-model="vm.brandName" class="form-control input-sm">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="styleId">StyleId</label>
+                            <input id="styleId" ng-model="vm.styleId" class="form-control input-sm">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="vendorCasePrice">Vendor CasePrice</label>
+                            <input id="vendorCasePrice" ng-model="vm.casePrice" class="form-control input-sm" ng-init="vendorCasePrice = 0">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="styleTitle">StyleTitle</label>
+                            <input id="styleitle" ng-model="vm.styleTitle" class="form-control input-sm">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="description">Description</label>
+                            <input id="description" ng-model="vm.description" type="text" class="form-control input-sm">
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="totalPieces">TotalPieces</label>
+                            <input id="totalPieces" ng-model="vm.totalPieces" type="number" step="any" class="form-control input-sm" ng-init="totalPieces = 0">
+                        </div>
                         <!-- Dropdown select: 10 colors total  -->
                         <div class="form-group form-group-sm">
                             <label for="colors">TotalNumberColors</label>
-                           <!-- // <input type="number"  class="form-control input-sm" ng-model="vm.TotalNumberColors"> -->
-                       <select id="colors" class="form-control input-sm" ng-model="vm.TotalNumberColors"  ng-click="vm.findColorTier(vm.TotalNumberColors)">
-                                <option selected disabled hidden >Colors</option>
+                            <!-- // <input type="number"  class="form-control input-sm" ng-model="vm.TotalNumberColors"> -->
+                            <select id="colors" class="form-control input-sm" ng-model="vm.TotalNumberColors" ng-click="vm.findColorTier(vm.TotalNumberColors)">
+                                <option selected disabled hidden>Colors</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -89,57 +72,58 @@
                         </div>
                         <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
                         <div class="form-group form-group-sm">
-                            <label >NumberPrintLocations</label>
-                            <input ng-model="vm.NumberPrintLocations" type="number" class="form-control input-sm">
+                            <label for="printLocations">NumberPrintLocations</label>
+                            <input id="printLocations" ng-model="vm.numberPrintLocations" type="number" class="form-control input-sm" ng-init="printLocations = 0">
                         </div>
-
-
                         <!-- Checkboxes -->
                         <div class="form-group form-group-sm">
                             <label for="addOns">Add-On's:</label>
                             <div id="addOns">
                                 <!-- per unit cost -->
                                 <div class="checkbox">
-                                    <label>
-                                        <input ng-model="vm.metallicInks" type="checkbox" value="false">Metalic Inks</label>
+                                    <label for="metalicInks">
+                                        <input id="metalicInks" ng-model="vm.metallicInks" type="checkbox" value="false" ng-true-value="1" ng-false-value="0">Metalic Inks</label>
                                 </div>
                                 <!-- per unit cost -->
                                 <div class="checkbox">
-                                    <label>
-                                        <input ng-model="vm.discharge" type="checkbox" value="false">Discharge</label>
+                                    <label for="discharge">
+                                        <input id="discharge" ng-model="vm.discharge" type="checkbox" value="false" ng-true-value="1" ng-false-value="0">Discharge</label>
                                 </div>
                                 <!-- per unit cost -->
                                 <div class="checkbox">
-                                    <label>
-                                        <input ng-model="vm.foil" type="checkbox" value="false">Foil</label>
+                                    <label for="foil">
+                                        <input id="foil" ng-model="vm.foil" type="checkbox" value="false" ng-true-value="1.85" ng-false-value="0">Foil</label>
                                 </div>
                                 <!-- per unit cost -->
                                 <div class="checkbox" value="false">
-                                    <label>
-                                        <input ng-model="vm.flash" type="checkbox" value="false">Flash</label>
+                                    <label for="flash">
+                                        <input id="flash" ng-model="vm.flash" type="checkbox" value="false" ng-true-value="0.40" ng-false-value="0">Flash</label>
                                 </div>
                                 <!-- PMS Color Matching is $15 per color per job -->
                                 <div class="checkbox">
-                                    <label>
-                                        <input ng-model="vm.PMSColor" type="checkbox" value="false">PMS Color Matching</label>
+                                    <label for="pms">
+                                        <input id="pms" ng-model="vm.pmsColor" type="checkbox" value="false" ng-true-value="15" ng-false-value="0">PMS Color Matching</label>
                                 </div>
                                 <!-- Button should be disabled or hidden if order is less than 72 items -->
                                 <div class="checkbox">
-                                    <label>
-                                        <input ng-model="vm.folding" type="checkbox" value="false">Folding and Bagging</label>
+                                    <label for="folding">
+                                        <input id="folding" ng-model="vm.folding" type="checkbox" value="false" ng-true-value="0.30" ng-false-value="0">Folding and Bagging</label>
                                 </div>
                                 <!-- 8% CA Sales tax is charged for customers who will not resale product -->
                                 <div class="checkbox">
-                                    <label>
-                                        <input ng-model="vm.tax" type="checkbox" value="false">Sales Tax</label>
+                                    <label for="salesTax">
+                                        <input id="salesTax" ng-model="vm.tax" type="checkbox" value="false" ng-true-value="0.08" ng-false-value="0">Sales Tax</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label for="setUp">
+                                        <input id="setUp" ng-model="vm.setUp" type="checkbox" value="true" ng-true-value="15" ng-false-value="0">Set Up</label>
                                 </div>
                                 <!-- Profit Margin slider need to be a percentage -->
                                 <div class="form-group form-group-sm">
                                     <label for="profitMargin">Profit Margin -
                                         <a class="profitMargin" id="profitMargin">{{vm.profitMargin + "%"}}</a>
                                     </label>
-                                    <br>
-                                    <input type="range" ng-model="vm.profitMargin" class="input-sm">
+                                    <input id="profitMargin" type="range" min="0" max="100" ng-model="vm.profitMargin" class="input-sm" value="0">
                                 </div>
                                 <button ng-click="vm.addOrderLineItem()" class="btn btn-custom btn-sm">Submit</button>
                             </div>
@@ -155,19 +139,23 @@
                     <table class="table table-striped ">
                         <tr>
                             <td>Line Item Expense</td>
-                            <td>$1500</td>
-                        </tr>
-                        <tr>
-                            <td>Client Quote</td>
-                            <td>$3000</td>
+                            <td ng-model="vm.orderLineItemCost">{{((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp) }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Line Item Profit Margin</td>
-                            <td>50%</td>
+                            <td>{{(+vm.profitMargin) + "%"}}</td>
                         </tr>
                         <tr>
-                            <td>Line Item Profit</td>
-                            <td>$1500</td>
+                            <td ng-model="vm.orderLineItemProfit">Line Item Profit</td>
+                            <td>{{((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))}}
+                            </td>
+                            <tr>
+                                <td>Quote for Client</td>
+                                <td ng-model="vm.orderLineItemClientEstimate">
+                                    {{((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp)) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp)) | currency}}
+                                </td>
+                            </tr>
                         </tr>
                     </table>
                 </div>
@@ -195,6 +183,119 @@
                     </table>
                 </div>
             </div>
+            <div>
+                <pre>Cost of blank product ${{vm.casePrice}}</pre>
+                <pre>TotalPieces {{vm.totalPieces}}</pre>
+                <pre>Total cost of blank product ${{vm.casePrice*vm.totalPieces}}</pre>
+                <pre>
+metallicLinks: ${{(+vm.metallicInks)}} - Total: {{vm.metallicInks*vm.totalPieces | currency}}
+discharge: ${{(+vm.discharge)}} - Total: {{vm.discharge*vm.totalPieces | currency}}
+foil: ${{(+vm.foil)}} - Total: {{vm.foil*vm.totalPieces | currency}}
+pmsColorMatching: ${{(+vm.pmsColor)}} - Total: {{vm.pmsColor*vm.totalNumberColors | currency}}
+flash: ${{(+vm.flash)}} - Total: {{ vm.flash*vm.totalPieces | currency}}
+foldingAndBagging: ${{(+vm.folding)}} - Total: {{vm.folding*vm.totalPieces | currency}}
+salesTax: ${{(+vm.tax)}} - Total: {{vm.tax*"ordertotal"}}
+setUp: ${{(+vm.setUp)}} - Total: {{vm.setUp | currency}}
+profitMargin: {{(+vm.profitMargin)}}% - Total: {{"orderTotal*100/" + vm.profitMargin}}
+                </pre>
+                <pre>
+Total print price:
+{{(+vm.totalPieces*1 | currency)}}
+                </pre>
+                <pre>
+Total out of pocket cost:
+{{(+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp) | currency
+}}
+</pre>
+                <pre>
+Total Estimate add profit:
+{{(+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp) | currency
+}}
+ 
+Calculation profit marging amount:
+100 - Profit Margin percent = percentage of given cost 
+(100 x total out of pocket cost)/ percentage of given cost = total quote
+total quote - total out of pocket cost = profit margin amount
+
+
+Calculation for total with profit margin (value of above with below calc):
+Profit marging amount
+
+
+
+Percent of given cost (out of pocket cost): {{(100)-(+vm.profitMargin)}}
+
+PROFIT MARGIN:
+{{((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp))) /
+((100)-(+vm.profitMargin))) -
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp)) | currency}}
+
+Total Quote includes price out of pocket + profit margin: 
+
+{{((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp)) +
+((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp))) /
+((100)-(+vm.profitMargin))) -
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp)) | currency}}
+
+
+</pre>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -204,60 +305,62 @@
                 <div class="panel-body ">
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed">
-                                <tr>
-                                    <th>Order Line ID</th>
-                                    <th>Order Line Description</th>
-                                    <th>Total Pieces</th>
-                                    <th>TotalNumberColors</th>
-                                    <th>NumberPrintLocations</th>
-                                    <th>MetallicLinks</th>
-                                    <th>Discharge</th>
-                                    <th>Foil</th>
-                                    <th>PMS Color Matching</th>
-                                    <th>Flash</th>
-                                    <th>Folding and Bagging</th>
-                                    <th>Sales Tax</th>
-                                    <th>Set Up</th>
-                                    <th>OrderLineItemCost</th>
-                                    <th>ProfitMargin</th>
-                                    <th>OrderLineItemClientEstimate</th>
-                                    <th>OrderLineItemProfit</th>
-                                    <th>OrderLineItemCreatedDate</th>
-                                    <th>VendorName</th>
-                                    <th>CategoryId</th>
-                                    <th>CategoryName</th>
-                                    <th>BrandName</th>
-                                    <th>StyleId</th>
-                                    <th>CasePrice</th>
-                                    <th>StyleTitle</th>
-                                </tr>
-                                <tr ng-repeat="lineItem in vm.allOrderLineItems ">
-                                    <td>{{lineItem.orderLineItemId}}</td>
-                                    <td>{{lineItem.Description}}</td>
-                                    <td>{{lineItem.TotalPieces }}</td>
-                                    <td>{{lineItem.TotalNumberColors}}</td>
-                                    <td>{{lineItem.NumberPrintLocations}}</td>
-                                    <td>{{lineItem.MetallicLinks}}</td>
-                                    <td>{{lineItem.Discharge}}</td>
-                                    <td>{{lineItem.Foil }}</td>
-                                    <td>{{lineItem.PMSColorMatching }}</td>
-                                    <td>{{lineItem.Flash}}</td>
-                                    <td>{{lineItem.FoldingAndBagging}}</td>
-                                    <td>{{lineItem.SalesTax}}</td>
-                                    <td>{{lineItem.SetUp}}</td>
-                                    <td>{{lineItem.OrderLineItemCost}}</td>
-                                    <td>{{lineItem.ProfitMargin}}</td>
-                                    <td>{{lineItem.OrderLineItemClientEstimate}}</td>
-                                    <td>{{lineItem.OrderLineItemProfit}}</td>
-                                    <td>{{lineItem.OrderLineItemCreatedDate}}</td>
-                                    <td>{{lineItem.VendorName}}</td>
-                                    <td>{{lineItem.CategoryId}}</td>
-                                    <td>{{lineItem.CategoryName}}</td>
-                                    <td>{{lineItem.BrandName}}</td>
-                                    <td>{{lineItem.StyleId}}</td>
-                                    <td>{{lineItem.CasePrice}}</td>
-                                    <td>{{lineItem.StyleTitle}}</td>
-                                </tr>
+                            <tr>
+                                <th>Order Line ID</th>
+                                <th>Order ID</th>
+                                <th>Order Line Description</th>
+                                <th>Total Pieces</th>
+                                <th>TotalNumberColors</th>
+                                <th>NumberPrintLocations</th>
+                                <th>MetallicLinks</th>
+                                <th>Discharge</th>
+                                <th>Foil</th>
+                                <th>PMS Color Matching</th>
+                                <th>Flash</th>
+                                <th>Folding and Bagging</th>
+                                <th>Sales Tax</th>
+                                <th>Set Up</th>
+                                <th>OrderLineItemCost</th>
+                                <th>ProfitMargin</th>
+                                <th>OrderLineItemClientEstimate</th>
+                                <th>OrderLineItemProfit</th>
+                                <th>OrderLineItemCreatedDate</th>
+                                <th>VendorName</th>
+                                <th>CategoryId</th>
+                                <th>CategoryName</th>
+                                <th>BrandName</th>
+                                <th>StyleId</th>
+                                <th>CasePrice</th>
+                                <th>StyleTitle</th>
+                            </tr>
+                            <tr ng-repeat="lineItem in vm.allOrderLineItems">
+                                <td>{{lineItem.orderLineItemId}}</td>
+                                <td>{{lineItem.orderId}}</td>
+                                <td>{{lineItem.description}}</td>
+                                <td>{{lineItem.totalPieces}}</td>
+                                <td>{{lineItem.totalNumberColors}}</td>
+                                <td>{{lineItem.numberPrintLocations}}</td>
+                                <td>{{lineItem.metallicLinks}}</td>
+                                <td>{{lineItem.discharge}}</td>
+                                <td>{{lineItem.foil}}</td>
+                                <td>{{lineItem.pmsColorMatching}}</td>
+                                <td>{{lineItem.flash}}</td>
+                                <td>{{lineItem.foldingAndBagging}}</td>
+                                <td>{{lineItem.salesTax}}</td>
+                                <td>{{lineItem.setUp}}</td>
+                                <td>{{lineItem.orderLineItemCost}}</td>
+                                <td>{{lineItem.profitMargin}}</td>
+                                <td>{{lineItem.orderLineItemClientEstimate}}</td>
+                                <td>{{lineItem.orderLineItemProfit}}</td>
+                                <td>{{lineItem.orderLineItemCreatedDate}}</td>
+                                <td>{{lineItem.vendorName}}</td>
+                                <td>{{lineItem.categoryId}}</td>
+                                <td>{{lineItem.categoryName}}</td>
+                                <td>{{lineItem.brandName}}</td>
+                                <td>{{lineItem.styleId}}</td>
+                                <td>{{lineItem.casePrice}}</td>
+                                <td>{{lineItem.styleTitle}}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>

@@ -20,36 +20,35 @@
         vm.addOrderLineItem = addOrderLineItem;
         vm.populateOrderForm = populateOrderForm;
         vm.removeOrder = removeOrder;
-        vm.findColorTier=findColorTier;
-        vm.findQuantityTier=findQuantityTier;
-        vm.findColorQuantityPrice=findColorQuantityPrice;
+        vm.findColorTier = findColorTier;
+        vm.findQuantityTier = findQuantityTier;
+        vm.findColorQuantityPrice = findColorQuantityPrice;
         vm.allCustomers = [];
         vm.removeOrder = removeOrder;
         vm.allCustomers = [];
         vm.specificCustomer = [];
         vm.allOrders = [];
-        vm.allPrices =[];
-        vm.allcolors=[];
+        vm.allPrices = [];
+        vm.allcolors = [];
         vm.allOrderLineItems = [];
-         vm.colorId=[];
-         vm.quantityId=[];
-        vm.price=[];
+        vm.colorId = [];
+        vm.quantityId = [];
+        vm.price = [];
 
 
         activate();
 
 
-
         ////////////////
 
         function activate() {
-           findCustomers();
+            findCustomers();
             findOrders();
             findOrdersLineItems();
-           
-           //findColorTier(vm.TotalNumberColors);
-           // findQuantityTier(vm.TotalPieces);
-           // findColorQuantityPrice(1,2);
+
+            //findColorTier(vm.TotalNumberColors);
+            // findQuantityTier(vm.TotalPieces);
+            // findColorQuantityPrice(1,2);
         }
 
         function findCustomers() {
@@ -143,26 +142,26 @@
         //It's associated with edit button in Customer Detail page.
         vm.populateEditForm = function(customer) {
 
-                vm.customerId = customer.customerId;
-                vm.firstName = customer.firstName;
-                vm.lastName = customer.lastName;
-                vm.organization = customer.organization;
-                vm.webSite = customer.webSite;
-                vm.role = customer.role;
-                vm.businessPhone = customer.businessPhone;
-                vm.mobilePhone = customer.mobilePhone;
-                vm.otherPhone = customer.otherPhone;
-                vm.fax = customer.fax;
-                vm.email = customer.email;
-                vm.streetAddress = customer.streetAddress;
-                vm.state = customer.state;
-                vm.zipCode = customer.zipCode;
-                vm.city = customer.city;
-                vm.country = customer.country;
-                vm.note = customer.note;
-            }
+            vm.customerId = customer.customerId;
+            vm.firstName = customer.firstName;
+            vm.lastName = customer.lastName;
+            vm.organization = customer.organization;
+            vm.webSite = customer.webSite;
+            vm.role = customer.role;
+            vm.businessPhone = customer.businessPhone;
+            vm.mobilePhone = customer.mobilePhone;
+            vm.otherPhone = customer.otherPhone;
+            vm.fax = customer.fax;
+            vm.email = customer.email;
+            vm.streetAddress = customer.streetAddress;
+            vm.state = customer.state;
+            vm.zipCode = customer.zipCode;
+            vm.city = customer.city;
+            vm.country = customer.country;
+            vm.note = customer.note;
+        }
 
-            // this function has been called by ----- button in after updating
+        // this function has been called by ----- button in after updating
         function updateCustomer(id, customerdata) {
             TeamPhunFactory.putCustomer(id, customerdata)
                 .then(function(response) {
@@ -189,8 +188,7 @@
                         console.log(error + "Unable to successfully send the deleted request for the specific customer from customer controller to the TeamPhun factory");
                     });
         }
-        ////*********************ORDER CRUD METHODS START HERE***************************
-        ////*********************ORDER CRUD METHODS START HERE***************************
+
         ////*********************ORDER CRUD METHODS START HERE***************************
 
         function findOrders() {
@@ -222,9 +220,18 @@
                 OrderCreatedDate: new Date().toISOString()
 
             };
+
             if (vm.orderId) {
                 orderInfo.OrderId = vm.orderId;
                 updateOrder(vm.orderId, orderInfo);
+
+                vm.orderId = "";
+                vm.selectCustomer = "";
+                vm.customerId = "";
+                vm.orderTotal = "";
+                vm.totalCost = "";
+                vm.totalProfit = "";
+                vm.orderStatus = "";
 
             } else {
                 TeamPhunFactory.postOrder(orderInfo)
@@ -289,8 +296,8 @@
                 });
         }
 
-        ////*********************ORDER CRUD METHODS END HERE***************************
-        ////*********************ORDER CRUD METHODS END HERE***************************
+
+        ////*********************ORDER CRUD METHODS END HERE**************************
 
 
         ////*********************ORDER LINE ITEM CRUD METHODS START HERE**************
@@ -306,31 +313,60 @@
                     });
         }
 
+
         function addOrderLineItem() {
 
-            // need to add cost in here somewhere! defined in ng-model as vm.cost
+            //how muc hean pays out of pocket - find out if the number i get is correct
+            //add foil
+            vm.orderLineItemCost =
+                vm.totalPieces(
+                    vm.casePrice +
+                    vm.metallicInks +
+                    vm.discharge +
+                    vm.flash +
+                    vm.folding) +
+                (vm.pmsColor * vm.totalNumberColors) +
+                vm.setUp;
+
+            // client quote
+            //vm.orderLineItemClientEstimate
+
+            // client paid - sean paid
+            //vm.orderLineItemProfit
+
+            // orderLineItem object
             var orderLineItemInfo = {
 
-                orderId: 1,
-                vendorId: 1,
-                productId: vm.productCode,
+                // orderId: vm.customerOrderId,
+                orderId: 2,
                 description: vm.description,
-                totalPieces: vm.printPieces,
-                totalNumberColors: vm.colors,
-                numberPrintLocations: vm.locations,
+                totalPieces: vm.totalPieces,
+                totalNumberColors: vm.totalNumberColors,
+                numberPrintLocations: vm.numberPrintLocation,
                 metallicLinks: vm.metallicInks,
                 discharge: vm.discharge,
                 foil: vm.foil,
+                pmsColorMatching: vm.pmsColor,
                 flash: vm.flash,
-                pmsColorMatching: vm.PMSColor,
                 foldingAndBagging: vm.folding,
                 salesTax: vm.tax,
+                setUp: vm.setUp,
+                orderLineItemCost: vm.orderLineItemCost,
                 profitMargin: vm.profitMargin,
-                orderLineItemEstimate: 100,
-                OrderLineItemProfit: 200,
-                orderLineItemCreatedDate: new Date().toISOString()
+                orderLineItemClientEstimate: vm.orderLineItemClientEstimate,
+                orderLineItemProfit: vm.orderLineItemProfit,
+                orderLineItemCreatedDate: new Date().toISOString(),
+                vendorName: vm.vendorName,
+                categoryId: vm.categoryId,
+                categoryName: vm.categoryName,
+                brandName: vm.brandName,
+                styleId: vm.styleId,
+                casePrice: vm.casePrice,
+                styleTitle: vm.styleTitle
 
             };
+
+
 
             TeamPhunFactory.postOrderLineItem(orderLineItemInfo)
                 .then(function(response) {
@@ -342,6 +378,7 @@
                         return error;
 
                     });
+
         }
         ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
         ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
@@ -351,18 +388,18 @@
         ////*********************Start Color Tier CRUD METHODS HERE******************
         ////*********************Start Color Tier CRUD METHODS HERE******************
 
-      function findColorTier(id){
+        function findColorTier(id) {
             TeamPhunFactory.getColorTier()
                 .then(function(response) {
-                     findQuantityTier(vm.TotalPieces);
+                        findQuantityTier(vm.TotalPieces);
 
                         vm.allcolors = response;
-                        for(var i=0; i< vm.allcolors.length;i++){
-                            if(vm.allcolors[i].count== id){
+                        for (var i = 0; i < vm.allcolors.length; i++) {
+                            if (vm.allcolors[i].count == id) {
 
-                            vm.colorId= vm.allcolors[i].colorTierId;
-                             localStorage.setItem('colorId', vm.colorId);
-                            //console.log(vm.vm.colorId);
+                                vm.colorId = vm.allcolors[i].colorTierId;
+                                localStorage.setItem('colorId', vm.colorId);
+                                //console.log(vm.vm.colorId);
                             }
                         }
                     },
@@ -370,69 +407,71 @@
                         console.log(error + "Unable to load the Colors from the factory to the controller!");
                     });
 
-                  return vm.colorId;                    
+            return vm.colorId;
+
         }
         var colorId = localStorage.getItem('colorId');
 
 
- ////*********************End Color Tier CRUD METHODS HERE******************
-  ////*********************End Color Tier CRUD METHODS HERE******************
+
+        ////*********************End Color Tier CRUD METHODS HERE******************
+        ////*********************End Color Tier CRUD METHODS HERE******************
 
 
- ////*********************Start Quantity Tier CRUD METHODS HERE******************
- ////*********************Start Quantity Tier CRUD METHODS HERE******************
- // sql query
-//Select  QuantityTierId  From QuantityTiers where MinQuantity=48 AND MaxQuantity=95  
-//output is : 1
-        function findQuantityTier(totalPieces){
+        ////*********************Start Quantity Tier CRUD METHODS HERE******************
+        ////*********************Start Quantity Tier CRUD METHODS HERE******************
+        // sql query
+        //Select  QuantityTierId  From QuantityTiers where MinQuantity=48 AND MaxQuantity=95  
+        //output is : 1
+        function findQuantityTier(totalPieces) {
             TeamPhunFactory.getQuantityTier()
                 .then(function(response) {
 
                         vm.quantites = response;
-                        for(var i=0; i<vm.quantites.length;i++){
-                            if(vm.quantites[i].minQuantity <= totalPieces &&  totalPieces <= vm.quantites[i].maxQuantity){
-                                vm.quantityId=vm.quantites[i].quantityTierId;
-                                   localStorage.setItem('quantityId', vm.quantityId);
+                        for (var i = 0; i < vm.quantites.length; i++) {
+                            if (vm.quantites[i].minQuantity <= totalPieces && totalPieces <= vm.quantites[i].maxQuantity) {
+                                vm.quantityId = vm.quantites[i].quantityTierId;
+                                localStorage.setItem('quantityId', vm.quantityId);
                             }
-                        } 
+                        }
                     },
                     function(error) {
                         console.log(error + "Unable to load the Colors from the factory to the controller!");
                     });
             return vm.quantityId;
         }
-  ////*********************Start Quantity Tier CRUD METHODS HERE******************
- ////*********************Start Quantity Tier CRUD METHODS HERE******************
-                        ///////****************************\\\\\\\\\\\\\
-   ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
- ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+        ////*********************Start Quantity Tier CRUD METHODS HERE******************
+        ////*********************Start Quantity Tier CRUD METHODS HERE******************
+        ///////****************************\\\\\\\\\\\\\
+        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
 
-        function findColorQuantityPrice(){
-                    var quantityId=parseInt(localStorage.getItem('quantityId'));
-        var colorId=parseInt(localStorage.getItem('colorId'));
-    //console.log(colorId);
-    //console.log(quantityId);        
+        function findColorQuantityPrice() {
+            var quantityId = parseInt(localStorage.getItem('quantityId'));
+            var colorId = parseInt(localStorage.getItem('colorId'));
+            //console.log(colorId);
+            //console.log(quantityId);        
             TeamPhunFactory.getColorQuantityPrice()
                 .then(function(response) {
 
                         vm.quantityPrices = response;
-                        for(var i=0; i < vm.quantityPrices.length; i++){
-                            if(vm.quantityPrices[i].colorTierId == colorId  &&  quantityId== vm.quantityPrices[i].quantityTierId){
-                                vm.price=vm.quantityPrices[i].price;
-                                 localStorage.setItem('price', vm.price);
+                        for (var i = 0; i < vm.quantityPrices.length; i++) {
+                            if (vm.quantityPrices[i].colorTierId == colorId && quantityId == vm.quantityPrices[i].quantityTierId) {
+                                vm.price = vm.quantityPrices[i].price;
+                                localStorage.setItem('price', vm.price);
                                 //console.log(localStorage.getItem('price'));
                             }
                         }
-                       // return vm.quantityPrices;
+                        // return vm.quantityPrices;
                     },
                     function(error) {
                         console.log(error + "Unable to load the Color Quantity Price from the factory to the controller!");
                     });
-               return vm.price;
+            return vm.price;
         }
-   ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
- ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
-       
+        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+
     }
 
 })();
