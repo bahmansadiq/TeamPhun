@@ -31,10 +31,10 @@
         vm.allPrices =[];
         vm.allcolors=[];
         vm.allOrderLineItems = [];
-        vm.colorid=[];
-        vm.quantityid=[];
+         vm.colorId=[];
+         vm.quantityId=[];
         vm.price=[];
-        vm.priceData=[];
+
 
         activate();
 
@@ -49,7 +49,7 @@
            
            //findColorTier(vm.TotalNumberColors);
            // findQuantityTier(vm.TotalPieces);
-            findColorQuantityPrice(1, 5);
+           // findColorQuantityPrice(1,2);
         }
 
         function findCustomers() {
@@ -161,6 +161,7 @@
                 vm.country = customer.country;
                 vm.note = customer.note;
             }
+
             // this function has been called by ----- button in after updating
         function updateCustomer(id, customerdata) {
             TeamPhunFactory.putCustomer(id, customerdata)
@@ -348,25 +349,31 @@
 
         ////*********************Start Color Tier CRUD METHODS HERE******************
         ////*********************Start Color Tier CRUD METHODS HERE******************
+
       function findColorTier(id){
             TeamPhunFactory.getColorTier()
                 .then(function(response) {
                      findQuantityTier(vm.TotalPieces);
-                     console.log(vm.nit);
+
                         vm.allcolors = response;
                         for(var i=0; i< vm.allcolors.length;i++){
                             if(vm.allcolors[i].count== id){
-                                vm.colorid=vm.allcolors[i].colorTierId;
-                                vm.priceData=vm.colorid;
-                                // console.log(vm.colorid)
+
+                            vm.colorId= vm.allcolors[i].colorTierId;
+                             localStorage.setItem('colorId', vm.colorId);
+                            //console.log(vm.vm.colorId);
                             }
                         }
                     },
                     function(error) {
                         console.log(error + "Unable to load the Colors from the factory to the controller!");
                     });
-                  return vm.colorid;
+
+                  return vm.colorId;                    
         }
+        var colorId = localStorage.getItem('colorId');
+
+
  ////*********************End Color Tier CRUD METHODS HERE******************
   ////*********************End Color Tier CRUD METHODS HERE******************
 
@@ -383,44 +390,48 @@
                         vm.quantites = response;
                         for(var i=0; i<vm.quantites.length;i++){
                             if(vm.quantites[i].minQuantity <= totalPieces &&  totalPieces <= vm.quantites[i].maxQuantity){
-                                vm.quantityid=vm.quantites[i].quantityTierId;
+                                vm.quantityId=vm.quantites[i].quantityTierId;
+                                   localStorage.setItem('quantityId', vm.quantityId);
                             }
                         } 
                     },
                     function(error) {
                         console.log(error + "Unable to load the Colors from the factory to the controller!");
                     });
-            return vm.quantityid;
+            return vm.quantityId;
         }
-
   ////*********************Start Quantity Tier CRUD METHODS HERE******************
  ////*********************Start Quantity Tier CRUD METHODS HERE******************
-
+                        ///////****************************\\\\\\\\\\\\\
    ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
  ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
 
-
-        function findColorQuantityPrice(colorId, quantityId){
+        function findColorQuantityPrice(){
+                    var quantityId=parseInt(localStorage.getItem('quantityId'));
+        var colorId=parseInt(localStorage.getItem('colorId'));
+    //console.log(colorId);
+    //console.log(quantityId);        
             TeamPhunFactory.getColorQuantityPrice()
                 .then(function(response) {
 
                         vm.quantityPrices = response;
-                        for(var i=0; i<vm.quantityPrices.length;i++){
-                            if(vm.quantityPrices[i].colorTierId == colorId &&  quantityId== vm.quantites[i].quantityTierId){
+                        for(var i=0; i < vm.quantityPrices.length; i++){
+                            if(vm.quantityPrices[i].colorTierId == colorId  &&  quantityId== vm.quantityPrices[i].quantityTierId){
                                 vm.price=vm.quantityPrices[i].price;
-                                 console.log(vm.quantityPrices[i].price);
+                                 localStorage.setItem('price', vm.price);
+                                //console.log(localStorage.getItem('price'));
                             }
-                        
                         }
                        // return vm.quantityPrices;
                     },
                     function(error) {
                         console.log(error + "Unable to load the Color Quantity Price from the factory to the controller!");
                     });
-                return vm.price;
+               return vm.price;
         }
    ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
  ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
        
     }
+
 })();
