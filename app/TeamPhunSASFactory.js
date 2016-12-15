@@ -97,6 +97,7 @@
                 function(response) {
                     if (typeof response === 'object') {
                         defer.resolve(response);
+                        console.log(response);
                     }
 
                 },

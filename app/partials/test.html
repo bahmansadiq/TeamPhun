@@ -1,6 +1,7 @@
 <pre>
-		{{vm.itemStyleByCatId}}
+{{vm.styleIdQtyCasePrice}}
 	</pre>
+
 <div class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Choose Category</label>
     <div class="col-md-4">
@@ -11,10 +12,11 @@
 <button ng-click="vm.findStyleByCatId(vm.categoryId)">Search Style</button>
 </div>
 <div>
-    <div ng-repeat="style in vm.itemStyleByCatId track by $index">
-    	{{style.brandName}}
-    	{{style.title}}
-    	<img ng-src="https://www.ssactivewear.com/{{style.styleImage}}">
+    <div ng-repeat="style in  vm.styleIdQtyCasePrice track by $index">
+        {{style.brandName}}/ {{style.title}}/ {{style.styleID}} / Case Price:{{style.casePrice}}/ Qty in stock:{{style.qty}}/ Case Qty:{{style.caseQty}}
+        <img ng-src="https://www.ssactivewear.com/{{style.styleImage}}">
+
+       
     </div>
 </div>
 <!--<p ng-repeat="image in vm.image track by $index">
