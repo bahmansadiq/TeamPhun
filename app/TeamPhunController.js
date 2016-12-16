@@ -205,10 +205,8 @@
 
 
         ////*********************add Order METHODS **************************************
-        //fucntion to add a new order to the talbe
 
-
-        function addOrder() {
+        function addOrder(customer) {
 
             //Order details
             var orderInfo = {
@@ -225,20 +223,25 @@
                 orderInfo.OrderId = vm.orderId;
                 updateOrder(vm.orderId, orderInfo);
 
-                vm.orderId = "";
-                vm.selectCustomer = "";
-                vm.customerId = "";
-                vm.orderTotal = "";
-                vm.totalCost = "";
-                vm.totalProfit = "";
-                vm.orderStatus = "";
+                // vm.orderId = "";
+  // vm.selectCustomer = "";
+  // vm.customerId = "";
+  // vm.orderTotal = "";
+  // vm.totalCost = "";
+  // vm.totalProfit = "";
+  // vm.orderStatus = "";
+
 
             } else {
                 TeamPhunFactory.postOrder(orderInfo)
                     .then(function(response) {
                             toastr.success("Successfully added a new order!");
                             activate();
+
+                            $state.go('home.quoteGenerator', { customerObject: customer }, { orderObject: orderId});
+
                             return response;
+
                         },
                         function(error) {
                             console.log(error + "Unable to pass the new order information from the controller to TeamPhunFactory!");
@@ -269,8 +272,6 @@
 
 
         function populateOrderForm(order) {
-
-            // vm.addNewOrder = !vm.addNewOrder;
 
             vm.orderId = order.orderId;
             vm.selectCustomer = order.selectCustomer;
@@ -318,15 +319,23 @@
 
             //how muc hean pays out of pocket - find out if the number i get is correct
             //add foil
-            vm.orderLineItemCost =
-                vm.totalPieces(
-                    vm.casePrice +
-                    vm.metallicInks +
-                    vm.discharge +
-                    vm.flash +
-                    vm.folding) +
-                (vm.pmsColor * vm.totalNumberColors) +
-                vm.setUp;
+
+            //print tag = $0.39 per shirt
+            //sew in tag = $0.25 per shirt
+            // vm.orderLineItemCost =
+            //     vm.totalPieces * (
+            //         vm.casePrice +
+            //         vm.metallicInks +
+            //         vm.discharge +
+            //         vm.flash +
+            //         vm.foil +
+            //         vm.folding) +
+            //     (vm.pmsColor * vm.totalNumberColors) +
+            //     vm.setUp;
+
+
+
+
 
             // client quote
             //vm.orderLineItemClientEstimate
@@ -381,11 +390,7 @@
 
         }
         ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
-        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
-        ////*********************ORDER LINE ITEM CRUD METHODS END HERE******************
 
-
-        ////*********************Start Color Tier CRUD METHODS HERE******************
         ////*********************Start Color Tier CRUD METHODS HERE******************
 
         function findColorTier(id) {
@@ -412,13 +417,6 @@
         }
         var colorId = localStorage.getItem('colorId');
 
-
-
-        ////*********************End Color Tier CRUD METHODS HERE******************
-        ////*********************End Color Tier CRUD METHODS HERE******************
-
-
-        ////*********************Start Quantity Tier CRUD METHODS HERE******************
         ////*********************Start Quantity Tier CRUD METHODS HERE******************
         // sql query
         //Select  QuantityTierId  From QuantityTiers where MinQuantity=48 AND MaxQuantity=95  
@@ -440,10 +438,8 @@
                     });
             return vm.quantityId;
         }
-        ////*********************Start Quantity Tier CRUD METHODS HERE******************
-        ////*********************Start Quantity Tier CRUD METHODS HERE******************
-        ///////****************************\\\\\\\\\\\\\
-        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
+
+
         ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
 
         function findColorQuantityPrice() {
@@ -469,8 +465,6 @@
                     });
             return vm.price;
         }
-        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
-        ////*********************Start QuantityPrices Tier CRUD METHODS HERE******************
 
     }
 
