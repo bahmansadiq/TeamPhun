@@ -1,15 +1,16 @@
-<pre>getting colorId using number of colors {{vm.colorId}}</pre>
+<!-- <pre>getting colorId using number of colors {{vm.colorId}}</pre>
 <pre>getting quanity tier based on the number of pieces user input {{vm.quantityId}}</pre>
 <pre>{{vm.quantityPrices}}</pre>
 <pre>{{vm.price}}</pre>
 <button ng-click="vm.findColorQuantityPrice()"> do it</button>
+ -->
 <!-- Add customer select dropdown -->
 <!-- Quote Input Panel Start -->
 <div class="container">
     <!-- Quote Calculator -->
     <div class="row">
         <div class="col-sm-6">
-            <div class="panel panel-default">
+            <div class="panel panel-default z-depth-5">
                 <div class="panel-heading text-center">Quote Calculator</div>
                 <div class="panel-body">
                     <div class="form">
@@ -19,47 +20,48 @@
                          + allCustomers.lastName for allCustomers in vm.allCustomers">
                             </select>
                         </div>
+                        <!-- <div class="form-group form-group-sm">
+    <label for="vendorName">VendorName</label>
+    <input id="vendorName" ng-model="vm.vendorName" class="form-control input-sm">
+</div>
+<div class="form-group form-group-sm">
+    <label for="categoryId">CategoryId</label>
+    <input id="categoryId" ng-model="vm.categoryId" class="form-control input-sm">
+</div>
+<div class="form-group form-group-sm">
+    <label for="categoryName">CategoryName</label>
+    <input id="categoryName" ng-model="vm.categoryName" class="form-control input-sm">
+</div>
+<div class="form-group form-group-sm">
+    <label for="brandName">BrandName</label>
+    <input id="brandName" ng-model="vm.brandName" class="form-control input-sm">
+</div>
+<div class="form-group form-group-sm">
+    <label for="styleId">StyleId</label>
+    <input id="styleId" ng-model="vm.styleId" class="form-control input-sm">
+</div>
+ -->
                         <div class="form-group form-group-sm">
-                            <label for="vendorName">VendorName</label>
-                            <input id="vendorName" ng-model="vm.vendorName" class="form-control input-sm">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="categoryId">CategoryId</label>
-                            <input id="categoryId" ng-model="vm.categoryId" class="form-control input-sm">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="categoryName">CategoryName</label>
-                            <input id="categoryName" ng-model="vm.categoryName" class="form-control input-sm">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="brandName">BrandName</label>
-                            <input id="brandName" ng-model="vm.brandName" class="form-control input-sm">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="styleId">StyleId</label>
-                            <input id="styleId" ng-model="vm.styleId" class="form-control input-sm">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="vendorCasePrice">Vendor CasePrice</label>
-                            <input id="vendorCasePrice" ng-model="vm.casePrice" class="form-control input-sm" ng-init="vendorCasePrice = 0">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="styleTitle">StyleTitle</label>
-                            <input id="styleitle" ng-model="vm.styleTitle" class="form-control input-sm">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label for="description">Description</label>
+                            <label for="description">Product Description</label>
                             <input id="description" ng-model="vm.description" type="text" class="form-control input-sm">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label for="totalPieces">TotalPieces</label>
-                            <input id="totalPieces" ng-model="vm.totalPieces" type="number" step="any" class="form-control input-sm" ng-init="totalPieces = 0">
+                            <label for="vendorCasePrice">Price Per Item</label>
+                            <input id="vendorCasePrice" ng-model="vm.casePrice" class="form-control input-sm" ng-init="vendorCasePrice = 0">
+                        </div>
+                        <!--  <div class="form-group form-group-sm">
+                            <label for="styleTitle">Style Title</label>
+                            <input id="styleitle" ng-model="vm.styleTitle" class="form-control input-sm">
+                        </div> -->
+                        <div class="form-group form-group-sm">
+                            <label for="totalPieces">Total Pieces in Order</label>
+                            <input id="totalPieces" ng-model="vm.totalPieces" type="number" step="any" class="form-control input-sm">
                         </div>
                         <!-- Dropdown select: 10 colors total  -->
                         <div class="form-group form-group-sm">
-                            <label for="colors">TotalNumberColors</label>
+                            <label for="colors">Total Number of Colors</label>
                             <!-- // <input type="number"  class="form-control input-sm" ng-model="vm.TotalNumberColors"> -->
-                            <select id="colors" class="form-control input-sm" ng-model="vm.TotalNumberColors" ng-click="vm.findColorTier(vm.TotalNumberColors)">
+                            <select id="colors" class="form-control input-sm" ng-model="vm.totalNumberColors" ng-click="vm.findColorTier(vm.totalNumberColors)">
                                 <option selected disabled hidden>Colors</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -68,12 +70,15 @@
                                 <option value="5">Five</option>
                                 <option value="6">Six</option>
                                 <option value="7">Seven</option>
+                                <option value="8">Eight</option>
+                                <option value="9">Nine</option>
+                                <option value="10">Ten</option>
                             </select>
                         </div>
                         <!-- Print Locations on T-Shirt (can have multiple) $.75 charge for each location after the 1st-->
                         <div class="form-group form-group-sm">
-                            <label for="printLocations">NumberPrintLocations</label>
-                            <input id="printLocations" ng-model="vm.numberPrintLocations" type="number" class="form-control input-sm" ng-init="printLocations = 0">
+                            <label for="printLocations">Number of Print Locations</label>
+                            <input id="printLocations" ng-model="vm.numberPrintLocations" type="number" class="form-control input-sm">
                         </div>
                         <!-- Checkboxes -->
                         <div class="form-group form-group-sm">
@@ -103,25 +108,26 @@
                                 <div class="checkbox">
                                     <label for="pms">
                                         <input id="pms" ng-model="vm.pmsColor" type="checkbox" value="false" ng-true-value="15" ng-false-value="0">PMS Color Matching</label>
+                                    <!-- Set up is $15 per color per job -->
                                 </div>
-                                <!-- Button should be disabled or hidden if order is less than 72 items -->
                                 <div class="checkbox">
-                                    <label for="folding">
-                                        <input id="folding" ng-model="vm.folding" type="checkbox" value="false" ng-true-value="0.30" ng-false-value="0">Folding and Bagging</label>
+                                    <label for="setUp">
+                                        <input id="setUp" ng-model="vm.setUp" type="checkbox" value="true" ng-true-value="15" ng-false-value="0">Set Up</label>
                                 </div>
                                 <!-- 8% CA Sales tax is charged for customers who will not resale product -->
                                 <div class="checkbox">
                                     <label for="salesTax">
                                         <input id="salesTax" ng-model="vm.tax" type="checkbox" value="false" ng-true-value="0.08" ng-false-value="0">Sales Tax</label>
                                 </div>
-                                <div class="checkbox">
-                                    <label for="setUp">
-                                        <input id="setUp" ng-model="vm.setUp" type="checkbox" value="true" ng-true-value="15" ng-false-value="0">Set Up</label>
+                                <!-- Button should be disabled or hidden if order is less than 72 items -->
+                                <div class="checkbox" ng-if="vm.totalPieces >= 72">
+                                    <label for="folding">
+                                        <input id="folding" ng-model="vm.folding" type="checkbox" value="false" ng-true-value="0.30" ng-false-value="0">Folding and Bagging</label>
                                 </div>
                                 <!-- Profit Margin slider need to be a percentage -->
                                 <div class="form-group form-group-sm">
-                                    <label for="profitMargin">Profit Margin -
-                                        <a class="profitMargin" id="profitMargin">{{vm.profitMargin + "%"}}</a>
+                                    <label for="profitMargin">Profit Margin
+                                        <a class="profitMargin" id="profitMargin"> {{vm.profitMargin + "%"}}</a>
                                     </label>
                                     <input id="profitMargin" type="range" min="0" max="100" ng-model="vm.profitMargin" class="input-sm" value="0">
                                 </div>
@@ -133,13 +139,13 @@
             </div>
         </div>
         <div class="col-sm-6 ">
-            <div class="panel panel-default ">
+            <!--        <div class="panel panel-default ">
                 <div class="panel-heading text-center table-condensed">Line Item Totals</div>
                 <div class="panel-body ">
                     <table class="table table-striped ">
                         <tr>
                             <td>Line Item Expense</td>
-                            <td ng-model="vm.orderLineItemCost">{{((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp) }}
+                            <td>{{(+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors)) | currency }}
                             </td>
                         </tr>
                         <tr>
@@ -147,124 +153,160 @@
                             <td>{{(+vm.profitMargin) + "%"}}</td>
                         </tr>
                         <tr>
-                            <td ng-model="vm.orderLineItemProfit">Line Item Profit</td>
-                            <td>{{((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))}}
+                            <td>Line Item Profit</td>
+                            <td>{{((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) | currency}}
                             </td>
-                            <tr>
-                                <td>Quote for Client</td>
-                                <td ng-model="vm.orderLineItemClientEstimate">
-                                    {{((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp)) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp)) | currency}}
-                                </td>
-                            </tr>
+                        </tr>
+                        <tr>
+                            <td>Quote for Client</td>
+                            <td>
+                                {{((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp)) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + (+vm.setUp))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) | currency}}
+                            </td>
+                        </tr>
                         </tr>
                     </table>
                 </div>
-            </div>
-            <div class="panel panel-default ">
-                <div class="panel-heading text-center">Order Grand Totals</div>
+            </div> -->
+            <div class="panel panel-default">
+                <div class="panel-heading text-center table-condensed">Line Item Details</div>
                 <div class="panel-body ">
-                    <table class="table table-striped table-condensed">
-                        <tr>
-                            <td>Total Order Expense</td>
-                            <td>$4000</td>
-                        </tr>
-                        <tr>
-                            <td>Total Order Quote</td>
-                            <td>$8000</td>
-                        </tr>
-                        <tr>
-                            <td>Total Profit Margin</td>
-                            <td>50%</td>
-                        </tr>
-                        <tr>
-                            <td>Total Order Profit</td>
-                            <td>$4000</td>
-                        </tr>
-                    </table>
+                    <p><strong>Order:</strong> {{vm.customerOrderId}}</p>
+                    <p><strong>Product:</strong> {{vm.description}}</p>
+                    <p><strong>Price Per Item:</strong> {{vm.casePrice |currency}}</p>
+                    <p><strong>Total Pieces in Order:</strong> {{vm.totalPieces}}</p>
+                    <p><strong>Total Colors:</strong> {{vm.totalNumberColors}}</p>
+                    <p><strong>Number of Print Locations:</strong> {{vm.numberPrintLocations}}</p>
+                    <hr/>
+                    <p><strong>Metallic Inks:</strong> {{(+vm.metallicInks*vm.totalPieces) | currency}} </p>
+                    <p><strong>Discharge:</strong> {{(+vm.discharge*vm.totalPieces) | currency}}</p>
+                    <p><strong> Foil:</strong> {{(+vm.foil*vm.totalPieces) | currency}} </p>
+                    <p><strong>Flash:</strong> {{+vm.flash*vm.totalPieces | currency}}
+                    </p>
+                    <p><strong>PMS Color Matching:</strong> {{(+vm.pmsColor*vm.totalNumberColors) | currency}} </p>
+                    <p><strong>Set Up:</strong> {{+vm.setUp*vm.totalNumberColors | currency}} </p>
+                    <p><strong>Folding and Bagging:</strong> {{+vm.folding*vm.totalPieces | currency}} </p>
+                    <hr/>
+                    <h3 class="text-center"><strong>Total Expense</strong> 
+                        {{(+vm.totalPieces*1) + (+vm.casePrice*vm.totalPieces) + (+vm.metallicInks*vm.totalPieces) + (+vm.discharge*vm.totalPieces) + (+vm.foil*vm.totalPieces) + (+vm.flash*vm.totalPieces) + (+vm.pmsColor*vm.totalNumberColors) + (+vm.folding*vm.totalPieces) + (+vm.setUp*vm.totalNumberColors) | currency }} </h3>
+                    <h3 class="text-center"><strong>Profit Margin</strong> 
+                       {{((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.folding)*(+vm.totalPieces)) +
+(+vm.setUp))) /
+(100-(+vm.profitMargin))) -
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))) | currency}}</h3>
+                    <h3 class="text-center"><strong>Total</strong> 
+                        {{((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors)))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) | currency}} </h3>
+                    <h3 class="text-center"><strong>Sales Tax</strong> 
+                        {{(((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors)))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))))*vm.tax | currency}} </h3>
+                    <h3 class="text-center"><strong>Total Plus Sales Tax</strong> 
+                        {{((((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors)))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))))*vm.tax) + ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) + ((100*((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors)))) / ((100)-(+vm.profitMargin))) - ((+vm.totalPieces*1) + ((+vm.casePrice)*(+vm.totalPieces)) + ((+vm.metallicInks)*(+vm.totalPieces)) + ((+vm.foil)*(+vm.totalPieces)) + ((+vm.discharge)*(+vm.totalPieces)) + ((+vm.pmsColor)*(+vm.totalNumberColors)) + ((+vm.flash)*(+vm.totalPieces)) + ((+vm.folding)*(+vm.totalPieces)) + ((+vm.setUp)*(+vm.totalNumberColors))) | currency}}</h3>
                 </div>
             </div>
-            <div>
-                <pre>Cost of blank product ${{vm.casePrice}}</pre>
-                <pre>TotalPieces {{vm.totalPieces}}</pre>
-                <pre>Total cost of blank product ${{vm.casePrice*vm.totalPieces}}</pre>
-                <pre>
-metallicLinks: ${{(+vm.metallicInks)}} - Total: {{vm.metallicInks*vm.totalPieces | currency}}
-discharge: ${{(+vm.discharge)}} - Total: {{vm.discharge*vm.totalPieces | currency}}
-foil: ${{(+vm.foil)}} - Total: {{vm.foil*vm.totalPieces | currency}}
-pmsColorMatching: ${{(+vm.pmsColor)}} - Total: {{vm.pmsColor*vm.totalNumberColors | currency}}
-flash: ${{(+vm.flash)}} - Total: {{ vm.flash*vm.totalPieces | currency}}
-foldingAndBagging: ${{(+vm.folding)}} - Total: {{vm.folding*vm.totalPieces | currency}}
-salesTax: ${{(+vm.tax)}} - Total: {{vm.tax*"ordertotal"}}
-setUp: ${{(+vm.setUp)}} - Total: {{vm.setUp | currency}}
-profitMargin: {{(+vm.profitMargin)}}% - Total: {{"orderTotal*100/" + vm.profitMargin}}
-                </pre>
-                <pre>
-Total print price:
-{{(+vm.totalPieces*1 | currency)}}
-                </pre>
-                <pre>
-Total out of pocket cost:
-{{(+vm.totalPieces*1) +
-((+vm.casePrice)*(+vm.totalPieces)) +
-((+vm.metallicInks)*(+vm.totalPieces)) +
-((+vm.foil)*(+vm.totalPieces)) +
-((+vm.discharge)*(+vm.totalPieces)) +
-((+vm.pmsColor)*(+vm.totalNumberColors)) +
-((+vm.flash)*(+vm.totalPieces)) +
-((+vm.folding)*(+vm.totalPieces)) +
-(+vm.setUp) | currency
-}}
+        </div>
+        <!-- <div class="panel panel-default ">
+    <div class="panel-heading text-center">Order Grand Totals</div>
+    <div class="panel-body ">
+        <table class="table table-striped table-condensed">
+            <tr>
+                <td>Total Order Expense</td>
+                <td>$4000</td>
+            </tr>
+            <tr>
+                <td>Total Order Quote</td>
+                <td>$8000</td>
+            </tr>
+            <tr>
+                <td>Total Profit Margin</td>
+                <td>50%</td>
+            </tr>
+            <tr>
+                <td>Total Order Profit</td>
+                <td>$4000</td>
+            </tr>
+        </table>
+    </div>
+</div>
+ -->
+        <!-- <div> -->
+        <!-- <pre>Cost of blank product ${{+vm.casePrice}}</pre>
+<pre>TotalPieces {{+vm.totalPieces}}</pre>
+ -->
+        <!-- <pre>
+Metallic Inks: {{+vm.metallicInks | currency}} - Total: {{(+vm.metallicInks*vm.totalPieces) | currency}}
+Discharge: {{+vm.discharge | currency}} - Total: {{(+vm.discharge*vm.totalPieces) | currency}}
+Foil: {{+vm.foil | currency}} - Total: {{(+vm.foil*vm.totalPieces) | currency}}
+PMS Color Matching: {{+vm.pmsColor | currency}} - Total: {{(+vm.pmsColor*vm.totalNumberColors) | currency}}
+Flash: {{+vm.flash | currency}} - Total: {{(+vm.flash*vm.totalPieces) | currency}}
+Folding and Bagging: {{+vm.folding | currency}} - Total: {{(+vm.folding*vm.totalPieces) | currency}}
+Set Up: {{+vm.setUp | currency}} - Total: {{+vm.setUp | currency}}
 </pre>
-                <pre>
-Total Estimate add profit:
-{{(+vm.totalPieces*1) +
-((+vm.casePrice)*(+vm.totalPieces)) +
-((+vm.metallicInks)*(+vm.totalPieces)) +
-((+vm.foil)*(+vm.totalPieces)) +
-((+vm.discharge)*(+vm.totalPieces)) +
-((+vm.pmsColor)*(+vm.totalNumberColors)) +
-((+vm.flash)*(+vm.totalPieces)) +
-((+vm.folding)*(+vm.totalPieces)) +
-(+vm.setUp) | currency
-}}
- 
-Calculation profit marging amount:
+ -->
+        <!--                 <pre> -->
+        <!-- Calculation profit marging amount:
 100 - Profit Margin percent = percentage of given cost 
 (100 x total out of pocket cost)/ percentage of given cost = total quote
 total quote - total out of pocket cost = profit margin amount
 
-
 Calculation for total with profit margin (value of above with below calc):
-Profit marging amount
+Profit marging amount -->
+        <!-- Percent of given cost (out of pocket cost): {{(100)-(+vm.profitMargin)}} -->
+        <!-- </pre> -->
+        <!-- <pre>
+Metallic Inks: {{+vm.metallicInks | currency}} - Total: {{(+vm.metallicInks*vm.totalPieces) | currency}}
+Discharge: {{+vm.discharge | currency}} - Total: {{(+vm.discharge*vm.totalPieces) | currency}}
+Foil: {{+vm.foil | currency}} - Total: {{(+vm.foil*vm.totalPieces) | currency}}
+PMS Color Matching: {{+vm.pmsColor | currency}} - Total: {{(+vm.pmsColor*vm.totalNumberColors) | currency}}
+Flash: {{+vm.flash | currency}} - Total: {{(+vm.flash*vm.totalPieces) | currency}}
+Folding and Bagging: {{+vm.folding | currency}} - Total: {{(+vm.folding*vm.totalPieces) | currency}}
+Set Up: {{+vm.setUp | currency}} - Total: {{((+vm.setUp)*(+vm.totalNumberColors)) | currency}}
 
-
-
-Percent of given cost (out of pocket cost): {{(100)-(+vm.profitMargin)}}
-
-PROFIT MARGIN:
-{{((100*((+vm.totalPieces*1) +
+Total out of pocket cost:
+{{(+vm.totalPieces*1) +
 ((+vm.casePrice)*(+vm.totalPieces)) +
 ((+vm.metallicInks)*(+vm.totalPieces)) +
-((+vm.foil)*(+vm.totalPieces)) +
 ((+vm.discharge)*(+vm.totalPieces)) +
-((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.foil)*(+vm.totalPieces)) +
 ((+vm.flash)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors)) | currency
+}}
+
+Profit Margin: {{((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
 ((+vm.folding)*(+vm.totalPieces)) +
 (+vm.setUp))) /
 ((100)-(+vm.profitMargin))) -
 ((+vm.totalPieces*1) +
 ((+vm.casePrice)*(+vm.totalPieces)) +
 ((+vm.metallicInks)*(+vm.totalPieces)) +
-((+vm.foil)*(+vm.totalPieces)) +
 ((+vm.discharge)*(+vm.totalPieces)) +
-((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.foil)*(+vm.totalPieces)) +
 ((+vm.flash)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
 ((+vm.folding)*(+vm.totalPieces)) +
-(+vm.setUp)) | currency}}
+((+vm.setUp)*(+vm.totalNumberColors))) | currency}}
 
-Total Quote includes price out of pocket + profit margin: 
-
-{{((+vm.totalPieces*1) +
+Total Quote Expense + profit margin: {{((+vm.totalPieces*1) +
 ((+vm.casePrice)*(+vm.totalPieces)) +
 ((+vm.metallicInks)*(+vm.totalPieces)) +
 ((+vm.foil)*(+vm.totalPieces)) +
@@ -272,7 +314,7 @@ Total Quote includes price out of pocket + profit margin:
 ((+vm.pmsColor)*(+vm.totalNumberColors)) +
 ((+vm.flash)*(+vm.totalPieces)) +
 ((+vm.folding)*(+vm.totalPieces)) +
-(+vm.setUp)) +
+((+vm.setUp)*(+vm.totalNumberColors))) +
 ((100*((+vm.totalPieces*1) +
 ((+vm.casePrice)*(+vm.totalPieces)) +
 ((+vm.metallicInks)*(+vm.totalPieces)) +
@@ -281,7 +323,7 @@ Total Quote includes price out of pocket + profit margin:
 ((+vm.pmsColor)*(+vm.totalNumberColors)) +
 ((+vm.flash)*(+vm.totalPieces)) +
 ((+vm.folding)*(+vm.totalPieces)) +
-(+vm.setUp))) /
+((+vm.setUp)*(+vm.totalNumberColors)))) /
 ((100)-(+vm.profitMargin))) -
 ((+vm.totalPieces*1) +
 ((+vm.casePrice)*(+vm.totalPieces)) +
@@ -291,80 +333,173 @@ Total Quote includes price out of pocket + profit margin:
 ((+vm.pmsColor)*(+vm.totalNumberColors)) +
 ((+vm.flash)*(+vm.totalPieces)) +
 ((+vm.folding)*(+vm.totalPieces)) +
-(+vm.setUp)) | currency}}
+((+vm.setUp)*(+vm.totalNumberColors))) | currency}}
 
+8% Sales Tax: {{(((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))) +
+((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors)))) /
+((100)-(+vm.profitMargin))) -
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))))*vm.tax | currency}}
+
+Total with Sales Tax: {{((((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))) +
+((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors)))) /
+((100)-(+vm.profitMargin))) -
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))))*vm.tax) +
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))) +
+((100*((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors)))) /
+((100)-(+vm.profitMargin))) -
+((+vm.totalPieces*1) +
+((+vm.casePrice)*(+vm.totalPieces)) +
+((+vm.metallicInks)*(+vm.totalPieces)) +
+((+vm.foil)*(+vm.totalPieces)) +
+((+vm.discharge)*(+vm.totalPieces)) +
+((+vm.pmsColor)*(+vm.totalNumberColors)) +
+((+vm.flash)*(+vm.totalPieces)) +
+((+vm.folding)*(+vm.totalPieces)) +
+((+vm.setUp)*(+vm.totalNumberColors))) | currency}}
 
 </pre>
-            </div>
-        </div>
+ -->
+        <!-- <div ng-if="vm.numberPrintLocations > 1">
+    {{ (((+vm.numberPrintLocations-1)*(+vm.totalPieces))*0.75) + (+vm.totalPieces*1)+(+vm.totalPieces*1) | currency}}
+</div>
+<div ng-if="vm.numberPrintLocations > 1">
+    {{ (((+vm.numberPrintLocations)-1)*(+vm.totalPieces))*1.75) + (+vm.totalPieces*1) | currency}}
+</div>
+ -->
+        <!-- </div> -->
     </div>
-    <div class="row">
-        <div class="col-md-12 ">
-            <div class="panel panel-default ">
-                <div class="panel-heading text-center">Order Line Items Table</div>
-                <div class="panel-body ">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed">
-                            <tr>
-                                <th>Order Line ID</th>
-                                <th>Order ID</th>
-                                <th>Order Line Description</th>
-                                <th>Total Pieces</th>
-                                <th>TotalNumberColors</th>
-                                <th>NumberPrintLocations</th>
-                                <th>MetallicLinks</th>
-                                <th>Discharge</th>
-                                <th>Foil</th>
-                                <th>PMS Color Matching</th>
-                                <th>Flash</th>
-                                <th>Folding and Bagging</th>
-                                <th>Sales Tax</th>
-                                <th>Set Up</th>
-                                <th>OrderLineItemCost</th>
-                                <th>ProfitMargin</th>
-                                <th>OrderLineItemClientEstimate</th>
-                                <th>OrderLineItemProfit</th>
-                                <th>OrderLineItemCreatedDate</th>
-                                <th>VendorName</th>
-                                <th>CategoryId</th>
-                                <th>CategoryName</th>
-                                <th>BrandName</th>
-                                <th>StyleId</th>
-                                <th>CasePrice</th>
-                                <th>StyleTitle</th>
-                            </tr>
-                            <tr ng-repeat="lineItem in vm.allOrderLineItems">
-                                <td>{{lineItem.orderLineItemId}}</td>
-                                <td>{{lineItem.orderId}}</td>
-                                <td>{{lineItem.description}}</td>
-                                <td>{{lineItem.totalPieces}}</td>
-                                <td>{{lineItem.totalNumberColors}}</td>
-                                <td>{{lineItem.numberPrintLocations}}</td>
-                                <td>{{lineItem.metallicLinks}}</td>
-                                <td>{{lineItem.discharge}}</td>
-                                <td>{{lineItem.foil}}</td>
-                                <td>{{lineItem.pmsColorMatching}}</td>
-                                <td>{{lineItem.flash}}</td>
-                                <td>{{lineItem.foldingAndBagging}}</td>
-                                <td>{{lineItem.salesTax}}</td>
-                                <td>{{lineItem.setUp}}</td>
-                                <td>{{lineItem.orderLineItemCost}}</td>
-                                <td>{{lineItem.profitMargin}}</td>
-                                <td>{{lineItem.orderLineItemClientEstimate}}</td>
-                                <td>{{lineItem.orderLineItemProfit}}</td>
-                                <td>{{lineItem.orderLineItemCreatedDate}}</td>
-                                <td>{{lineItem.vendorName}}</td>
-                                <td>{{lineItem.categoryId}}</td>
-                                <td>{{lineItem.categoryName}}</td>
-                                <td>{{lineItem.brandName}}</td>
-                                <td>{{lineItem.styleId}}</td>
-                                <td>{{lineItem.casePrice}}</td>
-                                <td>{{lineItem.styleTitle}}</td>
-                            </tr>
-                        </table>
-                    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="panel panel-default ">
+            <div class="panel-heading text-center">Order Line Items Table</div>
+            <div class="panel-body ">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-condensed table-xs">
+                        <tr>
+                            <th>Order Line ID</th>
+                            <!-- <th>Order ID</th> -->
+                            <th>Order Line Description</th>
+                            <th>Total Pieces</th>
+                            <th>TotalNumberColors</th>
+                            <th>NumberPrintLocations</th>
+                            <th>MetallicLinks</th>
+                            <th>Discharge</th>
+                            <th>Foil</th>
+                            <th>PMS Color Matching</th>
+                            <th>Flash</th>
+                            <th>Folding and Bagging</th>
+                            <th>Sales Tax</th>
+                            <th>Set Up</th>
+                            <th>OrderLineItemCost</th>
+                            <th>ProfitMargin</th>
+                            <th>OrderLineItemClientEstimate</th>
+                            <th>OrderLineItemProfit</th>
+                            <th>OrderLineItemCreatedDate</th>
+                            <th>VendorName</th>
+                            <th>CategoryId</th>
+                            <th>CategoryName</th>
+                            <th>BrandName</th>
+                            <th>StyleId</th>
+                            <th>CasePrice</th>
+                            <th>StyleTitle</th>
+                        </tr>
+                        <tr ng-repeat="lineItem in vm.allOrderLineItems">
+                            <td>{{lineItem.orderLineItemId}}</td>
+                            <td>{{lineItem.orderId}}</td>
+                            <td>{{lineItem.description}}</td>
+                            <td>{{lineItem.totalPieces}}</td>
+                            <td>{{lineItem.totalNumberColors}}</td>
+                            <td>{{lineItem.numberPrintLocations}}</td>
+                            <td>{{lineItem.metallicLinks}}</td>
+                            <td>{{lineItem.discharge}}</td>
+                            <td>{{lineItem.foil}}</td>
+                            <td>{{lineItem.pmsColorMatching}}</td>
+                            <td>{{lineItem.flash}}</td>
+                            <td>{{lineItem.foldingAndBagging}}</td>
+                            <td>{{lineItem.salesTax}}</td>
+                            <td>{{lineItem.setUp}}</td>
+                            <td>{{lineItem.orderLineItemCost}}</td>
+                            <td>{{lineItem.profitMargin}}</td>
+                            <td>{{lineItem.orderLineItemClientEstimate}}</td>
+                            <td>{{lineItem.orderLineItemProfit}}</td>
+                            <td>{{lineItem.orderLineItemCreatedDate}}</td>
+                            <td>{{lineItem.vendorName}}</td>
+                            <td>{{lineItem.categoryId}}</td>
+                            <td>{{lineItem.categoryName}}</td>
+                            <td>{{lineItem.brandName}}</td>
+                            <td>{{lineItem.styleId}}</td>
+                            <td>{{lineItem.casePrice}}</td>
+                            <td>{{lineItem.styleTitle}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
