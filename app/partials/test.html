@@ -1,6 +1,3 @@
-<pre>
-		{{vm.itemStyleByCatId}}
-	</pre>
 <div class="form-group">
     <label class="col-md-4 control-label" for="selectbasic">Choose Category</label>
     <div class="col-md-4">
@@ -8,15 +5,24 @@
         </select>
     </div>
 </div>
-<button ng-click="vm.findStyleByCatId(vm.categoryId)">Search Style</button>
+<button ng-click="vm.findStyleByCatId(vm.categoryId)" class="btn btn-custom">Search Style</button>
 </div>
 <div>
-    <div ng-repeat="style in vm.itemStyleByCatId track by $index">
-    	{{style.brandName}}
-    	{{style.title}}
-    	<img ng-src="https://www.ssactivewear.com/{{style.styleImage}}">
+    <div class="row" style="margin-top: 24px;">
+        <div class="col-sm-6 col-md-4" ng-repeat="style in vm.itemStyleByCatId track by $index">
+            <img ng-src="https://www.ssactivewear.com/{{style.styleImage}}">
+            <br />
+            <strong>Brand Name:</strong>{{style.brandName}}
+            <br />
+            <strong>Title:</strong>{{style.title}}
+            <br />
+            <strong>Style ID:</strong>{{style.styleID}}
+            <br />
+            <strong>Average Case Price:</strong> <span class="text-success">{{style.averagePrice | currency}}</span>
+            <br />
+            <!--  <strong>Qty in stock: </strong>{{style.qty}}<br />
+            <strong>Case Qty:</strong>{{style.caseQty}} -->
+        </div>
+        <div class="clearfix" ng-if="$index % 3 === 0"></div>
     </div>
 </div>
-<!--<p ng-repeat="image in vm.image track by $index">
-<img ng-src="https://www.ssactivewear.com/{{image}}"></img>
-</p>
