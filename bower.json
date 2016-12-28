@@ -1,9 +1,9 @@
 {
-  "name": "UserAdmin",
+  "name": "TeamPhun",
   "main": "gulpfile.js",
-  "homepage": "https://github.com/Exponent500/UserAdmin",
+  "homepage": "https://github.com/Bahamnsadiq/TeamPhun",
   "authors": [
-    "Exponent500 <reuvenkishon@gmail.com>"
+    "Bahamnsadiq <Bahamn.sadiq@gmail.com>"
   ],
   "description": "",
   "license": "MIT",
